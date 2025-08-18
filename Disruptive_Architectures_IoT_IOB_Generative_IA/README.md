@@ -53,7 +53,7 @@ O objetivo é avançar na **implementação técnica da solução**, demonstrand
 ---
 
 ## 📂 **Link do Repositório**
-[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Disruptive_Architectures_IoT_IOB_Generative_IA)
+[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu/tree/main/Disruptive_Architectures_IoT_IOB_Generative_IA)
 
 ---
 

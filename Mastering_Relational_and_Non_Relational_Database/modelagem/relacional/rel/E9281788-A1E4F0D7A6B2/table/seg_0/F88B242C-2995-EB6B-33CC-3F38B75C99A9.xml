@@ -1,0 +1,133 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F88B242C-2995-EB6B-33CC-3F38B75C99A9" name="TB_VEICULO">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>BF20823F-BE27-9FE9-DC3B-C4D06D6F2706</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_veiculo" id="3A6EF314-49F0-2515-BF2F-26C97927B59D">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>9F3ED40F-935A-8577-51AE-2EDA478341B3</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="placa" id="92A241E6-E395-9D4F-BD1A-CA849EBDA355">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>A20C0C9B-ED2B-E5D8-519A-73D0B5A913B8</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>10</dataTypeSize>
+<ownDataTypeParameters>10,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="renavam" id="3C3A38C6-36D8-8372-719B-DB83BC23C64F">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>EFDA6D70-9321-67D3-2C24-02EDF772D72D</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<ownDataTypeParameters>11,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="chassi" id="BB01C282-5D31-871E-112F-5472E8253D88">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>2485579B-AA06-B995-7618-4413873D5D0C</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>17</dataTypeSize>
+<ownDataTypeParameters>17,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fabricante" id="B127B022-88D5-8B45-4C79-FACDF4821FDE">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>DB3A538A-5EB9-DED6-AF3B-7832B6875B46</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="modelo" id="1BC5172C-8361-85D9-35AA-1719D10E4462">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>FD08F016-C253-DCB9-58D0-94B1066EAD1E</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>60</dataTypeSize>
+<ownDataTypeParameters>60,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="motor" id="7AC7AAB6-F222-7050-EB26-2BA1CF0FD6BD">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>6B7A4001-D9A5-6AA6-20C0-7D4BFB3CF803</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30</dataTypeSize>
+<ownDataTypeParameters>30,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ano" id="02327212-18CE-E420-39DD-045965DC78C6">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>3DB35094-A054-F5ED-15F1-FFFF65A6AD4C</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="combustivel" id="950A7DC5-C94C-485D-B72A-6634D029055C">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>12693C23-B693-F738-5344-7E9F6D4AED3C</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20</dataTypeSize>
+<ownDataTypeParameters>20,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="98089CB7-EF3F-6BFF-593E-74F7F0A02436" name="TB_VEICULO_PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>09F2FAF6-711B-158D-1F92-4D8A9B9202F4</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A6EF314-49F0-2515-BF2F-26C97927B59D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

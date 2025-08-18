@@ -1,0 +1,113 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F00A198B-70DA-D163-18CC-B7D6054EADA9" name="TB_CLIENTEVEICULO">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>F28650C2-9600-95DB-CC36-B15C155623F9</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TB_CLIENTE_id_cliente" id="25252498-E2B2-4C4F-5301-D9C84BC9157D">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>E79F58EE-C31E-6132-F995-F0B9887F74EC</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5A191EE7-A3AE-8CC9-74B3-CC74A7F02C86" referredColumn="FE1254DC-F397-CF39-AA2A-5A9BA7CA033E"/>
+</associations>
+</Column>
+<Column name="TB_CLIENTE_TB_ENDERECO_id_endereco" id="3937827E-BED4-C4F4-65E8-6AD90400BBE3">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>4735E717-C2DC-798C-B0E9-2422230851EC</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5A191EE7-A3AE-8CC9-74B3-CC74A7F02C86" referredColumn="288E055E-76EF-B46A-BD25-54E422325F56"/>
+</associations>
+</Column>
+<Column name="TB_CLIENTE_TB_CONTATO_id_contato" id="6731840E-1859-DCCF-388A-67870F817749">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>4A474DC3-697B-3438-C7E1-65C0A58F6E82</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5A191EE7-A3AE-8CC9-74B3-CC74A7F02C86" referredColumn="5656D1EF-5CB8-BFDB-CA37-E97516CCC684"/>
+</associations>
+</Column>
+<Column name="TB_VEICULO_id_veiculo" id="5729FAFF-746A-0253-6EA4-05875F2A7D5B">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>D61B86B9-0498-C1D8-63C8-2F10E6795FC6</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="70244A4F-7AAE-469B-9052-75DC4657D603" referredColumn="3A6EF314-49F0-2515-BF2F-26C97927B59D"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="FBBB3657-3AC9-57FE-9021-7738D686ABF3" name="TB_CLIENTEVEICULO_PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>41A5A6B9-DDC6-8DEA-4F68-3FEEE1EDA9DD</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="25252498-E2B2-4C4F-5301-D9C84BC9157D"/>
+<colUsage columnID="3937827E-BED4-C4F4-65E8-6AD90400BBE3"/>
+<colUsage columnID="6731840E-1859-DCCF-388A-67870F817749"/>
+<colUsage columnID="5729FAFF-746A-0253-6EA4-05875F2A7D5B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C1C7B49E-4DBB-DE8E-A9E2-294EC6130903" name="TB_CLIENTEVEICULO_TB_CLIENTE_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>B7FDE192-4613-D999-D036-C10CC2A05D81</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="25252498-E2B2-4C4F-5301-D9C84BC9157D"/>
+<colUsage columnID="3937827E-BED4-C4F4-65E8-6AD90400BBE3"/>
+<colUsage columnID="6731840E-1859-DCCF-388A-67870F817749"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="16B4594C-10A9-E3EA-2945-FF96290B85E3" name="TB_CLIENTEVEICULO_TB_VEICULO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>22E15F5E-F42D-B0EF-2322-6AF57308F1D7</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="5729FAFF-746A-0253-6EA4-05875F2A7D5B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="F28650C2-9600-95DB-CC36-B15C155623F9" name="TB_CLIENTEVEICULO">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-03 14:35:01 UTC</createdTime>
+<ownerDesignName>relacional</ownerDesignName>
+<engineerTo>
+<item key="E9281788-EBA8-E9A1-DD9E-A1E4F0D7A6B2" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_cliente" id="E79F58EE-C31E-6132-F995-F0B9887F74EC">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-03 14:37:28 UTC</createdTime>
+<generatorID>B7FDE192-4613-D999-D036-C10CC2A05D81</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<engineerTo>
+<item key="E9281788-EBA8-E9A1-DD9E-A1E4F0D7A6B2" value="true"/>
+</engineerTo>
+<referedAttribute>2A2493C5-E1D4-433C-AAFE-0BA03BAB01A5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_endereco" id="4735E717-C2DC-798C-B0E9-2422230851EC">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-03 14:37:28 UTC</createdTime>
+<generatorID>B7FDE192-4613-D999-D036-C10CC2A05D81</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<engineerTo>
+<item key="E9281788-EBA8-E9A1-DD9E-A1E4F0D7A6B2" value="true"/>
+</engineerTo>
+<referedAttribute>69D68BF2-29AD-43F9-C011-5CB80DB96EB2</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_contato" id="4A474DC3-697B-3438-C7E1-65C0A58F6E82">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-03 14:37:28 UTC</createdTime>
+<generatorID>B7FDE192-4613-D999-D036-C10CC2A05D81</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<engineerTo>
+<item key="E9281788-EBA8-E9A1-DD9E-A1E4F0D7A6B2" value="true"/>
+</engineerTo>
+<referedAttribute>8CFCBAE0-3F81-813A-8D83-C9A8C591C4F5</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_veiculo" id="D61B86B9-0498-C1D8-63C8-2F10E6795FC6">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-03 14:37:37 UTC</createdTime>
+<generatorID>22E15F5E-F42D-B0EF-2322-6AF57308F1D7</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<engineerTo>
+<item key="E9281788-EBA8-E9A1-DD9E-A1E4F0D7A6B2" value="true"/>
+</engineerTo>
+<referedAttribute>9F3ED40F-935A-8577-51AE-2EDA478341B3</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="41A5A6B9-DDC6-8DEA-4F68-3FEEE1EDA9DD" name="TB_CV PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-03 14:35:40 UTC</createdTime>
+<ownerDesignName>relacional</ownerDesignName>
+<engineerTo>
+<item key="E9281788-EBA8-E9A1-DD9E-A1E4F0D7A6B2" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>E79F58EE-C31E-6132-F995-F0B9887F74EC</attributeRef>
+<attributeRef>4735E717-C2DC-798C-B0E9-2422230851EC</attributeRef>
+<attributeRef>4A474DC3-697B-3438-C7E1-65C0A58F6E82</attributeRef>
+<attributeRef>D61B86B9-0498-C1D8-63C8-2F10E6795FC6</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="6B801A1A-550A-02A9-36EB-781130A353F3" name="T_CONTATOPATIO">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>C03ED0DC-6F01-6FFA-B9D4-64AD1F5AD194</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TB_PATIO_id_patio" id="3A9F819C-7FE4-468E-EDDA-9F3959C7EAA6">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>BB944220-8E9F-E6DC-E9DB-ED368387C047</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="014199B7-A1E8-EDF6-A5C2-1CE9076C3918" referredColumn="928139BD-1DCA-FFA4-9704-16BF57839EE8"/>
+</associations>
+</Column>
+<Column name="TB_CONTATO_id_contato" id="00407277-5A37-712C-AE2F-AAAF631B0B7F">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>8EEB15A2-6769-E7CB-F84B-7CD06F84BAE7</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="BC89DDCB-D4B3-C3B5-0952-A995FCDC8B73" referredColumn="B5E50AB7-D9E3-2E7B-2373-7E8E03665739"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="1D40FF53-48D2-4D8C-A600-8896AD8DB8CC" name="T_CONTATOPATIO_PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>7DE8473E-1A61-B8BF-B5FF-722CAA575BE4</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A9F819C-7FE4-468E-EDDA-9F3959C7EAA6"/>
+<colUsage columnID="00407277-5A37-712C-AE2F-AAAF631B0B7F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="E04C5860-9ADB-C1CD-DBB2-E184BA6D6A1D" name="T_CONTATOPATIO_TB_PATIO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>BE91B507-706C-0262-3C55-58EBA80718CB</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="3A9F819C-7FE4-468E-EDDA-9F3959C7EAA6"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="61E8AC78-2024-9D74-83D4-48EC581EBD30" name="T_CONTATOPATIO_TB_CONTATO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>0F1B39F2-B6A7-F27B-EA71-06B33473D020</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="00407277-5A37-712C-AE2F-AAAF631B0B7F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

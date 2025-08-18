@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="C9F519EB-67B9-3677-EEE3-2B6EDB285ED1" containerWithKeyObject="76C23ACD-E909-DCB4-54B7-CA741D98A536" localFKIndex="E6ACB6EB-750A-41AC-3A34-44AAFF2BBBE0" name="TB_PATIOBOX_TB_PATIO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>6C91B051-ABDE-BC6C-792E-84620B65187A</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<referredTableLongName>TB_PATIO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>19F283AA-77E3-62DA-A090-105A68B5BC1B</referredTableID>
+<keyObject>F04E1F94-86FB-AB14-AEFC-C2A5709325D2</keyObject>
+<referredKeyID>F04E1F94-86FB-AB14-AEFC-C2A5709325D2</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_patio</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

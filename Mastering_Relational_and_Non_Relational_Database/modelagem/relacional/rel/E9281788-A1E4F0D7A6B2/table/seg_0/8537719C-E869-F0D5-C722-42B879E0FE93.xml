@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="8537719C-E869-F0D5-C722-42B879E0FE93" name="TB_ZONAPATIO">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>B004DB1E-1BC7-F663-DC70-0C941D154168</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TB_PATIO_id_patio" id="88BCADDF-26EA-922D-38CD-BB11671B9AF2">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>AD746FC9-7EA9-2BDB-12B5-42718B741F9C</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="3B94F95C-EC54-5914-2A38-44461F603238" referredColumn="928139BD-1DCA-FFA4-9704-16BF57839EE8"/>
+</associations>
+</Column>
+<Column name="TB_ZONA_id_zona" id="68DC9E81-C09F-74F7-23C0-124E22331623">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>BE12BEC4-F9DF-26A8-E00D-C71809C9B78F</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="25FDB710-8D6D-5464-3971-E2C4AEA30384" referredColumn="2F098962-62B2-794F-9CF9-39DBCE2124B3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="A830985A-2641-35D1-CF8F-23E1E8B06931" name="TB_ZONAPATIO_PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>41F81460-E8F7-3BCC-96EE-DAECF7D954F1</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="88BCADDF-26EA-922D-38CD-BB11671B9AF2"/>
+<colUsage columnID="68DC9E81-C09F-74F7-23C0-124E22331623"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="3209D727-6F78-6FAD-8074-31B905483772" name="TB_ZONAPATIO_TB_PATIO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>A5C54E4C-A69D-7B12-6A5B-A97CB784EF49</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="88BCADDF-26EA-922D-38CD-BB11671B9AF2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="554B8D1D-8730-334C-DAA5-4DB01BCC2102" name="TB_ZONAPATIO_TB_ZONA_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-11 20:16:34 UTC</createdTime>
+<generatorID>9E4F9013-227B-A06D-57E1-FA1F7903E943</generatorID>
+<ownerDesignName>relacional</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="68DC9E81-C09F-74F7-23C0-124E22331623"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

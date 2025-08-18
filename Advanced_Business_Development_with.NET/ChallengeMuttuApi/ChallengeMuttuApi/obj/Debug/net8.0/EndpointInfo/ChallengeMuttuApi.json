@@ -1,0 +1,3778 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Challenge Muttu API",
+    "description": "\r\n            API RESTful para o Challenge Muttu - Gestão de Clientes, Veículos, Endereços, Contatos e mais.\r\n            **Endereço do Projeto GitHub:** [https://github.com/carmipa/challenge_2025_1_semestre_mottu](https://github.com/carmipa/challenge_2025_1_semestre_mottu)\r\n            **Turma:** 2TDSPV / 2TDSPZ\r\n            **Contatos da Equipe:**\r\n            - Arthur Bispo de Lima RM557568: [https://github.com/ArthurBispo00](https://github.com/ArthurBispo00)\r\n            - João Paulo Moreira RM557808: [https://github.com/joao1015](https://github.com/joao1015)\r\n            - Paulo André Carminati RM557881: [https://github.com/carmipa](https://github.com/carmipa)\r\n        ",
+    "contact": {
+      "name": "Equipe Metamind Solution",
+      "url": "https://github.com/carmipa/challenge_2025_1_semestre_mottu",
+      "email": "RM557881@fiap.com.br;RM557568@fiap.com.br;RM557808@fiap.com.br"
+    },
+    "license": {
+      "name": "Licença de Exemplo",
+      "url": "https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Advanced_Business_Development_with.NET"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/Boxes": {
+      "get": {
+        "tags": [
+          "Boxes"
+        ],
+        "summary": "Retorna uma lista de todos os boxes cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de boxes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Box"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Não há boxes cadastrados."
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Boxes"
+        ],
+        "summary": "Cria um novo box.",
+        "requestBody": {
+          "description": "Os dados do box a serem criados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Box"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Box"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Box"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Box criado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Box"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados do box inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Boxes/{id}": {
+      "get": {
+        "tags": [
+          "Boxes"
+        ],
+        "summary": "Retorna um box específico pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do box a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o box encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Box"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Box não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Boxes"
+        ],
+        "summary": "Atualiza um box existente pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do box a ser atualizado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Os dados do box atualizados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Box"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Box"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Box"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Box atualizado com sucesso."
+          },
+          "400": {
+            "description": "ID na URL não corresponde ao ID do box no corpo da requisição, ou dados inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Box não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Boxes"
+        ],
+        "summary": "Exclui um box pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do box a ser excluído.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Box excluído com sucesso."
+          },
+          "404": {
+            "description": "Box não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Boxes/search-by-name": {
+      "get": {
+        "tags": [
+          "Boxes"
+        ],
+        "summary": "Pesquisa boxes por parte do nome.",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "description": "A string a ser pesquisada no nome dos boxes.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de boxes que correspondem à pesquisa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Box"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum box encontrado com o nome especificado."
+          },
+          "400": {
+            "description": "O parâmetro de nome para pesquisa é obrigatório.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Boxes/by-status/{status}": {
+      "get": {
+        "tags": [
+          "Boxes"
+        ],
+        "summary": "Retorna boxes com base em seu status.",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "path",
+            "description": "O status do box ('A' para Ativo, 'I' para Inativo).",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de boxes com o status especificado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Box"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum box encontrado com o status especificado."
+          },
+          "400": {
+            "description": "O status fornecido é inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Clientes": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cliente"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Clientes"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Clientes/{id}": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Clientes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Cliente"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Clientes"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Clientes/by-cpf/{cpf}": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Cliente"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Clientes/search-by-name": {
+      "get": {
+        "tags": [
+          "Clientes"
+        ],
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Cliente"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server Error"
+          }
+        }
+      }
+    },
+    "/api/Contatos": {
+      "get": {
+        "tags": [
+          "Contatos"
+        ],
+        "summary": "Retorna uma lista de todos os contatos cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de contatos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contato"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Não há contatos cadastrados."
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contatos"
+        ],
+        "summary": "Cria um novo contato.",
+        "requestBody": {
+          "description": "Os dados do contato a serem criados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Contato criado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contato"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados do contato inválidos ou já existe um contato com o mesmo e-mail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Contatos/{id}": {
+      "get": {
+        "tags": [
+          "Contatos"
+        ],
+        "summary": "Retorna um contato específico pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do contato a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o contato encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contato"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contato não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Contatos"
+        ],
+        "summary": "Atualiza um contato existente pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do contato a ser atualizado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Os dados do contato atualizados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Contato"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Contato atualizado com sucesso."
+          },
+          "400": {
+            "description": "ID na URL não corresponde ao ID do contato no corpo da requisição, ou dados inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contato não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Contatos"
+        ],
+        "summary": "Exclui um contato pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do contato a ser excluído.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Contato excluído com sucesso."
+          },
+          "404": {
+            "description": "Contato não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Contatos/by-email/{email}": {
+      "get": {
+        "tags": [
+          "Contatos"
+        ],
+        "summary": "Retorna um contato pelo seu endereço de e-mail.",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "description": "O endereço de e-mail do contato a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o contato encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contato"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "O e-mail fornecido é inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Contato com o e-mail especificado não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Contatos/search-by-celular": {
+      "get": {
+        "tags": [
+          "Contatos"
+        ],
+        "summary": "Pesquisa contatos por parte do número de celular.",
+        "parameters": [
+          {
+            "name": "celular",
+            "in": "query",
+            "description": "A string a ser pesquisada no número de celular dos contatos.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de contatos que correspondem à pesquisa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contato"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum contato encontrado com o celular especificado."
+          },
+          "400": {
+            "description": "O parâmetro de celular para pesquisa é obrigatório.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Enderecos": {
+      "get": {
+        "tags": [
+          "Enderecos"
+        ],
+        "summary": "Retorna uma lista de todos os endereços cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de endereços.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Endereco"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Não há endereços cadastrados."
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Enderecos"
+        ],
+        "summary": "Cria um novo endereço.",
+        "requestBody": {
+          "description": "Os dados do endereço a serem criados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Endereco"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Endereco"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Endereco"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Endereço criado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Endereco"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados do endereço inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Enderecos/{id}": {
+      "get": {
+        "tags": [
+          "Enderecos"
+        ],
+        "summary": "Retorna um endereço específico pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do endereço a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o endereço encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Endereco"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Endereço não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Enderecos"
+        ],
+        "summary": "Atualiza um endereço existente pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do endereço a ser atualizado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Os dados do endereço atualizados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Endereco"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Endereco"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Endereco"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Endereço atualizado com sucesso."
+          },
+          "400": {
+            "description": "ID na URL não corresponde ao ID do endereço no corpo da requisição, ou dados inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Endereço não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Enderecos"
+        ],
+        "summary": "Exclui um endereço pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do endereço a ser excluído.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Endereço excluído com sucesso."
+          },
+          "404": {
+            "description": "Endereço não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Enderecos/by-cep/{cep}": {
+      "get": {
+        "tags": [
+          "Enderecos"
+        ],
+        "summary": "Retorna endereços por CEP.",
+        "parameters": [
+          {
+            "name": "cep",
+            "in": "path",
+            "description": "O CEP do endereço a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de endereços com o CEP especificado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Endereco"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum endereço encontrado com o CEP especificado."
+          },
+          "400": {
+            "description": "O CEP fornecido é inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Enderecos/search-by-location": {
+      "get": {
+        "tags": [
+          "Enderecos"
+        ],
+        "summary": "Pesquisa endereços por parte da cidade e estado.",
+        "parameters": [
+          {
+            "name": "cidade",
+            "in": "query",
+            "description": "A string a ser pesquisada na cidade dos endereços.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "estado",
+            "in": "query",
+            "description": "A sigla do estado para pesquisa.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de endereços que correspondem à pesquisa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Endereco"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum endereço encontrado."
+          },
+          "400": {
+            "description": "Os parâmetros de pesquisa são obrigatórios.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Patios": {
+      "get": {
+        "tags": [
+          "Patios"
+        ],
+        "summary": "Retorna uma lista de todos os pátios cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de pátios.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Patio"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Não há pátios cadastrados."
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Patios"
+        ],
+        "summary": "Cria um novo pátio.",
+        "requestBody": {
+          "description": "Os dados do pátio a serem criados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patio"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patio"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patio"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pátio criado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Patio"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados do pátio inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Patios/{id}": {
+      "get": {
+        "tags": [
+          "Patios"
+        ],
+        "summary": "Retorna um pátio específico pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do pátio a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o pátio encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Patio"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pátio não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Patios"
+        ],
+        "summary": "Atualiza um pátio existente pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do pátio a ser atualizado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Os dados do pátio atualizados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patio"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patio"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Patio"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Pátio atualizado com sucesso."
+          },
+          "400": {
+            "description": "ID na URL não corresponde ao ID do pátio no corpo da requisição, ou dados inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Pátio não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Patios"
+        ],
+        "summary": "Exclui um pátio pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do pátio a ser excluído.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Pátio excluído com sucesso."
+          },
+          "404": {
+            "description": "Pátio não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Patios/search-by-name": {
+      "get": {
+        "tags": [
+          "Patios"
+        ],
+        "summary": "Pesquisa pátios por parte do nome do pátio.",
+        "parameters": [
+          {
+            "name": "nomePatio",
+            "in": "query",
+            "description": "A string a ser pesquisada no nome dos pátios.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de pátios que correspondem à pesquisa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Patio"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum pátio encontrado com o nome especificado."
+          },
+          "400": {
+            "description": "O parâmetro de nome para pesquisa é obrigatório.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Patios/by-date": {
+      "get": {
+        "tags": [
+          "Patios"
+        ],
+        "summary": "Retorna pátios que entraram ou saíram em uma data específica.",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "A data para buscar pátios (formato YYYY-MM-DD).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Tipo de data para buscar ('entrada' ou 'saida').",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de pátios encontrados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Patio"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum pátio encontrado para a data e tipo especificados."
+          },
+          "400": {
+            "description": "Parâmetros de data ou tipo inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Rastreamentos": {
+      "get": {
+        "tags": [
+          "Rastreamentos"
+        ],
+        "summary": "Retorna uma lista de todos os rastreamentos cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de rastreamentos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rastreamento"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Não há rastreamentos cadastrados."
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Rastreamentos"
+        ],
+        "summary": "Cria um novo rastreamento.",
+        "requestBody": {
+          "description": "Os dados do rastreamento a serem criados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rastreamento"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rastreamento"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rastreamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Rastreamento criado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rastreamento"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados do rastreamento inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Rastreamentos/{id}": {
+      "get": {
+        "tags": [
+          "Rastreamentos"
+        ],
+        "summary": "Retorna um rastreamento específico pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do rastreamento a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o rastreamento encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Rastreamento"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Rastreamento não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Rastreamentos"
+        ],
+        "summary": "Atualiza um rastreamento existente pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do rastreamento a ser atualizado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Os dados do rastreamento atualizados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rastreamento"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rastreamento"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Rastreamento"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Rastreamento atualizado com sucesso."
+          },
+          "400": {
+            "description": "ID na URL não corresponde ao ID do rastreamento no corpo da requisição, ou dados inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Rastreamento não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Rastreamentos"
+        ],
+        "summary": "Exclui um rastreamento pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do rastreamento a ser excluído.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Rastreamento excluído com sucesso."
+          },
+          "404": {
+            "description": "Rastreamento não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Rastreamentos/search-by-coordinates": {
+      "get": {
+        "tags": [
+          "Rastreamentos"
+        ],
+        "summary": "Pesquisa rastreamentos por um range de Latitude e Longitude.",
+        "parameters": [
+          {
+            "name": "minLat",
+            "in": "query",
+            "description": "Latitude mínima.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "maxLat",
+            "in": "query",
+            "description": "Latitude máxima.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "minLong",
+            "in": "query",
+            "description": "Longitude mínima.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "maxLong",
+            "in": "query",
+            "description": "Longitude máxima.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de rastreamentos que correspondem à pesquisa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rastreamento"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum rastreamento encontrado no range especificado."
+          },
+          "400": {
+            "description": "Parâmetros de latitude/longitude inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Rastreamentos/by-ips-range": {
+      "get": {
+        "tags": [
+          "Rastreamentos"
+        ],
+        "summary": "Retorna rastreamentos por um range específico das coordenadas IPS (x, y).",
+        "parameters": [
+          {
+            "name": "minX",
+            "in": "query",
+            "description": "Coordenada X mínima.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "maxX",
+            "in": "query",
+            "description": "Coordenada X máxima.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "minY",
+            "in": "query",
+            "description": "Coordenada Y mínima.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          },
+          {
+            "name": "maxY",
+            "in": "query",
+            "description": "Coordenada Y máxima.",
+            "schema": {
+              "type": "number",
+              "format": "double"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de rastreamentos encontrados.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Rastreamento"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum rastreamento encontrado no range IPS especificado."
+          },
+          "400": {
+            "description": "Parâmetros de coordenadas IPS inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Veiculos": {
+      "get": {
+        "tags": [
+          "Veiculos"
+        ],
+        "summary": "Retorna uma lista de todos os veículos cadastrados.",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de veículos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Não há veículos cadastrados."
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Veiculos"
+        ],
+        "summary": "Cria um novo veículo.",
+        "requestBody": {
+          "description": "Os dados do veículo a serem criados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Veículo criado com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados do veículo inválidos ou já existe um veículo com a mesma placa, RENAVAM ou chassi.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Veiculos/{id}": {
+      "get": {
+        "tags": [
+          "Veiculos"
+        ],
+        "summary": "Retorna um veículo específico pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do veículo a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o veículo encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Veículo não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Veiculos"
+        ],
+        "summary": "Atualiza um veículo existente pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do veículo a ser atualizado.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Os dados do veículo atualizados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Veiculo"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Veículo atualizado com sucesso."
+          },
+          "400": {
+            "description": "ID na URL não corresponde ao ID do veículo no corpo da requisição, ou dados inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Veículo não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Veiculos"
+        ],
+        "summary": "Exclui um veículo pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID do veículo a ser excluído.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Veículo excluído com sucesso."
+          },
+          "404": {
+            "description": "Veículo não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Veiculos/by-placa/{placa}": {
+      "get": {
+        "tags": [
+          "Veiculos"
+        ],
+        "summary": "Retorna um veículo pela sua placa.",
+        "description": "Exemplo: GET /api/veiculos/by-placa/ABC1234",
+        "parameters": [
+          {
+            "name": "placa",
+            "in": "path",
+            "description": "A placa do veículo a ser buscado.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o veículo encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Veiculo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "A placa fornecida é inválida.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Veículo com a placa especificada não encontrado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Veiculos/search-by-model": {
+      "get": {
+        "tags": [
+          "Veiculos"
+        ],
+        "summary": "Pesquisa veículos por parte do modelo.",
+        "description": "Exemplo: GET /api/veiculos/search-by-model?modelo=gol",
+        "parameters": [
+          {
+            "name": "modelo",
+            "in": "query",
+            "description": "A string a ser pesquisada no modelo dos veículos.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de veículos que correspondem à pesquisa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Veiculo"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhum veículo encontrado com o modelo especificado."
+          },
+          "400": {
+            "description": "O parâmetro de modelo para pesquisa é obrigatório.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/WeatherForecast": {
+      "get": {
+        "tags": [
+          "WeatherForecast"
+        ],
+        "operationId": "GetWeatherForecast",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WeatherForecast"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Zonas": {
+      "get": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Retorna uma lista de todas as zonas cadastradas.",
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de zonas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zona"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Não há zonas cadastradas."
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Cria uma nova zona.",
+        "requestBody": {
+          "description": "Os dados da zona a serem criados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zona"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zona"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zona"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Zona criada com sucesso.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Zona"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Dados da zona inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Zonas/{id}": {
+      "get": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Retorna uma zona específica pelo seu ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID da zona a ser buscada.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a zona encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Zona"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Zona não encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Atualiza uma zona existente pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID da zona a ser atualizada.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "description": "Os dados da zona atualizados.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zona"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zona"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Zona"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Zona atualizada com sucesso."
+          },
+          "400": {
+            "description": "ID na URL não corresponde ao ID da zona no corpo da requisição, ou dados inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Zona não encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Exclui uma zona pelo ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "O ID da zona a ser excluída.",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Zona excluída com sucesso."
+          },
+          "404": {
+            "description": "Zona não encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Zonas/search-by-name": {
+      "get": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Pesquisa zonas por parte do nome.",
+        "parameters": [
+          {
+            "name": "nome",
+            "in": "query",
+            "description": "A string a ser pesquisada no nome das zonas.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de zonas que correspondem à pesquisa.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zona"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhuma zona encontrada com o nome especificado."
+          },
+          "400": {
+            "description": "O parâmetro de nome para pesquisa é obrigatório.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    },
+    "/api/Zonas/by-date": {
+      "get": {
+        "tags": [
+          "Zonas"
+        ],
+        "summary": "Retorna zonas que tiveram entrada ou saída em uma data específica.",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "description": "A data para buscar zonas (formato YYYY-MM-DD).",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "Tipo de data para buscar ('entrada' ou 'saida').",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna a lista de zonas encontradas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Zona"
+                  }
+                }
+              }
+            }
+          },
+          "204": {
+            "description": "Nenhuma zona encontrada para a data e tipo especificados."
+          },
+          "400": {
+            "description": "Parâmetros de data ou tipo inválidos.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetails"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Ocorreu um erro interno no servidor."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Box": {
+        "required": [
+          "dataEntrada",
+          "dataSaida",
+          "nome",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "idBox": {
+            "type": "integer",
+            "description": "Obtém ou define o identificador único do Box.\r\nMapeia para a coluna \"ID_BOX\" (Chave Primária, gerada por identidade).",
+            "format": "int32"
+          },
+          "nome": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o nome do Box.\r\nMapeia para a coluna \"NOME\" (VARCHAR2(50 BYTE), Obrigatório)."
+          },
+          "status": {
+            "type": "boolean",
+            "description": "Obtém ou define o status atual do Box.\r\nMapeia para a coluna \"STATUS\" (VARCHAR2(1 CHAR), Obrigatório) no banco de dados,\r\nconvertido para bool (true para Ativo ('A'), false para Inativo ('I'))."
+          },
+          "dataEntrada": {
+            "type": "string",
+            "description": "Obtém ou define a data de entrada do Box.\r\nMapeia para a coluna \"DATA_ENTRADA\" (DATE, Obrigatório).",
+            "format": "date-time"
+          },
+          "dataSaida": {
+            "type": "string",
+            "description": "Obtém ou define a data de saída do Box.\r\nMapeia para a coluna \"DATA_SAIDA\" (DATE, Obrigatório).",
+            "format": "date-time"
+          },
+          "observacao": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define observações adicionais sobre o Box.\r\nMapeia para a coluna \"OBSERVACAO\" (VARCHAR2(100 BYTE), Opcional).",
+            "nullable": true
+          },
+          "patioBoxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatioBox"
+            },
+            "description": "Coleção de entidades PatioBox, representando o relacionamento muitos-para-muitos com Pátios.",
+            "nullable": true
+          },
+          "veiculoBoxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoBox"
+            },
+            "description": "Coleção de entidades VeiculoBox, representando o relacionamento muitos-para-muitos com Veículos.",
+            "nullable": true
+          },
+          "zonaBoxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ZonaBox"
+            },
+            "description": "Coleção de entidades ZonaBox, representando o relacionamento muitos-para-muitos com Zonas.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a entidade Box no banco de dados, mapeando para a tabela \"TB_BOX\".\r\nArmazena informações sobre caixas ou compartimentos, como nome, status e datas."
+      },
+      "Cliente": {
+        "required": [
+          "cpf",
+          "dataCadastro",
+          "dataNascimento",
+          "estadoCivil",
+          "nome",
+          "profissao",
+          "sexo",
+          "sobrenome",
+          "tbContatoIdContato",
+          "tbEnderecoIdEndereco"
+        ],
+        "type": "object",
+        "properties": {
+          "idCliente": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dataCadastro": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "sexo": {
+            "maxLength": 2,
+            "minLength": 0,
+            "type": "string"
+          },
+          "nome": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "sobrenome": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string"
+          },
+          "dataNascimento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cpf": {
+            "maxLength": 11,
+            "minLength": 11,
+            "type": "string"
+          },
+          "profissao": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string"
+          },
+          "estadoCivil": {
+            "$ref": "#/components/schemas/EstadoCivil"
+          },
+          "tbEnderecoIdEndereco": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "tbContatoIdContato": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "endereco": {
+            "$ref": "#/components/schemas/Endereco"
+          },
+          "contato": {
+            "$ref": "#/components/schemas/Contato"
+          },
+          "clienteVeiculos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClienteVeiculo"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClienteVeiculo": {
+        "required": [
+          "tbClienteIdCliente",
+          "tbClienteTbContatoIdContato",
+          "tbClienteTbEnderecoIdEndereco",
+          "tbVeiculoIdVeiculo"
+        ],
+        "type": "object",
+        "properties": {
+          "tbClienteIdCliente": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Cliente que faz parte da chave composta.\r\nMapeia para a coluna \"TB_CLIENTE_ID_CLIENTE\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbClienteTbEnderecoIdEndereco": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Endereço do Cliente que faz parte da chave composta.\r\nMapeia para a coluna \"TB_CLIENTE_TB_ENDERECO_ID_ENDERECO\" (Parte da Chave Primária Composta).\r\nEste campo é uma anomalia no DDL, pois a PK de TB_CLIENTE é apenas ID_CLIENTE.\r\nRecomenda-se revisão do design do banco se esta complexidade não for intencional.",
+            "format": "int32"
+          },
+          "tbClienteTbContatoIdContato": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Contato do Cliente que faz parte da chave composta.\r\nMapeia para a coluna \"TB_CLIENTE_TB_CONTATO_ID_CONTATO\" (Parte da Chave Primária Composta).\r\nEste campo é uma anomalia no DDL, similar ao Endereço.",
+            "format": "int32"
+          },
+          "tbVeiculoIdVeiculo": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Veículo que faz parte da chave composta.\r\nMapeia para a coluna \"TB_VEICULO_ID_VEICULO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "cliente": {
+            "$ref": "#/components/schemas/Cliente"
+          },
+          "veiculo": {
+            "$ref": "#/components/schemas/Veiculo"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_CLIENTEVEICULO\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Cliente e Veículo.\r\nA chave primária desta tabela é composta por uma combinação de IDs de Cliente, Endereço, Contato e Veículo.\r\n<remarks>\r\nOBS: O design da PK composta (CLIENTEVEICULO_PK) é incomum e pode exigir configuração explícita no DbContext.\r\nA chave primária inclui o ID do Endereço e Contato do Cliente, o que não é padrão em relacionamentos\r\nmuitos-para-muitos típicos. Considere revisar o design do banco de dados se essa granularidade não for intencional.\r\n</remarks>"
+      },
+      "Contato": {
+        "required": [
+          "celular",
+          "ddd",
+          "ddi",
+          "email",
+          "telefone1"
+        ],
+        "type": "object",
+        "properties": {
+          "idContato": {
+            "type": "integer",
+            "description": "Obtém ou define o identificador único do Contato.\r\nMapeia para a coluna \"ID_CONTATO\" (Chave Primária, gerada por identidade).",
+            "format": "int32"
+          },
+          "email": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o endereço de e-mail principal do contato.\r\nMapeia para a coluna \"EMAIL\" (VARCHAR2(100 BYTE), Obrigatório).",
+            "format": "email"
+          },
+          "ddd": {
+            "maximum": 99,
+            "minimum": 11,
+            "type": "integer",
+            "description": "Obtém ou define o DDD (Código de Discagem Direta a Distância) do telefone principal.\r\nMapeia para a coluna \"DDD\" (NUMBER(4,0), Obrigatório).\r\nPossui validação de range entre 11 e 99.",
+            "format": "int32"
+          },
+          "ddi": {
+            "maximum": 9999,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Obtém ou define o DDI (Código de Discagem Direta Internacional) do telefone principal.\r\nMapeia para a coluna \"DDI\" (NUMBER(4,0), Obrigatório).",
+            "format": "int32"
+          },
+          "telefone1": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o primeiro número de telefone do contato.\r\nMapeia para a coluna \"TELEFONE1\" (VARCHAR2(20 BYTE), Obrigatório)."
+          },
+          "telefone2": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o segundo número de telefone do contato.\r\nMapeia para a coluna \"TELEFONE2\" (VARCHAR2(20 BYTE), Opcional).",
+            "nullable": true
+          },
+          "telefone3": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o terceiro número de telefone do contato.\r\nMapeia para a coluna \"TELEFONE3\" (VARCHAR2(20 BYTE), Opcional).",
+            "nullable": true
+          },
+          "celular": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o número de celular do contato.\r\nMapeia para a coluna \"CELULAR\" (VARCHAR2(20 BYTE), Obrigatório)."
+          },
+          "outro": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define outras informações de contato.\r\nMapeia para a coluna \"OUTRO\" (VARCHAR2(100 BYTE), Opcional).",
+            "nullable": true
+          },
+          "observacao": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define observações adicionais sobre o contato.\r\nMapeia para a coluna \"OBSERVACAO\" (VARCHAR2(200 BYTE), Opcional).",
+            "nullable": true
+          },
+          "clientes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Cliente"
+            },
+            "description": "Coleção de entidades Cliente associadas a este Contato.\r\nRepresenta o relacionamento um-para-muitos onde um Contato pode ser associado a múltiplos Clientes.",
+            "nullable": true
+          },
+          "contatoPatios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContatoPatio"
+            },
+            "description": "Coleção de entidades ContatoPatio, representando o relacionamento muitos-para-muitos com Pátios.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a entidade Contato no banco de dados, mapeando para a tabela \"TB_CONTATO\".\r\nContém informações de contato como e-mail, telefones e observações."
+      },
+      "ContatoPatio": {
+        "required": [
+          "tbContatoIdContato",
+          "tbPatioIdPatio"
+        ],
+        "type": "object",
+        "properties": {
+          "tbPatioIdPatio": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Pátio que faz parte da chave composta.\r\nMapeia para a coluna \"TB_PATIO_ID_PATIO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbContatoIdContato": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Contato que faz parte da chave composta.\r\nMapeia para a coluna \"TB_CONTATO_ID_CONTATO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "patio": {
+            "$ref": "#/components/schemas/Patio"
+          },
+          "contato": {
+            "$ref": "#/components/schemas/Contato"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_CONTATOPATIO\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Contato e Pátio.\r\nA chave primária desta tabela é composta pelos IDs de Pátio e Contato."
+      },
+      "Endereco": {
+        "required": [
+          "bairro",
+          "cep",
+          "cidade",
+          "estado",
+          "logradouro",
+          "numero",
+          "pais"
+        ],
+        "type": "object",
+        "properties": {
+          "idEndereco": {
+            "type": "integer",
+            "description": "Obtém ou define o identificador único do Endereço.\r\nMapeia para a coluna \"ID_ENDERECO\" (Chave Primária, gerada por identidade).",
+            "format": "int32"
+          },
+          "cep": {
+            "maxLength": 9,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o CEP (Código de Endereçamento Postal) do endereço.\r\nMapeia para a coluna \"CEP\" (VARCHAR2(9 CHAR), Obrigatório)."
+          },
+          "numero": {
+            "type": "integer",
+            "description": "Obtém ou define o número do endereço.\r\nMapeia para a coluna \"NUMERO\" (NUMBER(7,0), Obrigatório).",
+            "format": "int32"
+          },
+          "logradouro": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o nome do logradouro (rua, avenida, etc.).\r\nMapeia para a coluna \"LOGRADOURO\" (VARCHAR2(50 BYTE), Obrigatório)."
+          },
+          "bairro": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o nome do bairro.\r\nMapeia para a coluna \"BAIRRO\" (VARCHAR2(50 BYTE), Obrigatório)."
+          },
+          "cidade": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o nome da cidade.\r\nMapeia para a coluna \"CIDADE\" (VARCHAR2(50 BYTE), Obrigatório)."
+          },
+          "estado": {
+            "maxLength": 2,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define a sigla do estado (UF).\r\nMapeia para a coluna \"ESTADO\" (VARCHAR2(2 CHAR), Obrigatório)."
+          },
+          "pais": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o nome do país.\r\nMapeia para a coluna \"PAIS\" (VARCHAR2(50 BYTE), Obrigatório)."
+          },
+          "complemento": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o complemento do endereço (ex: apartamento, bloco).\r\nMapeia para a coluna \"COMPLEMENTO\" (VARCHAR2(60 BYTE), Opcional).",
+            "nullable": true
+          },
+          "observacao": {
+            "maxLength": 200,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define observações adicionais sobre o endereço.\r\nMapeia para a coluna \"OBSERVACAO\" (VARCHAR2(200 BYTE), Opcional).",
+            "nullable": true
+          },
+          "clientes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Cliente"
+            },
+            "description": "Coleção de entidades Cliente associadas a este Endereço.\r\nRepresenta o relacionamento um-para-muitos onde um Endereço pode ser associado a múltiplos Clientes.",
+            "nullable": true
+          },
+          "enderecoPatios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnderecoPatio"
+            },
+            "description": "Coleção de entidades EnderecoPatio, representando o relacionamento muitos-para-muitos com Pátios.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a entidade Endereço no banco de dados, mapeando para a tabela \"TB_ENDERECO\".\r\nContém detalhes de um endereço como CEP, logradouro, cidade, estado, etc."
+      },
+      "EnderecoPatio": {
+        "required": [
+          "tbEnderecoIdEndereco",
+          "tbPatioIdPatio"
+        ],
+        "type": "object",
+        "properties": {
+          "tbEnderecoIdEndereco": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Endereço que faz parte da chave composta.\r\nMapeia para a coluna \"TB_ENDERECO_ID_ENDERECO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbPatioIdPatio": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Pátio que faz parte da chave composta.\r\nMapeia para a coluna \"TB_PATIO_ID_PATIO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "endereco": {
+            "$ref": "#/components/schemas/Endereco"
+          },
+          "patio": {
+            "$ref": "#/components/schemas/Patio"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_ENDERECIOPATIO\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Endereço e Pátio.\r\nA chave primária desta tabela é composta pelos IDs de Endereço e Pátio."
+      },
+      "EstadoCivil": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "description": "Define os estados civis possíveis para um cliente, mapeando os valores do banco de dados Oracle.\r\nOs valores string devem corresponder à constraint CK_CLIENTE_ESTADO_CIVIL no DDL.",
+        "format": "int32"
+      },
+      "Patio": {
+        "required": [
+          "dataEntrada",
+          "dataSaida",
+          "nomePatio"
+        ],
+        "type": "object",
+        "properties": {
+          "idPatio": {
+            "type": "integer",
+            "description": "Obtém ou define o identificador único do Pátio.\r\nMapeia para a coluna \"ID_PATIO\" (Chave Primária, gerada por identidade).",
+            "format": "int32"
+          },
+          "nomePatio": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o nome do Pátio.\r\nMapeia para a coluna \"NOME_PATIO\" (VARCHAR2(50 BYTE), Obrigatório)."
+          },
+          "dataEntrada": {
+            "type": "string",
+            "description": "Obtém ou define a data de entrada no Pátio.\r\nMapeia para a coluna \"DATA_ENTRADA\" (DATE, Obrigatório).",
+            "format": "date-time"
+          },
+          "dataSaida": {
+            "type": "string",
+            "description": "Obtém ou define a data de saída do Pátio.\r\nMapeia para a coluna \"DATA_SAIDA\" (DATE, Obrigatório).",
+            "format": "date-time"
+          },
+          "observacao": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define observações adicionais sobre o Pátio.\r\nMapeia para a coluna \"OBSERVACAO\" (VARCHAR2(100 BYTE), Opcional).",
+            "nullable": true
+          },
+          "contatoPatios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ContatoPatio"
+            },
+            "description": "Coleção de entidades ContatoPatio, representando o relacionamento muitos-para-muitos com Contatos.",
+            "nullable": true
+          },
+          "enderecoPatios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EnderecoPatio"
+            },
+            "description": "Coleção de entidades EnderecoPatio, representando o relacionamento muitos-para-muitos com Endereços.",
+            "nullable": true
+          },
+          "patioBoxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatioBox"
+            },
+            "description": "Coleção de entidades PatioBox, representando o relacionamento muitos-para-muitos com Boxes.",
+            "nullable": true
+          },
+          "veiculoPatios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoPatio"
+            },
+            "description": "Coleção de entidades VeiculoPatio, representando o relacionamento muitos-para-muitos com Veículos.",
+            "nullable": true
+          },
+          "zonaPatios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ZonaPatio"
+            },
+            "description": "Coleção de entidades ZonaPatio, representando o relacionamento muitos-para-muitos com Zonas.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a entidade Pátio no banco de dados, mapeando para a tabela \"TB_PATIO\".\r\nArmazena informações sobre locais de estacionamento ou armazenamento."
+      },
+      "PatioBox": {
+        "required": [
+          "tbBoxIdBox",
+          "tbPatioIdPatio"
+        ],
+        "type": "object",
+        "properties": {
+          "tbPatioIdPatio": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Pátio que faz parte da chave composta.\r\nMapeia para a coluna \"TB_PATIO_ID_PATIO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbBoxIdBox": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Box que faz parte da chave composta.\r\nMapeia para a coluna \"TB_BOX_ID_BOX\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "patio": {
+            "$ref": "#/components/schemas/Patio"
+          },
+          "box": {
+            "$ref": "#/components/schemas/Box"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_PATIOBOX\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Pátio e Box.\r\nA chave primária desta tabela é composta pelos IDs de Pátio e Box."
+      },
+      "ProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "Rastreamento": {
+        "required": [
+          "gprsAltitude",
+          "gprsLatitude",
+          "gprsLongitude",
+          "ipsX",
+          "ipsY",
+          "ipsZ"
+        ],
+        "type": "object",
+        "properties": {
+          "idRastreamento": {
+            "type": "integer",
+            "description": "Obtém ou define o identificador único do Rastreamento.\r\nMapeia para a coluna \"ID_RASTREAMENTO\" (Chave Primária, gerada por identidade).",
+            "format": "int32"
+          },
+          "ipsX": {
+            "type": "number",
+            "description": "Obtém ou define a coordenada X do posicionamento interno (IPS).\r\nMapeia para a coluna \"IPS_X\" (NUMBER(38,8), Obrigatório).\r\nComentário no DDL: 'Coordenada X do posicionamento interno (IPS) com 4 inteiros e 3 decimais.'",
+            "format": "double"
+          },
+          "ipsY": {
+            "type": "number",
+            "description": "Obtém ou define a coordenada Y do posicionamento interno (IPS).\r\nMapeia para a coluna \"IPS_Y\" (NUMBER(38,8), Obrigatório).\r\nComentário no DDL: 'Coordenada Y do posicionamento interno (IPS) com 4 inteiros e 3 decimais.'",
+            "format": "double"
+          },
+          "ipsZ": {
+            "type": "number",
+            "description": "Obtém ou define a coordenada Z do posicionamento interno (IPS).\r\nMapeia para a coluna \"IPS_Z\" (NUMBER(38,8), Obrigatório).\r\nComentário no DDL: 'Coordenada Z do posicionamento interno (IPS) com 4 inteiros e 3 decimais.'",
+            "format": "double"
+          },
+          "gprsLatitude": {
+            "type": "number",
+            "description": "Obtém ou define a latitude do posicionamento GPRS.\r\nMapeia para a coluna \"GPRS_LATITUDE\" (NUMBER(38,8), Obrigatório).\r\nComentário no DDL: 'Latitude do posicionamento GPRS (ex: -90.000000 a +90.000000) com 6 decimais.'",
+            "format": "double"
+          },
+          "gprsLongitude": {
+            "type": "number",
+            "description": "Obtém ou define a longitude do posicionamento GPRS.\r\nMapeia para a coluna \"GPRS_LONGITUDE\" (NUMBER(38,8), Obrigatório).\r\nComentário no DDL: 'Longitude do posicionamento GPRS (ex: -180.000000 a +180.000000) com 6 decimais.'",
+            "format": "double"
+          },
+          "gprsAltitude": {
+            "type": "number",
+            "description": "Obtém ou define a altitude do posicionamento GPRS.\r\nMapeia para a coluna \"GPRS_ALTITUDE\" (NUMBER(38,8), Obrigatório).\r\nComentário no DDL: 'Altitude do posicionamento GPRS (ex: 99999.99m) com 2 decimais.'",
+            "format": "double"
+          },
+          "veiculoRastreamentos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoRastreamento"
+            },
+            "description": "Coleção de entidades VeiculoRastreamento, representando o relacionamento muitos-para-muitos com Veículos.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a entidade Rastreamento no banco de dados, mapeando para a tabela \"TB_RASTREAMENTO\".\r\nContém dados de posicionamento interno (IPS) e GPRS (Latitude, Longitude, Altitude)."
+      },
+      "ValidationProblemDetails": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "nullable": true
+          },
+          "title": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "detail": {
+            "type": "string",
+            "nullable": true
+          },
+          "instance": {
+            "type": "string",
+            "nullable": true
+          },
+          "errors": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": { }
+      },
+      "Veiculo": {
+        "required": [
+          "ano",
+          "chassi",
+          "combustivel",
+          "fabricante",
+          "modelo",
+          "placa",
+          "renavam"
+        ],
+        "type": "object",
+        "properties": {
+          "idVeiculo": {
+            "type": "integer",
+            "description": "Obtém ou define o identificador único do Veículo.\r\nMapeia para a coluna \"ID_VEICULO\" (Chave Primária, gerada por identidade).",
+            "format": "int32"
+          },
+          "placa": {
+            "maxLength": 10,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define a placa do veículo.\r\nMapeia para a coluna \"PLACA\" (VARCHAR2(10 BYTE), Obrigatório, Único)."
+          },
+          "renavam": {
+            "maxLength": 11,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o número RENAVAM do veículo.\r\nMapeia para a coluna \"RENAVAM\" (VARCHAR2(11 CHAR), Obrigatório, Único)."
+          },
+          "chassi": {
+            "maxLength": 17,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o número do Chassi do veículo.\r\nMapeia para a coluna \"CHASSI\" (VARCHAR2(17 CHAR), Obrigatório, Único)."
+          },
+          "fabricante": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o fabricante do veículo.\r\nMapeia para a coluna \"FABRICANTE\" (VARCHAR2(50 BYTE), Obrigatório)."
+          },
+          "modelo": {
+            "maxLength": 60,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o modelo do veículo.\r\nMapeia para a coluna \"MODELO\" (VARCHAR2(60 BYTE), Obrigatório)."
+          },
+          "motor": {
+            "maxLength": 30,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o tipo/especificação do motor do veículo.\r\nMapeia para a coluna \"MOTOR\" (VARCHAR2(30 BYTE), Opcional).",
+            "nullable": true
+          },
+          "ano": {
+            "type": "integer",
+            "description": "Obtém ou define o ano de fabricação do veículo.\r\nMapeia para a coluna \"ANO\" (NUMBER, Obrigatório).",
+            "format": "int32"
+          },
+          "combustivel": {
+            "maxLength": 20,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o tipo de combustível do veículo.\r\nMapeia para a coluna \"COMBUSTIVEL\" (VARCHAR2(20 BYTE), Obrigatório)."
+          },
+          "clienteVeiculos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClienteVeiculo"
+            },
+            "description": "Coleção de entidades ClienteVeiculo, representando o relacionamento muitos-para-muitos com Clientes.",
+            "nullable": true
+          },
+          "veiculoBoxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoBox"
+            },
+            "description": "Coleção de entidades VeiculoBox, representando o relacionamento muitos-para-muitos com Boxes.",
+            "nullable": true
+          },
+          "veiculoPatios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoPatio"
+            },
+            "description": "Coleção de entidades VeiculoPatio, representando o relacionamento muitos-para-muitos com Pátios.",
+            "nullable": true
+          },
+          "veiculoRastreamentos": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoRastreamento"
+            },
+            "description": "Coleção de entidades VeiculoRastreamento, representando o relacionamento muitos-para-muitos com Rastreamentos.",
+            "nullable": true
+          },
+          "veiculoZonas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoZona"
+            },
+            "description": "Coleção de entidades VeiculoZona, representando o relacionamento muitos-para-muitos com Zonas.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a entidade Veículo no banco de dados, mapeando para a tabela \"TB_VEICULO\".\r\nContém informações detalhadas sobre um veículo, como placa, RENAVAM, chassi, fabricante, etc."
+      },
+      "VeiculoBox": {
+        "required": [
+          "tbBoxIdBox",
+          "tbVeiculoIdVeiculo"
+        ],
+        "type": "object",
+        "properties": {
+          "tbVeiculoIdVeiculo": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Veículo que faz parte da chave composta.\r\nMapeia para a coluna \"TB_VEICULO_ID_VEICULO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbBoxIdBox": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Box que faz parte da chave composta.\r\nMapeia para a coluna \"TB_BOX_ID_BOX\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "veiculo": {
+            "$ref": "#/components/schemas/Veiculo"
+          },
+          "box": {
+            "$ref": "#/components/schemas/Box"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_VEICULOBOX\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Veículo e Box.\r\nA chave primária desta tabela é composta pelos IDs de Veículo e Box."
+      },
+      "VeiculoPatio": {
+        "required": [
+          "tbPatioIdPatio",
+          "tbVeiculoIdVeiculo"
+        ],
+        "type": "object",
+        "properties": {
+          "tbVeiculoIdVeiculo": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Veículo que faz parte da chave composta.\r\nMapeia para a coluna \"TB_VEICULO_ID_VEICULO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbPatioIdPatio": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Pátio que faz parte da chave composta.\r\nMapeia para a coluna \"TB_PATIO_ID_PATIO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "veiculo": {
+            "$ref": "#/components/schemas/Veiculo"
+          },
+          "patio": {
+            "$ref": "#/components/schemas/Patio"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_VEICULOPATIO\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Veículo e Pátio.\r\nA chave primária desta tabela é composta pelos IDs de Veículo e Pátio."
+      },
+      "VeiculoRastreamento": {
+        "required": [
+          "tbRastreamentoIdRastreamento",
+          "tbVeiculoIdVeiculo"
+        ],
+        "type": "object",
+        "properties": {
+          "tbVeiculoIdVeiculo": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Veículo que faz parte da chave composta.\r\nMapeia para a coluna \"TB_VEICULO_ID_VEICULO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbRastreamentoIdRastreamento": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Rastreamento que faz parte da chave composta.\r\nMapeia para a coluna \"TB_RASTREAMENTO_ID_RASTREAMENTO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "veiculo": {
+            "$ref": "#/components/schemas/Veiculo"
+          },
+          "rastreamento": {
+            "$ref": "#/components/schemas/Rastreamento"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_VEICULORASTREAMENTO\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Veículo e Rastreamento.\r\nA chave primária desta tabela é composta pelos IDs de Veículo e Rastreamento."
+      },
+      "VeiculoZona": {
+        "required": [
+          "tbVeiculoIdVeiculo",
+          "tbZonaIdZona"
+        ],
+        "type": "object",
+        "properties": {
+          "tbVeiculoIdVeiculo": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Veículo que faz parte da chave composta.\r\nMapeia para a coluna \"TB_VEICULO_ID_VEICULO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbZonaIdZona": {
+            "type": "integer",
+            "description": "Obtém ou define o ID da Zona que faz parte da chave composta.\r\nMapeia para a coluna \"TB_ZONA_ID_ZONA\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "veiculo": {
+            "$ref": "#/components/schemas/Veiculo"
+          },
+          "zona": {
+            "$ref": "#/components/schemas/Zona"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_VEICULOZONA\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Veículo e Zona.\r\nA chave primária desta tabela é composta pelos IDs de Veículo e Zona."
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "temperatureC": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "temperatureF": {
+            "type": "integer",
+            "format": "int32",
+            "readOnly": true
+          },
+          "summary": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Zona": {
+        "required": [
+          "dataEntrada",
+          "dataSaida",
+          "nome"
+        ],
+        "type": "object",
+        "properties": {
+          "idZona": {
+            "type": "integer",
+            "description": "Obtém ou define o identificador único da Zona.\r\nMapeia para a coluna \"ID_ZONA\" (Chave Primária, gerada por identidade).",
+            "format": "int32"
+          },
+          "nome": {
+            "maxLength": 50,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define o nome da Zona.\r\nMapeia para a coluna \"NOME\" (VARCHAR2(50 BYTE), Obrigatório)."
+          },
+          "dataEntrada": {
+            "type": "string",
+            "description": "Obtém ou define a data de entrada na Zona.\r\nMapeia para a coluna \"DATA_ENTRADA\" (DATE, Obrigatório).",
+            "format": "date-time"
+          },
+          "dataSaida": {
+            "type": "string",
+            "description": "Obtém ou define a data de saída da Zona.\r\nMapeia para a coluna \"DATA_SAIDA\" (DATE, Obrigatório).",
+            "format": "date-time"
+          },
+          "observacao": {
+            "maxLength": 100,
+            "minLength": 0,
+            "type": "string",
+            "description": "Obtém ou define observações adicionais sobre a Zona.\r\nMapeia para a coluna \"OBSERVACAO\" (VARCHAR2(100 BYTE), Opcional).",
+            "nullable": true
+          },
+          "veiculoZonas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/VeiculoZona"
+            },
+            "description": "Coleção de entidades VeiculoZona, representando o relacionamento muitos-para-muitos com Veículos.",
+            "nullable": true
+          },
+          "zonaBoxes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ZonaBox"
+            },
+            "description": "Coleção de entidades ZonaBox, representando o relacionamento muitos-para-muitos com Boxes.",
+            "nullable": true
+          },
+          "zonaPatios": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ZonaPatio"
+            },
+            "description": "Coleção de entidades ZonaPatio, representando o relacionamento muitos-para-muitos com Pátios.",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a entidade Zona no banco de dados, mapeando para a tabela \"TB_ZONA\".\r\nDescreve uma área ou zona específica, com nome, datas de entrada/saída e observações."
+      },
+      "ZonaBox": {
+        "required": [
+          "tbBoxIdBox",
+          "tbZonaIdZona"
+        ],
+        "type": "object",
+        "properties": {
+          "tbZonaIdZona": {
+            "type": "integer",
+            "description": "Obtém ou define o ID da Zona que faz parte da chave composta.\r\nMapeia para a coluna \"TB_ZONA_ID_ZONA\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbBoxIdBox": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Box que faz parte da chave composta.\r\nMapeia para a coluna \"TB_BOX_ID_BOX\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "zona": {
+            "$ref": "#/components/schemas/Zona"
+          },
+          "box": {
+            "$ref": "#/components/schemas/Box"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_ZONABOX\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Zona e Box.\r\nA chave primária desta tabela é composta pelos IDs de Zona e Box."
+      },
+      "ZonaPatio": {
+        "required": [
+          "tbPatioIdPatio",
+          "tbZonaIdZona"
+        ],
+        "type": "object",
+        "properties": {
+          "tbPatioIdPatio": {
+            "type": "integer",
+            "description": "Obtém ou define o ID do Pátio que faz parte da chave composta.\r\nMapeia para a coluna \"TB_PATIO_ID_PATIO\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "tbZonaIdZona": {
+            "type": "integer",
+            "description": "Obtém ou define o ID da Zona que faz parte da chave composta.\r\nMapeia para a coluna \"TB_ZONA_ID_ZONA\" (Parte da Chave Primária Composta).",
+            "format": "int32"
+          },
+          "patio": {
+            "$ref": "#/components/schemas/Patio"
+          },
+          "zona": {
+            "$ref": "#/components/schemas/Zona"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Representa a tabela de ligação \"TB_ZONAPATIO\" no banco de dados.\r\nEstabelece o relacionamento muitos-para-muitos entre Pátio e Zona.\r\nA chave primária desta tabela é composta pelos IDs de Pátio e Zona."
+      }
+    }
+  }
+}

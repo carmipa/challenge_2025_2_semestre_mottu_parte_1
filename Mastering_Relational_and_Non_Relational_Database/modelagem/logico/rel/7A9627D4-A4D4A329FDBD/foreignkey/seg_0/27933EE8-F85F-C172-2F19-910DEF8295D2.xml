@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="27933EE8-F85F-C172-2F19-910DEF8295D2" containerWithKeyObject="6428E372-AC81-BAE7-95BA-D3EE4882BE58" localFKIndex="10093E15-2C5C-4685-49CA-05C0071A5031" name="TB_VR_TB_RASTREAMENTO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>34B059C0-DCC0-D8A6-0CDE-A228A9329902</generatorID>
+<ownerDesignName>logico</ownerDesignName>
+<referredTableLongName>TB_RASTREAMENTO</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>0A69F154-E197-D81E-ECD4-4E49028CD35C</referredTableID>
+<keyObject>25336545-D289-84BE-E0C3-7EE3B77580B5</keyObject>
+<referredKeyID>25336545-D289-84BE-E0C3-7EE3B77580B5</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>id_rastreamento</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

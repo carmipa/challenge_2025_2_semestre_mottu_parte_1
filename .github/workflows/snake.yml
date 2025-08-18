@@ -1,0 +1,46 @@
+name: 🐍 Update Snake
+
+# concede permissão de escrita no repositório ao GITHUB_TOKEN
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+jobs:
+  update-snake:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          # garante que o checkout persista as credenciais de write
+          persist-credentials: true
+
+      - name: Generate snake SVGs
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+
+      - name: Prepare output folder
+        run: mkdir -p output
+
+      - name: Move dark SVG to output
+        run: |
+          mv dist/github-contribution-grid-snake-dark.svg \
+             output/github-contribution-grid-snake-dark.svg
+
+      - name: Commit generated SVG
+        uses: EndBug/add-and-commit@v9
+        with:
+          author_name: "github-actions"
+          author_email: "github-actions@github.com"
+          message: "chore: update snake grid"
+          add: output/github-contribution-grid-snake-dark.svg

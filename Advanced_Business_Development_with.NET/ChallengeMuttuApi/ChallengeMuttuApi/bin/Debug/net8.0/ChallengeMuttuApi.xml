@@ -1,0 +1,1542 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ChallengeMuttuApi</name>
+    </assembly>
+    <members>
+        <member name="T:ChallengeMuttuApi.Controllers.BoxesController">
+            <summary>
+            Controller responsável por gerenciar as operações CRUD para a entidade Box.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.BoxesController.#ctor(ChallengeMuttuApi.Data.AppDbContext)">
+            <summary>
+            Construtor da BoxesController.
+            </summary>
+            <param name="context">O contexto do banco de dados da aplicação.</param>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.BoxesController.GetAllBoxes">
+            <summary>
+            Retorna uma lista de todos os boxes cadastrados.
+            </summary>
+            <response code="200">Retorna a lista de boxes.</response>
+            <response code="204">Não há boxes cadastrados.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.BoxesController.GetBoxById(System.Int32)">
+            <summary>
+            Retorna um box específico pelo seu ID.
+            </summary>
+            <param name="id">O ID do box a ser buscado.</param>
+            <response code="200">Retorna o box encontrado.</response>
+            <response code="404">Box não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.BoxesController.SearchBoxesByName(System.String)">
+            <summary>
+            Pesquisa boxes por parte do nome.
+            </summary>
+            <param name="nome">A string a ser pesquisada no nome dos boxes.</param>
+            <response code="200">Retorna a lista de boxes que correspondem à pesquisa.</response>
+            <response code="204">Nenhum box encontrado com o nome especificado.</response>
+            <response code="400">O parâmetro de nome para pesquisa é obrigatório.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.BoxesController.GetBoxesByStatus(System.String)">
+            <summary>
+            Retorna boxes com base em seu status.
+            </summary>
+            <param name="status">O status do box ('A' para Ativo, 'I' para Inativo).</param>
+            <response code="200">Retorna a lista de boxes com o status especificado.</response>
+            <response code="204">Nenhum box encontrado com o status especificado.</response>
+            <response code="400">O status fornecido é inválido.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.BoxesController.CreateBox(ChallengeMuttuApi.Model.Box)">
+            <summary>
+            Cria um novo box.
+            </summary>
+            <param name="box">Os dados do box a serem criados.</param>
+            <response code="201">Box criado com sucesso.</response>
+            <response code="400">Dados do box inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.BoxesController.UpdateBox(System.Int32,ChallengeMuttuApi.Model.Box)">
+            <summary>
+            Atualiza um box existente pelo ID.
+            </summary>
+            <param name="id">O ID do box a ser atualizado.</param>
+            <param name="box">Os dados do box atualizados.</param>
+            <response code="204">Box atualizado com sucesso.</response>
+            <response code="400">ID na URL não corresponde ao ID do box no corpo da requisição, ou dados inválidos.</response>
+            <response code="404">Box não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.BoxesController.DeleteBox(System.Int32)">
+            <summary>
+            Exclui um box pelo ID.
+            </summary>
+            <param name="id">O ID do box a ser excluído.</param>
+            <response code="204">Box excluído com sucesso.</response>
+            <response code="404">Box não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="T:ChallengeMuttuApi.Controllers.ContatosController">
+            <summary>
+            Controller responsável por gerenciar as operações CRUD para a entidade Contato.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ContatosController.#ctor(ChallengeMuttuApi.Data.AppDbContext)">
+            <summary>
+            Construtor da ContatosController.
+            </summary>
+            <param name="context">O contexto do banco de dados da aplicação.</param>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ContatosController.GetAllContatos">
+            <summary>
+            Retorna uma lista de todos os contatos cadastrados.
+            </summary>
+            <response code="200">Retorna a lista de contatos.</response>
+            <response code="204">Não há contatos cadastrados.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ContatosController.GetContatoById(System.Int32)">
+            <summary>
+            Retorna um contato específico pelo seu ID.
+            </summary>
+            <param name="id">O ID do contato a ser buscado.</param>
+            <response code="200">Retorna o contato encontrado.</response>
+            <response code="404">Contato não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ContatosController.GetContatoByEmail(System.String)">
+            <summary>
+            Retorna um contato pelo seu endereço de e-mail.
+            </summary>
+            <param name="email">O endereço de e-mail do contato a ser buscado.</param>
+            <response code="200">Retorna o contato encontrado.</response>
+            <response code="400">O e-mail fornecido é inválido.</response>
+            <response code="404">Contato com o e-mail especificado não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ContatosController.SearchContatosByCelular(System.String)">
+            <summary>
+            Pesquisa contatos por parte do número de celular.
+            </summary>
+            <param name="celular">A string a ser pesquisada no número de celular dos contatos.</param>
+            <response code="200">Retorna a lista de contatos que correspondem à pesquisa.</response>
+            <response code="204">Nenhum contato encontrado com o celular especificado.</response>
+            <response code="400">O parâmetro de celular para pesquisa é obrigatório.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ContatosController.CreateContato(ChallengeMuttuApi.Model.Contato)">
+            <summary>
+            Cria um novo contato.
+            </summary>
+            <param name="contato">Os dados do contato a serem criados.</param>
+            <response code="201">Contato criado com sucesso.</response>
+            <response code="400">Dados do contato inválidos ou já existe um contato com o mesmo e-mail.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ContatosController.UpdateContato(System.Int32,ChallengeMuttuApi.Model.Contato)">
+            <summary>
+            Atualiza um contato existente pelo ID.
+            </summary>
+            <param name="id">O ID do contato a ser atualizado.</param>
+            <param name="contato">Os dados do contato atualizados.</param>
+            <response code="204">Contato atualizado com sucesso.</response>
+            <response code="400">ID na URL não corresponde ao ID do contato no corpo da requisição, ou dados inválidos.</response>
+            <response code="404">Contato não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ContatosController.DeleteContato(System.Int32)">
+            <summary>
+            Exclui um contato pelo ID.
+            </summary>
+            <param name="id">O ID do contato a ser excluído.</param>
+            <response code="204">Contato excluído com sucesso.</response>
+            <response code="404">Contato não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="T:ChallengeMuttuApi.Controllers.EnderecosController">
+            <summary>
+            Controller responsável por gerenciar as operações CRUD para a entidade Endereço.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.EnderecosController.#ctor(ChallengeMuttuApi.Data.AppDbContext)">
+            <summary>
+            Construtor da EnderecosController.
+            </summary>
+            <param name="context">O contexto do banco de dados da aplicação.</param>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.EnderecosController.GetAllEnderecos">
+            <summary>
+            Retorna uma lista de todos os endereços cadastrados.
+            </summary>
+            <response code="200">Retorna a lista de endereços.</response>
+            <response code="204">Não há endereços cadastrados.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.EnderecosController.GetEnderecoById(System.Int32)">
+            <summary>
+            Retorna um endereço específico pelo seu ID.
+            </summary>
+            <param name="id">O ID do endereço a ser buscado.</param>
+            <response code="200">Retorna o endereço encontrado.</response>
+            <response code="404">Endereço não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.EnderecosController.GetEnderecosByCep(System.String)">
+            <summary>
+            Retorna endereços por CEP.
+            </summary>
+            <param name="cep">O CEP do endereço a ser buscado.</param>
+            <response code="200">Retorna a lista de endereços com o CEP especificado.</response>
+            <response code="204">Nenhum endereço encontrado com o CEP especificado.</response>
+            <response code="400">O CEP fornecido é inválido.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.EnderecosController.SearchEnderecosByLocation(System.String,System.String)">
+            <summary>
+            Pesquisa endereços por parte da cidade e estado.
+            </summary>
+            <param name="cidade">A string a ser pesquisada na cidade dos endereços.</param>
+            <param name="estado">A sigla do estado para pesquisa.</param>
+            <response code="200">Retorna a lista de endereços que correspondem à pesquisa.</response>
+            <response code="204">Nenhum endereço encontrado.</response>
+            <response code="400">Os parâmetros de pesquisa são obrigatórios.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.EnderecosController.CreateEndereco(ChallengeMuttuApi.Model.Endereco)">
+            <summary>
+            Cria um novo endereço.
+            </summary>
+            <param name="endereco">Os dados do endereço a serem criados.</param>
+            <response code="201">Endereço criado com sucesso.</response>
+            <response code="400">Dados do endereço inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.EnderecosController.UpdateEndereco(System.Int32,ChallengeMuttuApi.Model.Endereco)">
+            <summary>
+            Atualiza um endereço existente pelo ID.
+            </summary>
+            <param name="id">O ID do endereço a ser atualizado.</param>
+            <param name="endereco">Os dados do endereço atualizados.</param>
+            <response code="204">Endereço atualizado com sucesso.</response>
+            <response code="400">ID na URL não corresponde ao ID do endereço no corpo da requisição, ou dados inválidos.</response>
+            <response code="404">Endereço não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.EnderecosController.DeleteEndereco(System.Int32)">
+            <summary>
+            Exclui um endereço pelo ID.
+            </summary>
+            <param name="id">O ID do endereço a ser excluído.</param>
+            <response code="204">Endereço excluído com sucesso.</response>
+            <response code="404">Endereço não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="T:ChallengeMuttuApi.Controllers.PatiosController">
+            <summary>
+            Controller responsável por gerenciar as operações CRUD para a entidade Pátio.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.PatiosController.#ctor(ChallengeMuttuApi.Data.AppDbContext)">
+            <summary>
+            Construtor da PatiosController.
+            </summary>
+            <param name="context">O contexto do banco de dados da aplicação.</param>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.PatiosController.GetAllPatios">
+            <summary>
+            Retorna uma lista de todos os pátios cadastrados.
+            </summary>
+            <response code="200">Retorna a lista de pátios.</response>
+            <response code="204">Não há pátios cadastrados.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.PatiosController.GetPatioById(System.Int32)">
+            <summary>
+            Retorna um pátio específico pelo seu ID.
+            </summary>
+            <param name="id">O ID do pátio a ser buscado.</param>
+            <response code="200">Retorna o pátio encontrado.</response>
+            <response code="404">Pátio não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.PatiosController.SearchPatiosByName(System.String)">
+            <summary>
+            Pesquisa pátios por parte do nome do pátio.
+            </summary>
+            <param name="nomePatio">A string a ser pesquisada no nome dos pátios.</param>
+            <response code="200">Retorna a lista de pátios que correspondem à pesquisa.</response>
+            <response code="204">Nenhum pátio encontrado com o nome especificado.</response>
+            <response code="400">O parâmetro de nome para pesquisa é obrigatório.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.PatiosController.GetPatiosByDate(System.DateTime,System.String)">
+            <summary>
+            Retorna pátios que entraram ou saíram em uma data específica.
+            </summary>
+            <param name="date">A data para buscar pátios (formato YYYY-MM-DD).</param>
+            <param name="type">Tipo de data para buscar ('entrada' ou 'saida').</param>
+            <response code="200">Retorna a lista de pátios encontrados.</response>
+            <response code="204">Nenhum pátio encontrado para a data e tipo especificados.</response>
+            <response code="400">Parâmetros de data ou tipo inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.PatiosController.CreatePatio(ChallengeMuttuApi.Model.Patio)">
+            <summary>
+            Cria um novo pátio.
+            </summary>
+            <param name="patio">Os dados do pátio a serem criados.</param>
+            <response code="201">Pátio criado com sucesso.</response>
+            <response code="400">Dados do pátio inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.PatiosController.UpdatePatio(System.Int32,ChallengeMuttuApi.Model.Patio)">
+            <summary>
+            Atualiza um pátio existente pelo ID.
+            </summary>
+            <param name="id">O ID do pátio a ser atualizado.</param>
+            <param name="patio">Os dados do pátio atualizados.</param>
+            <response code="204">Pátio atualizado com sucesso.</response>
+            <response code="400">ID na URL não corresponde ao ID do pátio no corpo da requisição, ou dados inválidos.</response>
+            <response code="404">Pátio não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.PatiosController.DeletePatio(System.Int32)">
+            <summary>
+            Exclui um pátio pelo ID.
+            </summary>
+            <param name="id">O ID do pátio a ser excluído.</param>
+            <response code="204">Pátio excluído com sucesso.</response>
+            <response code="404">Pátio não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="T:ChallengeMuttuApi.Controllers.RastreamentosController">
+            <summary>
+            Controller responsável por gerenciar as operações CRUD para a entidade Rastreamento.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.RastreamentosController.#ctor(ChallengeMuttuApi.Data.AppDbContext)">
+            <summary>
+            Construtor da RastreamentosController.
+            </summary>
+            <param name="context">O contexto do banco de dados da aplicação.</param>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.RastreamentosController.GetAllRastreamentos">
+            <summary>
+            Retorna uma lista de todos os rastreamentos cadastrados.
+            </summary>
+            <response code="200">Retorna a lista de rastreamentos.</response>
+            <response code="204">Não há rastreamentos cadastrados.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.RastreamentosController.GetRastreamentoById(System.Int32)">
+            <summary>
+            Retorna um rastreamento específico pelo seu ID.
+            </summary>
+            <param name="id">O ID do rastreamento a ser buscado.</param>
+            <response code="200">Retorna o rastreamento encontrado.</response>
+            <response code="404">Rastreamento não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.RastreamentosController.SearchRastreamentosByCoordinates(System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Pesquisa rastreamentos por um range de Latitude e Longitude.
+            </summary>
+            <param name="minLat">Latitude mínima.</param>
+            <param name="maxLat">Latitude máxima.</param>
+            <param name="minLong">Longitude mínima.</param>
+            <param name="maxLong">Longitude máxima.</param>
+            <response code="200">Retorna a lista de rastreamentos que correspondem à pesquisa.</response>
+            <response code="204">Nenhum rastreamento encontrado no range especificado.</response>
+            <response code="400">Parâmetros de latitude/longitude inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.RastreamentosController.GetRastreamentosByIpsRange(System.Decimal,System.Decimal,System.Decimal,System.Decimal)">
+            <summary>
+            Retorna rastreamentos por um range específico das coordenadas IPS (x, y).
+            </summary>
+            <param name="minX">Coordenada X mínima.</param>
+            <param name="maxX">Coordenada X máxima.</param>
+            <param name="minY">Coordenada Y mínima.</param>
+            <param name="maxY">Coordenada Y máxima.</param>
+            <response code="200">Retorna a lista de rastreamentos encontrados.</response>
+            <response code="204">Nenhum rastreamento encontrado no range IPS especificado.</response>
+            <response code="400">Parâmetros de coordenadas IPS inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.RastreamentosController.CreateRastreamento(ChallengeMuttuApi.Model.Rastreamento)">
+            <summary>
+            Cria um novo rastreamento.
+            </summary>
+            <param name="rastreamento">Os dados do rastreamento a serem criados.</param>
+            <response code="201">Rastreamento criado com sucesso.</response>
+            <response code="400">Dados do rastreamento inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.RastreamentosController.UpdateRastreamento(System.Int32,ChallengeMuttuApi.Model.Rastreamento)">
+            <summary>
+            Atualiza um rastreamento existente pelo ID.
+            </summary>
+            <param name="id">O ID do rastreamento a ser atualizado.</param>
+            <param name="rastreamento">Os dados do rastreamento atualizados.</param>
+            <response code="204">Rastreamento atualizado com sucesso.</response>
+            <response code="400">ID na URL não corresponde ao ID do rastreamento no corpo da requisição, ou dados inválidos.</response>
+            <response code="404">Rastreamento não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.RastreamentosController.DeleteRastreamento(System.Int32)">
+            <summary>
+            Exclui um rastreamento pelo ID.
+            </summary>
+            <param name="id">O ID do rastreamento a ser excluído.</param>
+            <response code="204">Rastreamento excluído com sucesso.</response>
+            <response code="404">Rastreamento não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="T:ChallengeMuttuApi.Controllers.VeiculosController">
+            <summary>
+            Controller responsável por gerenciar as operações CRUD para a entidade Veículo.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.VeiculosController.#ctor(ChallengeMuttuApi.Data.AppDbContext)">
+            <summary>
+            Construtor da VeiculosController.
+            Injeta a instância do AppDbContext.
+            </summary>
+            <param name="context">O contexto do banco de dados da aplicação.</param>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.VeiculosController.GetAllVeiculos">
+            <summary>
+            Retorna uma lista de todos os veículos cadastrados.
+            </summary>
+            <response code="200">Retorna a lista de veículos.</response>
+            <response code="204">Não há veículos cadastrados.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.VeiculosController.GetVeiculoById(System.Int32)">
+            <summary>
+            Retorna um veículo específico pelo seu ID.
+            </summary>
+            <param name="id">O ID do veículo a ser buscado.</param>
+            <response code="200">Retorna o veículo encontrado.</response>
+            <response code="404">Veículo não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.VeiculosController.GetVeiculoByPlaca(System.String)">
+            <summary>
+            Retorna um veículo pela sua placa.
+            </summary>
+            <remarks>
+            Exemplo: GET /api/veiculos/by-placa/ABC1234
+            </remarks>
+            <param name="placa">A placa do veículo a ser buscado.</param>
+            <response code="200">Retorna o veículo encontrado.</response>
+            <response code="400">A placa fornecida é inválida.</response>
+            <response code="404">Veículo com a placa especificada não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.VeiculosController.SearchVeiculosByModel(System.String)">
+            <summary>
+            Pesquisa veículos por parte do modelo.
+            </summary>
+            <remarks>
+            Exemplo: GET /api/veiculos/search-by-model?modelo=gol
+            </remarks>
+            <param name="modelo">A string a ser pesquisada no modelo dos veículos.</param>
+            <response code="200">Retorna a lista de veículos que correspondem à pesquisa.</response>
+            <response code="204">Nenhum veículo encontrado com o modelo especificado.</response>
+            <response code="400">O parâmetro de modelo para pesquisa é obrigatório.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.VeiculosController.CreateVeiculo(ChallengeMuttuApi.Model.Veiculo)">
+            <summary>
+            Cria um novo veículo.
+            </summary>
+            <param name="veiculo">Os dados do veículo a serem criados.</param>
+            <response code="201">Veículo criado com sucesso.</response>
+            <response code="400">Dados do veículo inválidos ou já existe um veículo com a mesma placa, RENAVAM ou chassi.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.VeiculosController.UpdateVeiculo(System.Int32,ChallengeMuttuApi.Model.Veiculo)">
+            <summary>
+            Atualiza um veículo existente pelo ID.
+            </summary>
+            <param name="id">O ID do veículo a ser atualizado.</param>
+            <param name="veiculo">Os dados do veículo atualizados.</param>
+            <response code="204">Veículo atualizado com sucesso.</response>
+            <response code="400">ID na URL não corresponde ao ID do veículo no corpo da requisição, ou dados inválidos.</response>
+            <response code="404">Veículo não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.VeiculosController.DeleteVeiculo(System.Int32)">
+            <summary>
+            Exclui um veículo pelo ID.
+            </summary>
+            <param name="id">O ID do veículo a ser excluído.</param>
+            <response code="204">Veículo excluído com sucesso.</response>
+            <response code="404">Veículo não encontrado.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="T:ChallengeMuttuApi.Controllers.ZonasController">
+            <summary>
+            Controller responsável por gerenciar as operações CRUD para a entidade Zona.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ZonasController.#ctor(ChallengeMuttuApi.Data.AppDbContext)">
+            <summary>
+            Construtor da ZonasController.
+            </summary>
+            <param name="context">O contexto do banco de dados da aplicação.</param>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ZonasController.GetAllZonas">
+            <summary>
+            Retorna uma lista de todas as zonas cadastradas.
+            </summary>
+            <response code="200">Retorna a lista de zonas.</response>
+            <response code="204">Não há zonas cadastradas.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ZonasController.GetZonaById(System.Int32)">
+            <summary>
+            Retorna uma zona específica pelo seu ID.
+            </summary>
+            <param name="id">O ID da zona a ser buscada.</param>
+            <response code="200">Retorna a zona encontrada.</response>
+            <response code="404">Zona não encontrada.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ZonasController.SearchZonasByName(System.String)">
+            <summary>
+            Pesquisa zonas por parte do nome.
+            </summary>
+            <param name="nome">A string a ser pesquisada no nome das zonas.</param>
+            <response code="200">Retorna a lista de zonas que correspondem à pesquisa.</response>
+            <response code="204">Nenhuma zona encontrada com o nome especificado.</response>
+            <response code="400">O parâmetro de nome para pesquisa é obrigatório.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ZonasController.GetZonasByDate(System.DateTime,System.String)">
+            <summary>
+            Retorna zonas que tiveram entrada ou saída em uma data específica.
+            </summary>
+            <param name="date">A data para buscar zonas (formato YYYY-MM-DD).</param>
+            <param name="type">Tipo de data para buscar ('entrada' ou 'saida').</param>
+            <response code="200">Retorna a lista de zonas encontradas.</response>
+            <response code="204">Nenhuma zona encontrada para a data e tipo especificados.</response>
+            <response code="400">Parâmetros de data ou tipo inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ZonasController.CreateZona(ChallengeMuttuApi.Model.Zona)">
+            <summary>
+            Cria uma nova zona.
+            </summary>
+            <param name="zona">Os dados da zona a serem criados.</param>
+            <response code="201">Zona criada com sucesso.</response>
+            <response code="400">Dados da zona inválidos.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ZonasController.UpdateZona(System.Int32,ChallengeMuttuApi.Model.Zona)">
+            <summary>
+            Atualiza uma zona existente pelo ID.
+            </summary>
+            <param name="id">O ID da zona a ser atualizada.</param>
+            <param name="zona">Os dados da zona atualizados.</param>
+            <response code="204">Zona atualizada com sucesso.</response>
+            <response code="400">ID na URL não corresponde ao ID da zona no corpo da requisição, ou dados inválidos.</response>
+            <response code="404">Zona não encontrada.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="M:ChallengeMuttuApi.Controllers.ZonasController.DeleteZona(System.Int32)">
+            <summary>
+            Exclui uma zona pelo ID.
+            </summary>
+            <param name="id">O ID da zona a ser excluída.</param>
+            <response code="204">Zona excluída com sucesso.</response>
+            <response code="404">Zona não encontrada.</response>
+            <response code="500">Ocorreu um erro interno no servidor.</response>
+        </member>
+        <member name="T:ChallengeMuttuApi.Data.AppDbContext">
+            <summary>
+            Contexto de banco de dados da aplicação, responsável por mapear as entidades
+            C# para as tabelas do banco de dados e gerenciar as operações de persistência.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Data.AppDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{ChallengeMuttuApi.Data.AppDbContext})">
+            <summary>
+            Construtor da classe AppDbContext.
+            </summary>
+            <param name="options">Opções de configuração do DbContext.</param>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.Boxes">
+            <summary>
+            Tabela dos boxex de entrada e saida dos conteiner. (Comentário baseado na sua imagem de erro)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.Clientes">
+            <summary>
+            Representa a coleção de Clientes no banco de dados. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.Contatos">
+            <summary>
+            Representa a coleção de Contatos no banco de dados. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.Enderecos">
+            <summary>
+            Representa a coleção de Endereços no banco de dados. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.Patios">
+            <summary>
+            Representa a coleção de Pátios no banco de dados. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.Rastreamentos">
+            <summary>
+            Representa a coleção de Rastreamentos no banco de dados. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.Veiculos">
+            <summary>
+            Representa a coleção de Veículos no banco de dados. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.Zonas">
+            <summary>
+            Representa a coleção de Zonas no banco de dados. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.ClienteVeiculos">
+            <summary>
+            Representa a coleção de ligações entre Clientes e Veículos. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.ContatoPatios">
+            <summary>
+            Representa a coleção de ligações entre Contatos e Pátios. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.EnderecoPatios">
+            <summary>
+            Representa a coleção de ligações entre Endereços e Pátios. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.PatioBoxes">
+            <summary>
+            Representa a coleção de ligações entre Pátios e Boxes. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.VeiculoBoxes">
+            <summary>
+            Representa a coleção de ligações entre Veículos e Boxes. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.VeiculoPatios">
+            <summary>
+            Representa a coleção de ligações entre Veículos e Pátios. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.VeiculoRastreamentos">
+            <summary>
+            Representa a coleção de ligações entre Veículos e Rastreamentos. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.VeiculoZonas">
+            <summary>
+            Representa a coleção de ligações entre Veículos e Zonas. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.ZonaBoxes">
+            <summary>
+            Representa a coleção de ligações entre Zonas e Boxes. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Data.AppDbContext.ZonaPatios">
+            <summary>
+            Representa a coleção de ligações entre Zonas e Pátios. (Substitua pelo seu comentário original se diferente)
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Data.AppDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            Configura o modelo de dados que será usado pelo Entity Framework Core.
+            Este método é chamado quando o contexto de banco de dados está sendo criado.
+            </summary>
+            <param name="modelBuilder">O construtor de modelo usado para configurar as entidades e seus mapeamentos.</param>
+        </member>
+        <member name="T:ChallengeMuttuApi.Enums.EstadoCivil">
+            <summary>
+            Define os estados civis possíveis para um cliente, mapeando os valores do banco de dados Oracle.
+            Os valores string devem corresponder à constraint CK_CLIENTE_ESTADO_CIVIL no DDL.
+            </summary>
+        </member>
+        <member name="F:ChallengeMuttuApi.Enums.EstadoCivil.Solteiro">
+            <summary>
+            Representa o estado civil 'Solteiro'.
+            </summary>
+        </member>
+        <member name="F:ChallengeMuttuApi.Enums.EstadoCivil.Casado">
+            <summary>
+            Representa o estado civil 'Casado'.
+            </summary>
+        </member>
+        <member name="F:ChallengeMuttuApi.Enums.EstadoCivil.Divorciado">
+            <summary>
+            Representa o estado civil 'Divorciado'.
+            </summary>
+        </member>
+        <member name="F:ChallengeMuttuApi.Enums.EstadoCivil.Viuvo">
+            <summary>
+            Representa o estado civil 'Viúvo'.
+            </summary>
+        </member>
+        <member name="F:ChallengeMuttuApi.Enums.EstadoCivil.Separado">
+            <summary>
+            Representa o estado civil 'Separado'.
+            </summary>
+        </member>
+        <member name="F:ChallengeMuttuApi.Enums.EstadoCivil.Uniao_Estavel">
+            <summary>
+            Representa o estado civil 'União Estável'.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.Box">
+            <summary>
+            Representa a entidade Box no banco de dados, mapeando para a tabela "TB_BOX".
+            Armazena informações sobre caixas ou compartimentos, como nome, status e datas.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Box.#ctor">
+            <summary>
+            Construtor padrão da classe Box.
+            Inicializa propriedades de string não anuláveis para evitar warnings CS8618.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.IdBox">
+            <summary>
+            Obtém ou define o identificador único do Box.
+            Mapeia para a coluna "ID_BOX" (Chave Primária, gerada por identidade).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.Nome">
+            <summary>
+            Obtém ou define o nome do Box.
+            Mapeia para a coluna "NOME" (VARCHAR2(50 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.Status">
+            <summary>
+            Obtém ou define o status atual do Box.
+            Mapeia para a coluna "STATUS" (VARCHAR2(1 CHAR), Obrigatório) no banco de dados,
+            convertido para bool (true para Ativo ('A'), false para Inativo ('I')).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.DataEntrada">
+            <summary>
+            Obtém ou define a data de entrada do Box.
+            Mapeia para a coluna "DATA_ENTRADA" (DATE, Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.DataSaida">
+            <summary>
+            Obtém ou define a data de saída do Box.
+            Mapeia para a coluna "DATA_SAIDA" (DATE, Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.Observacao">
+            <summary>
+            Obtém ou define observações adicionais sobre o Box.
+            Mapeia para a coluna "OBSERVACAO" (VARCHAR2(100 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.PatioBoxes">
+            <summary>
+            Coleção de entidades PatioBox, representando o relacionamento muitos-para-muitos com Pátios.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.VeiculoBoxes">
+            <summary>
+            Coleção de entidades VeiculoBox, representando o relacionamento muitos-para-muitos com Veículos.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Box.ZonaBoxes">
+            <summary>
+            Coleção de entidades ZonaBox, representando o relacionamento muitos-para-muitos com Zonas.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Cliente.#ctor">
+            <summary>
+            Construtor padrão da classe Cliente.
+            Inicializa propriedades de string não anuláveis e não 'required' para evitar warnings CS8618.
+            Propriedades 'required' (Nome, Sexo, Cpf) são responsabilidade do código que instancia o objeto.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.ClienteVeiculo">
+            <summary>
+            Representa a tabela de ligação "TB_CLIENTEVEICULO" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Cliente e Veículo.
+            A chave primária desta tabela é composta por uma combinação de IDs de Cliente, Endereço, Contato e Veículo.
+            <remarks>
+            OBS: O design da PK composta (CLIENTEVEICULO_PK) é incomum e pode exigir configuração explícita no DbContext.
+            A chave primária inclui o ID do Endereço e Contato do Cliente, o que não é padrão em relacionamentos
+            muitos-para-muitos típicos. Considere revisar o design do banco de dados se essa granularidade não for intencional.
+            </remarks>
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ClienteVeiculo.TbClienteIdCliente">
+            <summary>
+            Obtém ou define o ID do Cliente que faz parte da chave composta.
+            Mapeia para a coluna "TB_CLIENTE_ID_CLIENTE" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ClienteVeiculo.TbClienteTbEnderecoIdEndereco">
+            <summary>
+            Obtém ou define o ID do Endereço do Cliente que faz parte da chave composta.
+            Mapeia para a coluna "TB_CLIENTE_TB_ENDERECO_ID_ENDERECO" (Parte da Chave Primária Composta).
+            Este campo é uma anomalia no DDL, pois a PK de TB_CLIENTE é apenas ID_CLIENTE.
+            Recomenda-se revisão do design do banco se esta complexidade não for intencional.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ClienteVeiculo.TbClienteTbContatoIdContato">
+            <summary>
+            Obtém ou define o ID do Contato do Cliente que faz parte da chave composta.
+            Mapeia para a coluna "TB_CLIENTE_TB_CONTATO_ID_CONTATO" (Parte da Chave Primária Composta).
+            Este campo é uma anomalia no DDL, similar ao Endereço.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ClienteVeiculo.TbVeiculoIdVeiculo">
+            <summary>
+            Obtém ou define o ID do Veículo que faz parte da chave composta.
+            Mapeia para a coluna "TB_VEICULO_ID_VEICULO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ClienteVeiculo.Cliente">
+            <summary>
+            Propriedade de navegação para a entidade Cliente associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ClienteVeiculo.Veiculo">
+            <summary>
+            Propriedade de navegação para a entidade Veiculo associada.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.Contato">
+            <summary>
+            Representa a entidade Contato no banco de dados, mapeando para a tabela "TB_CONTATO".
+            Contém informações de contato como e-mail, telefones e observações.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Contato.#ctor">
+            <summary>
+            Construtor padrão da classe Contato.
+            Inicializa propriedades de string não anuláveis para evitar warnings CS8618.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.IdContato">
+            <summary>
+            Obtém ou define o identificador único do Contato.
+            Mapeia para a coluna "ID_CONTATO" (Chave Primária, gerada por identidade).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Email">
+            <summary>
+            Obtém ou define o endereço de e-mail principal do contato.
+            Mapeia para a coluna "EMAIL" (VARCHAR2(100 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Ddd">
+            <summary>
+            Obtém ou define o DDD (Código de Discagem Direta a Distância) do telefone principal.
+            Mapeia para a coluna "DDD" (NUMBER(4,0), Obrigatório).
+            Possui validação de range entre 11 e 99.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Ddi">
+            <summary>
+            Obtém ou define o DDI (Código de Discagem Direta Internacional) do telefone principal.
+            Mapeia para a coluna "DDI" (NUMBER(4,0), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Telefone1">
+            <summary>
+            Obtém ou define o primeiro número de telefone do contato.
+            Mapeia para a coluna "TELEFONE1" (VARCHAR2(20 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Telefone2">
+            <summary>
+            Obtém ou define o segundo número de telefone do contato.
+            Mapeia para a coluna "TELEFONE2" (VARCHAR2(20 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Telefone3">
+            <summary>
+            Obtém ou define o terceiro número de telefone do contato.
+            Mapeia para a coluna "TELEFONE3" (VARCHAR2(20 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Celular">
+            <summary>
+            Obtém ou define o número de celular do contato.
+            Mapeia para a coluna "CELULAR" (VARCHAR2(20 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Outro">
+            <summary>
+            Obtém ou define outras informações de contato.
+            Mapeia para a coluna "OUTRO" (VARCHAR2(100 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Observacao">
+            <summary>
+            Obtém ou define observações adicionais sobre o contato.
+            Mapeia para a coluna "OBSERVACAO" (VARCHAR2(200 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.Clientes">
+            <summary>
+            Coleção de entidades Cliente associadas a este Contato.
+            Representa o relacionamento um-para-muitos onde um Contato pode ser associado a múltiplos Clientes.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Contato.ContatoPatios">
+            <summary>
+            Coleção de entidades ContatoPatio, representando o relacionamento muitos-para-muitos com Pátios.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.ContatoPatio">
+            <summary>
+            Representa a tabela de ligação "TB_CONTATOPATIO" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Contato e Pátio.
+            A chave primária desta tabela é composta pelos IDs de Pátio e Contato.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ContatoPatio.TbPatioIdPatio">
+            <summary>
+            Obtém ou define o ID do Pátio que faz parte da chave composta.
+            Mapeia para a coluna "TB_PATIO_ID_PATIO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ContatoPatio.TbContatoIdContato">
+            <summary>
+            Obtém ou define o ID do Contato que faz parte da chave composta.
+            Mapeia para a coluna "TB_CONTATO_ID_CONTATO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ContatoPatio.Patio">
+            <summary>
+            Propriedade de navegação para a entidade Pátio associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ContatoPatio.Contato">
+            <summary>
+            Propriedade de navegação para a entidade Contato associada.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.Endereco">
+            <summary>
+            Representa a entidade Endereço no banco de dados, mapeando para a tabela "TB_ENDERECO".
+            Contém detalhes de um endereço como CEP, logradouro, cidade, estado, etc.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Endereco.#ctor">
+            <summary>
+            Construtor padrão da classe Endereco.
+            Inicializa propriedades de string não anuláveis para evitar warnings CS8618.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.IdEndereco">
+            <summary>
+            Obtém ou define o identificador único do Endereço.
+            Mapeia para a coluna "ID_ENDERECO" (Chave Primária, gerada por identidade).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Cep">
+            <summary>
+            Obtém ou define o CEP (Código de Endereçamento Postal) do endereço.
+            Mapeia para a coluna "CEP" (VARCHAR2(9 CHAR), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Numero">
+            <summary>
+            Obtém ou define o número do endereço.
+            Mapeia para a coluna "NUMERO" (NUMBER(7,0), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Logradouro">
+            <summary>
+            Obtém ou define o nome do logradouro (rua, avenida, etc.).
+            Mapeia para a coluna "LOGRADOURO" (VARCHAR2(50 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Bairro">
+            <summary>
+            Obtém ou define o nome do bairro.
+            Mapeia para a coluna "BAIRRO" (VARCHAR2(50 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Cidade">
+            <summary>
+            Obtém ou define o nome da cidade.
+            Mapeia para a coluna "CIDADE" (VARCHAR2(50 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Estado">
+            <summary>
+            Obtém ou define a sigla do estado (UF).
+            Mapeia para a coluna "ESTADO" (VARCHAR2(2 CHAR), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Pais">
+            <summary>
+            Obtém ou define o nome do país.
+            Mapeia para a coluna "PAIS" (VARCHAR2(50 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Complemento">
+            <summary>
+            Obtém ou define o complemento do endereço (ex: apartamento, bloco).
+            Mapeia para a coluna "COMPLEMENTO" (VARCHAR2(60 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Observacao">
+            <summary>
+            Obtém ou define observações adicionais sobre o endereço.
+            Mapeia para a coluna "OBSERVACAO" (VARCHAR2(200 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.Clientes">
+            <summary>
+            Coleção de entidades Cliente associadas a este Endereço.
+            Representa o relacionamento um-para-muitos onde um Endereço pode ser associado a múltiplos Clientes.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Endereco.EnderecoPatios">
+            <summary>
+            Coleção de entidades EnderecoPatio, representando o relacionamento muitos-para-muitos com Pátios.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.EnderecoPatio">
+            <summary>
+            Representa a tabela de ligação "TB_ENDERECIOPATIO" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Endereço e Pátio.
+            A chave primária desta tabela é composta pelos IDs de Endereço e Pátio.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.EnderecoPatio.TbEnderecoIdEndereco">
+            <summary>
+            Obtém ou define o ID do Endereço que faz parte da chave composta.
+            Mapeia para a coluna "TB_ENDERECO_ID_ENDERECO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.EnderecoPatio.TbPatioIdPatio">
+            <summary>
+            Obtém ou define o ID do Pátio que faz parte da chave composta.
+            Mapeia para a coluna "TB_PATIO_ID_PATIO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.EnderecoPatio.Endereco">
+            <summary>
+            Propriedade de navegação para a entidade Endereço associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.EnderecoPatio.Patio">
+            <summary>
+            Propriedade de navegação para a entidade Pátio associada.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Filial.#ctor">
+            <summary>
+            Construtor padrão da classe Filial.
+            Inicializa a propriedade Nome para evitar o warning/erro CS8618
+            se nullable reference types estiverem habilitados.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.Patio">
+            <summary>
+            Representa a entidade Pátio no banco de dados, mapeando para a tabela "TB_PATIO".
+            Armazena informações sobre locais de estacionamento ou armazenamento.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Patio.#ctor">
+            <summary>
+            Construtor padrão da classe Patio.
+            Inicializa propriedades de string não anuláveis para evitar warnings CS8618.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.IdPatio">
+            <summary>
+            Obtém ou define o identificador único do Pátio.
+            Mapeia para a coluna "ID_PATIO" (Chave Primária, gerada por identidade).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.NomePatio">
+            <summary>
+            Obtém ou define o nome do Pátio.
+            Mapeia para a coluna "NOME_PATIO" (VARCHAR2(50 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.DataEntrada">
+            <summary>
+            Obtém ou define a data de entrada no Pátio.
+            Mapeia para a coluna "DATA_ENTRADA" (DATE, Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.DataSaida">
+            <summary>
+            Obtém ou define a data de saída do Pátio.
+            Mapeia para a coluna "DATA_SAIDA" (DATE, Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.Observacao">
+            <summary>
+            Obtém ou define observações adicionais sobre o Pátio.
+            Mapeia para a coluna "OBSERVACAO" (VARCHAR2(100 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.ContatoPatios">
+            <summary>
+            Coleção de entidades ContatoPatio, representando o relacionamento muitos-para-muitos com Contatos.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.EnderecoPatios">
+            <summary>
+            Coleção de entidades EnderecoPatio, representando o relacionamento muitos-para-muitos com Endereços.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.PatioBoxes">
+            <summary>
+            Coleção de entidades PatioBox, representando o relacionamento muitos-para-muitos com Boxes.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.VeiculoPatios">
+            <summary>
+            Coleção de entidades VeiculoPatio, representando o relacionamento muitos-para-muitos com Veículos.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Patio.ZonaPatios">
+            <summary>
+            Coleção de entidades ZonaPatio, representando o relacionamento muitos-para-muitos com Zonas.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.PatioBox">
+            <summary>
+            Representa a tabela de ligação "TB_PATIOBOX" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Pátio e Box.
+            A chave primária desta tabela é composta pelos IDs de Pátio e Box.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.PatioBox.TbPatioIdPatio">
+            <summary>
+            Obtém ou define o ID do Pátio que faz parte da chave composta.
+            Mapeia para a coluna "TB_PATIO_ID_PATIO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.PatioBox.TbBoxIdBox">
+            <summary>
+            Obtém ou define o ID do Box que faz parte da chave composta.
+            Mapeia para a coluna "TB_BOX_ID_BOX" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.PatioBox.Patio">
+            <summary>
+            Propriedade de navegação para a entidade Pátio associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.PatioBox.Box">
+            <summary>
+            Propriedade de navegação para a entidade Box associada.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.Rastreamento">
+            <summary>
+            Representa a entidade Rastreamento no banco de dados, mapeando para a tabela "TB_RASTREAMENTO".
+            Contém dados de posicionamento interno (IPS) e GPRS (Latitude, Longitude, Altitude).
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Rastreamento.#ctor">
+            <summary>
+            Construtor padrão da classe Rastreamento.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Rastreamento.IdRastreamento">
+            <summary>
+            Obtém ou define o identificador único do Rastreamento.
+            Mapeia para a coluna "ID_RASTREAMENTO" (Chave Primária, gerada por identidade).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Rastreamento.IpsX">
+            <summary>
+            Obtém ou define a coordenada X do posicionamento interno (IPS).
+            Mapeia para a coluna "IPS_X" (NUMBER(38,8), Obrigatório).
+            Comentário no DDL: 'Coordenada X do posicionamento interno (IPS) com 4 inteiros e 3 decimais.'
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Rastreamento.IpsY">
+            <summary>
+            Obtém ou define a coordenada Y do posicionamento interno (IPS).
+            Mapeia para a coluna "IPS_Y" (NUMBER(38,8), Obrigatório).
+            Comentário no DDL: 'Coordenada Y do posicionamento interno (IPS) com 4 inteiros e 3 decimais.'
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Rastreamento.IpsZ">
+            <summary>
+            Obtém ou define a coordenada Z do posicionamento interno (IPS).
+            Mapeia para a coluna "IPS_Z" (NUMBER(38,8), Obrigatório).
+            Comentário no DDL: 'Coordenada Z do posicionamento interno (IPS) com 4 inteiros e 3 decimais.'
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Rastreamento.GprsLatitude">
+            <summary>
+            Obtém ou define a latitude do posicionamento GPRS.
+            Mapeia para a coluna "GPRS_LATITUDE" (NUMBER(38,8), Obrigatório).
+            Comentário no DDL: 'Latitude do posicionamento GPRS (ex: -90.000000 a +90.000000) com 6 decimais.'
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Rastreamento.GprsLongitude">
+            <summary>
+            Obtém ou define a longitude do posicionamento GPRS.
+            Mapeia para a coluna "GPRS_LONGITUDE" (NUMBER(38,8), Obrigatório).
+            Comentário no DDL: 'Longitude do posicionamento GPRS (ex: -180.000000 a +180.000000) com 6 decimais.'
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Rastreamento.GprsAltitude">
+            <summary>
+            Obtém ou define a altitude do posicionamento GPRS.
+            Mapeia para a coluna "GPRS_ALTITUDE" (NUMBER(38,8), Obrigatório).
+            Comentário no DDL: 'Altitude do posicionamento GPRS (ex: 99999.99m) com 2 decimais.'
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Rastreamento.VeiculoRastreamentos">
+            <summary>
+            Coleção de entidades VeiculoRastreamento, representando o relacionamento muitos-para-muitos com Veículos.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.Veiculo">
+            <summary>
+            Representa a entidade Veículo no banco de dados, mapeando para a tabela "TB_VEICULO".
+            Contém informações detalhadas sobre um veículo, como placa, RENAVAM, chassi, fabricante, etc.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Veiculo.#ctor">
+            <summary>
+            Construtor padrão da classe Veiculo.
+            Inicializa propriedades de string não anuláveis para evitar warnings CS8618.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.IdVeiculo">
+            <summary>
+            Obtém ou define o identificador único do Veículo.
+            Mapeia para a coluna "ID_VEICULO" (Chave Primária, gerada por identidade).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.Placa">
+            <summary>
+            Obtém ou define a placa do veículo.
+            Mapeia para a coluna "PLACA" (VARCHAR2(10 BYTE), Obrigatório, Único).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.Renavam">
+            <summary>
+            Obtém ou define o número RENAVAM do veículo.
+            Mapeia para a coluna "RENAVAM" (VARCHAR2(11 CHAR), Obrigatório, Único).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.Chassi">
+            <summary>
+            Obtém ou define o número do Chassi do veículo.
+            Mapeia para a coluna "CHASSI" (VARCHAR2(17 CHAR), Obrigatório, Único).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.Fabricante">
+            <summary>
+            Obtém ou define o fabricante do veículo.
+            Mapeia para a coluna "FABRICANTE" (VARCHAR2(50 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.Modelo">
+            <summary>
+            Obtém ou define o modelo do veículo.
+            Mapeia para a coluna "MODELO" (VARCHAR2(60 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.Motor">
+            <summary>
+            Obtém ou define o tipo/especificação do motor do veículo.
+            Mapeia para a coluna "MOTOR" (VARCHAR2(30 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.Ano">
+            <summary>
+            Obtém ou define o ano de fabricação do veículo.
+            Mapeia para a coluna "ANO" (NUMBER, Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.Combustivel">
+            <summary>
+            Obtém ou define o tipo de combustível do veículo.
+            Mapeia para a coluna "COMBUSTIVEL" (VARCHAR2(20 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.ClienteVeiculos">
+            <summary>
+            Coleção de entidades ClienteVeiculo, representando o relacionamento muitos-para-muitos com Clientes.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.VeiculoBoxes">
+            <summary>
+            Coleção de entidades VeiculoBox, representando o relacionamento muitos-para-muitos com Boxes.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.VeiculoPatios">
+            <summary>
+            Coleção de entidades VeiculoPatio, representando o relacionamento muitos-para-muitos com Pátios.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.VeiculoRastreamentos">
+            <summary>
+            Coleção de entidades VeiculoRastreamento, representando o relacionamento muitos-para-muitos com Rastreamentos.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Veiculo.VeiculoZonas">
+            <summary>
+            Coleção de entidades VeiculoZona, representando o relacionamento muitos-para-muitos com Zonas.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.VeiculoBox">
+            <summary>
+            Representa a tabela de ligação "TB_VEICULOBOX" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Veículo e Box.
+            A chave primária desta tabela é composta pelos IDs de Veículo e Box.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoBox.TbVeiculoIdVeiculo">
+            <summary>
+            Obtém ou define o ID do Veículo que faz parte da chave composta.
+            Mapeia para a coluna "TB_VEICULO_ID_VEICULO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoBox.TbBoxIdBox">
+            <summary>
+            Obtém ou define o ID do Box que faz parte da chave composta.
+            Mapeia para a coluna "TB_BOX_ID_BOX" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoBox.Veiculo">
+            <summary>
+            Propriedade de navegação para a entidade Veículo associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoBox.Box">
+            <summary>
+            Propriedade de navegação para a entidade Box associada.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.VeiculoPatio">
+            <summary>
+            Representa a tabela de ligação "TB_VEICULOPATIO" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Veículo e Pátio.
+            A chave primária desta tabela é composta pelos IDs de Veículo e Pátio.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoPatio.TbVeiculoIdVeiculo">
+            <summary>
+            Obtém ou define o ID do Veículo que faz parte da chave composta.
+            Mapeia para a coluna "TB_VEICULO_ID_VEICULO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoPatio.TbPatioIdPatio">
+            <summary>
+            Obtém ou define o ID do Pátio que faz parte da chave composta.
+            Mapeia para a coluna "TB_PATIO_ID_PATIO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoPatio.Veiculo">
+            <summary>
+            Propriedade de navegação para a entidade Veículo associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoPatio.Patio">
+            <summary>
+            Propriedade de navegação para a entidade Pátio associada.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.VeiculoRastreamento">
+            <summary>
+            Representa a tabela de ligação "TB_VEICULORASTREAMENTO" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Veículo e Rastreamento.
+            A chave primária desta tabela é composta pelos IDs de Veículo e Rastreamento.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoRastreamento.TbVeiculoIdVeiculo">
+            <summary>
+            Obtém ou define o ID do Veículo que faz parte da chave composta.
+            Mapeia para a coluna "TB_VEICULO_ID_VEICULO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoRastreamento.TbRastreamentoIdRastreamento">
+            <summary>
+            Obtém ou define o ID do Rastreamento que faz parte da chave composta.
+            Mapeia para a coluna "TB_RASTREAMENTO_ID_RASTREAMENTO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoRastreamento.Veiculo">
+            <summary>
+            Propriedade de navegação para a entidade Veículo associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoRastreamento.Rastreamento">
+            <summary>
+            Propriedade de navegação para a entidade Rastreamento associada.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.VeiculoZona">
+            <summary>
+            Representa a tabela de ligação "TB_VEICULOZONA" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Veículo e Zona.
+            A chave primária desta tabela é composta pelos IDs de Veículo e Zona.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoZona.TbVeiculoIdVeiculo">
+            <summary>
+            Obtém ou define o ID do Veículo que faz parte da chave composta.
+            Mapeia para a coluna "TB_VEICULO_ID_VEICULO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoZona.TbZonaIdZona">
+            <summary>
+            Obtém ou define o ID da Zona que faz parte da chave composta.
+            Mapeia para a coluna "TB_ZONA_ID_ZONA" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoZona.Veiculo">
+            <summary>
+            Propriedade de navegação para a entidade Veículo associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.VeiculoZona.Zona">
+            <summary>
+            Propriedade de navegação para a entidade Zona associada.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.Zona">
+            <summary>
+            Representa a entidade Zona no banco de dados, mapeando para a tabela "TB_ZONA".
+            Descreve uma área ou zona específica, com nome, datas de entrada/saída e observações.
+            </summary>
+        </member>
+        <member name="M:ChallengeMuttuApi.Model.Zona.#ctor">
+            <summary>
+            Construtor padrão da classe Zona.
+            Inicializa propriedades de string não anuláveis para evitar warnings CS8618.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Zona.IdZona">
+            <summary>
+            Obtém ou define o identificador único da Zona.
+            Mapeia para a coluna "ID_ZONA" (Chave Primária, gerada por identidade).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Zona.Nome">
+            <summary>
+            Obtém ou define o nome da Zona.
+            Mapeia para a coluna "NOME" (VARCHAR2(50 BYTE), Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Zona.DataEntrada">
+            <summary>
+            Obtém ou define a data de entrada na Zona.
+            Mapeia para a coluna "DATA_ENTRADA" (DATE, Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Zona.DataSaida">
+            <summary>
+            Obtém ou define a data de saída da Zona.
+            Mapeia para a coluna "DATA_SAIDA" (DATE, Obrigatório).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Zona.Observacao">
+            <summary>
+            Obtém ou define observações adicionais sobre a Zona.
+            Mapeia para a coluna "OBSERVACAO" (VARCHAR2(100 BYTE), Opcional).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Zona.VeiculoZonas">
+            <summary>
+            Coleção de entidades VeiculoZona, representando o relacionamento muitos-para-muitos com Veículos.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Zona.ZonaBoxes">
+            <summary>
+            Coleção de entidades ZonaBox, representando o relacionamento muitos-para-muitos com Boxes.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.Zona.ZonaPatios">
+            <summary>
+            Coleção de entidades ZonaPatio, representando o relacionamento muitos-para-muitos com Pátios.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.ZonaBox">
+            <summary>
+            Representa a tabela de ligação "TB_ZONABOX" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Zona e Box.
+            A chave primária desta tabela é composta pelos IDs de Zona e Box.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ZonaBox.TbZonaIdZona">
+            <summary>
+            Obtém ou define o ID da Zona que faz parte da chave composta.
+            Mapeia para a coluna "TB_ZONA_ID_ZONA" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ZonaBox.TbBoxIdBox">
+            <summary>
+            Obtém ou define o ID do Box que faz parte da chave composta.
+            Mapeia para a coluna "TB_BOX_ID_BOX" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ZonaBox.Zona">
+            <summary>
+            Propriedade de navegação para a entidade Zona associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ZonaBox.Box">
+            <summary>
+            Propriedade de navegação para a entidade Box associada.
+            </summary>
+        </member>
+        <member name="T:ChallengeMuttuApi.Model.ZonaPatio">
+            <summary>
+            Representa a tabela de ligação "TB_ZONAPATIO" no banco de dados.
+            Estabelece o relacionamento muitos-para-muitos entre Pátio e Zona.
+            A chave primária desta tabela é composta pelos IDs de Pátio e Zona.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ZonaPatio.TbPatioIdPatio">
+            <summary>
+            Obtém ou define o ID do Pátio que faz parte da chave composta.
+            Mapeia para a coluna "TB_PATIO_ID_PATIO" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ZonaPatio.TbZonaIdZona">
+            <summary>
+            Obtém ou define o ID da Zona que faz parte da chave composta.
+            Mapeia para a coluna "TB_ZONA_ID_ZONA" (Parte da Chave Primária Composta).
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ZonaPatio.Patio">
+            <summary>
+            Propriedade de navegação para a entidade Pátio associada.
+            </summary>
+        </member>
+        <member name="P:ChallengeMuttuApi.Model.ZonaPatio.Zona">
+            <summary>
+            Propriedade de navegação para a entidade Zona associada.
+            </summary>
+        </member>
+    </members>
+</doc>

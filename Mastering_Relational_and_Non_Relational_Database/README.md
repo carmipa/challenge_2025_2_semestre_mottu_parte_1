@@ -116,7 +116,7 @@ Total Geral 50528.39
 ---
 
 ## 📂 **Link do Repositório**
-[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Mastering_Relational_and_Non_Relational_Database)
+[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu/tree/main/Mastering_Relational_and_Non_Relational_Database)
 
 ---
 

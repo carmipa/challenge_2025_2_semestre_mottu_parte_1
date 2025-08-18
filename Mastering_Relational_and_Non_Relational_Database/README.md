@@ -1,3 +1,57 @@
+# 💾 **Mastering Relational and Non-Relational Database**
+
+## 🔶 **Descrição**
+O desafio consiste em desenvolver **procedimentos, funções e triggers** em **Oracle PL/SQL**, com foco em lógica procedural estruturada, manipulação de dados relacionais e boas práticas de documentação.  
+
+📌 **Entrega: 3º Sprint**
+
+---
+
+## 📋 **Requisitos da Atividade**
+- **02 Procedimentos**  
+- **02 Funções**  
+- **01 Trigger (Gatilho)**  
+- Scripts completos de **estrutura e carga de dados**.  
+- **Documentação técnica** em **PDF** e **SQL**, incluindo prints de execução e tratamento de exceções.  
+
+### 🔹 Foco do Trabalho
+- Desenvolver **lógica procedural** em PL/SQL.  
+- Manipular dados relacionais e **converter em JSON manualmente** (sem funções automáticas).  
+- Implementar **auditoria via Trigger**.  
+- Aplicar **boas práticas de documentação, tratamento de erros e organização de código**.  
+
+---
+
+## 📑 **Especificações Técnicas**
+### 🔹 Procedimentos (30 pts)
+**Procedimento 1:**  
+- Realizar **JOIN entre 2+ tabelas** relacionais.  
+- Exibir resultado em **formato JSON (string)**.  
+- Conversão deve ser feita manualmente por **Função 1**.  
+- Cada tabela deve conter no mínimo **5 registros válidos**.  
+- Tratar pelo menos **3 exceções** com `EXCEPTION WHEN`.  
+
+**Procedimento 2:**  
+- Ler dados de uma tabela de fatos (ex.: **agencia, conta, saldo**).  
+- Calcular e exibir:  
+  - Valores somados por **agencia+conta**.  
+  - **Subtotal** por agência.  
+  - **Total geral**.  
+- Somatória feita **manualmente no corpo do procedimento** (sem ROLLUP, CUBE, GROUPING SETS).  
+- Saída deve seguir o formato de agrupamento, exemplo:  
+
+
+
+Agencia Conta Saldo
+
+1 1 4363.55
+1 2 4794.76
+...
+Sub Total 24291.35
+2 1 5652.84
+...
+Sub Total 26237.04
+Total Geral 50528.39
 
 - Tratar pelo menos **3 exceções distintas**.  
 - Tabela deve conter ao menos **5 registros detalhados**.  

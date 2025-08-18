@@ -26,7 +26,7 @@
 
 | Tecnolôgias | Matérias | Repositórios |
 |-------|---------|-------------|
-| ![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet) | Advanced Business Development with .NET | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Advanced_Business_Development_with.NET) |
+| ![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet) | Advanced Business Development with .NET | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu/tree/main/Advanced_Business_Development_with.NET) |
 | ![Compliance](https://img.shields.io/badge/Compliance-34495E?style=flat-square) | Compliance, Quality Assurance & Tests | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Compliance_Quality_Assurance_Tests) |
 | ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker) | DevOps Tools & Cloud Computing | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Deveops_Tools_Cloud_Computing) |
 | ![IoT](https://img.shields.io/badge/IoT-FF9900?style=flat-square&logo=iota) | Disruptive Architectures: IoT, IOB & Generative IA | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Disruptive_Architectures_IoT_IOB_Generative_IA) |

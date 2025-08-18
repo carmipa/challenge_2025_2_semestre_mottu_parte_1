@@ -1,6 +1,6 @@
 ![Challenge 2025](https://drive.google.com/uc?export=view&id=1XYZiDX-1TIgX8M5a8fZGFslSe6ao9UXU)
 
-# 🏍️ **Challenge 2025 – 1º Semestre**
+# 🏍️ **Challenge 2025 – 2º Semestre**
 
 ## 📑 Índice
 1. [Projeto](#projeto)  

@@ -1,6 +1,6 @@
 ![Challenge 2025](https://drive.google.com/uc?export=view&id=1XYZiDX-1TIgX8M5a8fZGFslSe6ao9UXU)
 
-# 🏍️ **Challenge 2025 – 2º Semestre**
+# 🏍️ **Challenge 2025 – 2º Semestre - PARTE-1**
 
 ## 📑 Índice
 1. [Projeto](#projeto)  
@@ -26,13 +26,13 @@
 
 | Tecnolôgias | Matérias | Repositórios |
 |-------|---------|-------------|
-| ![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet) | Advanced Business Development with .NET | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu/tree/main/Advanced_Business_Development_with.NET) |
-| ![Compliance](https://img.shields.io/badge/Compliance-34495E?style=flat-square) | Compliance, Quality Assurance & Tests | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Compliance_Quality_Assurance_Tests) |
-| ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker) | DevOps Tools & Cloud Computing | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Deveops_Tools_Cloud_Computing) |
-| ![IoT](https://img.shields.io/badge/IoT-FF9900?style=flat-square&logo=iota) | Disruptive Architectures: IoT, IOB & Generative IA | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Disruptive_Architectures_IoT_IOB_Generative_IA) |
-| ![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=springboot) | Java Advanced | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Java_Advanced) |
-| ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle) | Mastering Relational and Non-Relational Database | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Mastering_Relational_and_Non_Relational_Database) |
-| ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react) | Mobile Application Development | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Mobile_Application_Development) |
+| ![.NET](https://img.shields.io/badge/.NET-512BD4?style=flat-square&logo=dotnet) | Advanced Business Development with .NET | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu_parte_1/tree/main/Advanced_Business_Development_with.NET) |
+| ![Compliance](https://img.shields.io/badge/Compliance-34495E?style=flat-square) | Compliance, Quality Assurance & Tests | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu_parte_1/tree/main/Compliance_Quality_Assurance_Tests) |
+| ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker) | DevOps Tools & Cloud Computing | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu_parte_1/tree/main/Deveops_Tools_Cloud_Computing) |
+| ![IoT](https://img.shields.io/badge/IoT-FF9900?style=flat-square&logo=iota) | Disruptive Architectures: IoT, IOB & Generative IA | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu_parte_1/tree/main/Disruptive_Architectures_IoT_IOB_Generative_IA) |
+| ![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=springboot) | Java Advanced | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu_parte_1/tree/main/Java_Advanced) |
+| ![Oracle](https://img.shields.io/badge/Oracle-F80000?style=flat-square&logo=oracle) | Mastering Relational and Non-Relational Database | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu_parte_1/tree/main/Mastering_Relational_and_Non_Relational_Database) |
+| ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react) | Mobile Application Development | [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu_parte_1/tree/main/Mobile_Application_Development) |
 
 ---
 
@@ -230,7 +230,8 @@ A solução é escalável para ser implementada em mais de 100 filiais no Brasil
 
 ## <a name="documentacao"></a>📑 **Documentação**
 
-* [![PDF Completo](https://img.shields.io/badge/PDF-Completo-red?style=for-the-badge&logo=adobeacrobat&logoColor=white)](https://drive.google.com/file/d/1lxg7SaaaJmneLBUkQdEgxQvdBox_FAwC/view?usp=sharing)
+* [![PDF Completo](https://img.shields.io/badge/PDF-Completo-red?style=for-the-badge&logo=adobeacrobat&logoColor=white)](https://drive.google.com/file/d/116XagVk8XtXTvCdQ04Ni_DNedkkzD_RE/view?usp=sharing)
+
 
 [🔝 Voltar ao topo](#)
 

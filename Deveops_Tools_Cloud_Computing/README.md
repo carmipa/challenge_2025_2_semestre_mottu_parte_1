@@ -89,7 +89,7 @@ A aplicação deve estar integrada a um **banco de dados na nuvem**, com deploy 
 
 ## 📂 **Links**
 [![Azure Docs](https://img.shields.io/badge/Azure-CLI%20%26%20Cloud%20Docs-blue?style=flat-square&logo=microsoftazure)](https://docs.microsoft.com/en-us/azure/devops/)  
-[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/DevOps_Tools_Cloud_Computing)  
+[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu/tree/main/Deveops_Tools_Cloud_Computing)  
 
 ---
 

@@ -27,7 +27,7 @@ Desenvolver o plano detalhado do projeto **Challenge**, aplicando práticas de *
 
 ## 📂 **Links**
 [![Azure Boards](https://img.shields.io/badge/Azure_Boards-0078D7?style=flat-square&logo=microsoftazure)](https://azure.microsoft.com/services/devops/boards/)  
-[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_1_semestre_mottu/tree/main/Compliance_Quality_Assurance_Tests)  
+[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu/tree/main/Compliance_Quality_Assurance_Tests)  
 
 ---
 

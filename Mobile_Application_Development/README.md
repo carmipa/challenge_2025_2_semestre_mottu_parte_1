@@ -73,7 +73,7 @@ O protótipo entregue anteriormente deve ter sido transformado em uma **base con
 ---
 
 ## 📂 **Link do Repositório**
-[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu/tree/main/Mobile_Application_Development)
+[![GitHub](https://img.shields.io/badge/GitHub-Repositório-blue?style=flat-square&logo=github)](https://github.com/carmipa/challenge_2025_2_semestre_mottu_parte_1/tree/main/Mobile_Application_Development)
 
 ---
 

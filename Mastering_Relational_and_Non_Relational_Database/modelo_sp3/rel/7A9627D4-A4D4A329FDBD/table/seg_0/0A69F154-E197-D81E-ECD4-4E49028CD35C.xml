@@ -1,0 +1,71 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="0A69F154-E197-D81E-ECD4-4E49028CD35C" name="TB_RASTREAMENTO">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>E62D830F-FB07-7BBA-83E2-5D7F38CEECA7</generatorID>
+<ownerDesignName>modelo_sp3</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_rastreamento" id="A89C3137-7E61-6E32-AC24-A8FFD128D155">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>38687025-76E5-C5FA-8761-68FC1DF4663A</generatorID>
+<ownerDesignName>modelo_sp3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="status" id="DABD7437-FA17-8DD0-CD0C-E6D7108E27DC">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>ABDD871E-9A7B-4811-6C2C-7B041E6C1EDB</generatorID>
+<ownerDesignName>modelo_sp3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ips" id="2758831C-2354-3271-B83C-FDBB9D682A1B">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>B8B7624C-3C88-F4FB-9AEF-4445AC5C666D</generatorID>
+<ownerDesignName>modelo_sp3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>47E390DE-0671-C4B1-8428-0F45CBEE18F8</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="gprs" id="F0671E81-EF03-689A-16BB-E9E944F6BC50">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>FBABA0DF-2A23-3637-A0FE-0BD3625A6E61</generatorID>
+<ownerDesignName>modelo_sp3</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>3</use>
+<structuredType>47E390DE-0671-C4B1-8428-0F45CBEE18F8</structuredType>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="25336545-D289-84BE-E0C3-7EE3B77580B5" name="TB_RASTREAMENTO_PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>49FA94F2-587A-B8F3-E888-E26F91E6BD34</generatorID>
+<ownerDesignName>modelo_sp3</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A89C3137-7E61-6E32-AC24-A8FFD128D155"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

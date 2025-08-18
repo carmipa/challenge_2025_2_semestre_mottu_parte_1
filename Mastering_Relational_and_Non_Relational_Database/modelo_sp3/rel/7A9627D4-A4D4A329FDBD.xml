@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relationa" id="7A9627D4-EF2A-664C-DA51-A4D4A329FDBD" mainViewID="F5296039-386E-6343-CA24-A76A04B2768E">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:06 UTC</createdTime>
+<ownerDesignName>logico</ownerDesignName>
+<shouldBeOpen>true</shouldBeOpen>
+<selectedRDBMSSite>01F6E6D1-21D0-CFBD-ABDD-3988D1813575</selectedRDBMSSite>
+</relationalModel>

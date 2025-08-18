@@ -1,0 +1,84 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.4'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'br.com.fiap'
+version = '0.0.1-SNAPSHOT'
+description = 'mottu-api'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    // Versões alinhadas ao que você usava no Maven
+    mapstructVersion = '1.5.5.Final'
+    lombokVersion    = '1.18.38'
+    springdocVersion = '2.8.8'
+    ojdbcVersion     = '23.5.0.24.07'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+dependencies {
+    // === SPRING CORE ===
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // === DB / MIGRATIONS ===
+    implementation 'org.flywaydb:flyway-core'
+    // Para Oracle, o suporte foi separado neste módulo (necessário em muitas versões do Flyway 9+/10+)
+    implementation 'org.flywaydb:flyway-database-oracle'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    // Driver Oracle (em runtime, puxado do container Docker)
+    runtimeOnly "com.oracle.database.jdbc:ojdbc11:${ojdbcVersion}"
+
+    // === DEVTOOLS / DOCKER COMPOSE ===
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
+
+    // === LOMBOK ===
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    // === MAPSTRUCT ===
+    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    // Se usar Lombok + MapStruct com @Builder etc., este binding ajuda:
+    // annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
+
+    // === OPENAPI / SWAGGER ===
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-api:${springdocVersion}"
+
+    // === TESTES ===
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+springBoot {
+    mainClass = 'br.com.fiap.mottu.MottuApplication'
+}

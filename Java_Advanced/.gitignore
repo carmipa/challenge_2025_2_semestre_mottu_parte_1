@@ -1,24 +1,116 @@
-# Compiled class file
+# =========================
+# OS / Editores
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# =========================
+# Java / Maven / Gradle
+# =========================
+/target/
+build/
+out/
+.gradle/
+/**/build/
+/**/.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# Maven local repo cache
+.mvn/
+.mvn/wrapper/maven-wrapper.jar
+.settings/
+.classpath
+.project
+
+# Dumps/erros JVM
+**/hs_err_pid*.log
+**/replay_pid*.log
+
+# Classes binárias
 *.class
+bin/
 
-# Log file
+# =========================
+# Logs
+# =========================
 *.log
+logs/
+**/logs/
 
-# BlueJ files
-*.ctxt
+# =========================
+# Spring Boot
+# =========================
+*.pid
+*.pid.lock
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# =========================
+# Docker
+# (mantém Dockerfile e compose principal versionados)
+# =========================
+.docker/
+tmp/
+.tmp/
 
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
+# Overrides locais
+docker-compose.override.yml
+docker-compose.*.yml
+*.local.yml
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# Variáveis de ambiente (mantenha um .env.example)
+.env
+.env.*
+!.env.example
+
+# Volumes/bind mounts de bancos/serviços
+oracle-data/
+oradata/
+db-data/
+data/
+pgdata/
+mysql-data/
+redis-data/
+uploads/
+volumes/
+
+# Se você montar configs Oracle locais
+# tnsnames.ora
+# sqlnet.ora
+# wallet/
+# *.ora
+
+# =========================
+# Node / React / Next.js
+# =========================
+node_modules/
+bower_components/
+dist/
+.npm/
+.pnpm-store/
+.eslintcache
+.cache/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+# Logs Node
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# =========================
+# Recursos gerados
+# =========================
+build/resources/
+
+# =========================
+# Flyway
+# (NÃO ignore migrations do projeto)
+# =========================
+!src/main/resources/db/migration/**

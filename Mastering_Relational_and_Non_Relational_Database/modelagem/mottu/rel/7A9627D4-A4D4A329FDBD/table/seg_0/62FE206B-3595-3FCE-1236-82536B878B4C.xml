@@ -1,0 +1,197 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="62FE206B-3595-3FCE-1236-82536B878B4C" name="TB_CLIENTE">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>9631C141-DAAC-D11C-32A6-F084253EC76D</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_cliente" id="7DD7821F-7610-9836-5313-5D3E77A4D888">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>2A2493C5-E1D4-433C-AAFE-0BA03BAB01A5</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data_cadastro" id="DA0F60F6-2A81-3F89-87A0-B27975C35AA2">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>C76C7E5C-728E-E17F-F3A5-5F8827620C26</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sexo" id="24ED2CF2-1F60-06E3-829A-C4F5F6FE5D2A">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>E6898B2C-0F9A-084F-B53C-43294344D729</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>2</dataTypeSize>
+<ownDataTypeParameters>2,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="nome" id="C78D4E5D-1B80-A341-E231-844E88F5F0AB">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>481CC6D2-7F66-90E4-285F-EB52827E2887</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="sobrenome" id="FBFEB263-0195-8C42-3807-91C7D446C4DC">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>E599F009-83F6-6C0A-3F6A-4D73163D777D</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="data_nascimento" id="8DD3F020-3851-94F5-4454-94D4BB31B362">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>22CA1CF7-9B54-1546-E264-0BE849067A5B</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="cpf" id="E5426B1A-55C0-66F8-82E0-94BAD5BB0725">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>6241A23D-5073-2639-EE12-F7AB02FB8CFE</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>11</dataTypeSize>
+<ownDataTypeParameters>11,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="profissao" id="81B5B327-C030-93DC-4E13-9DA37516F7B7">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>59A24B47-05DC-8DF3-0351-28EDF827B4EE</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado_civil" id="0406BD20-7452-E357-E2A3-603E8E67E576">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>CB548903-52FE-7E1E-C90A-B92EF2DA1DA4</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>50</dataTypeSize>
+<ownDataTypeParameters>50,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="TB_ENDERECO_id_endereco" id="0CCCA22F-272E-A122-026B-6B697C873C10">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>69D68BF2-29AD-43F9-C011-5CB80DB96EB2</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="560F0B2E-B4BA-2807-28F7-8AAD94EC74AD" referredColumn="2AEF3DC2-424B-B6C3-1194-DC076F499374"/>
+</associations>
+</Column>
+<Column name="TB_CONTATO_id_contato" id="A0903992-8F0F-971E-4FAB-9B74A532F26B">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>8CFCBAE0-3F81-813A-8D83-C9A8C591C4F5</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0818152A-418B-85BF-466C-D85AE1125FC2" referredColumn="98B18C05-00AC-42E4-5F61-65F141150B43"/>
+</associations>
+</Column>
+<Column name="status" id="330C803F-C31B-7712-72BD-931FC308AD5F">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>32929119-DFED-678A-569B-E660F9FB82C2</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D1310B9E-0CBB-00F8-7758-E0EE67FF570D" name="TB_CLIENTE_PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>3D6F7583-CD5C-D156-93EA-3ACF31CB465B</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="7DD7821F-7610-9836-5313-5D3E77A4D888"/>
+<colUsage columnID="0CCCA22F-272E-A122-026B-6B697C873C10"/>
+<colUsage columnID="A0903992-8F0F-971E-4FAB-9B74A532F26B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C1C3CBC0-865C-9A9A-4D8D-B26C3FB715F3" name="TB_CLIENTE_TB_ENDERECO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>F12188D0-B2A0-8A50-F4CF-11B4C43B92B9</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="0CCCA22F-272E-A122-026B-6B697C873C10"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="95DEA7EC-0B4E-AA3D-9FBA-CAAC371A86ED" name="TB_CLIENTE_TB_CONTATO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>6224A21B-0187-312E-BB82-5C0C75E596CE</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A0903992-8F0F-971E-4FAB-9B74A532F26B"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

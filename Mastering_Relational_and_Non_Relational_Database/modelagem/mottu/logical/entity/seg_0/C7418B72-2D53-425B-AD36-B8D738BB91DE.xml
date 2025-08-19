@@ -1,0 +1,83 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Entity class="oracle.dbtools.crest.model.design.logical.Entity" directorySegmentName="seg_0" id="C7418B72-2D53-425B-AD36-B8D738BB91DE" name="TB_PB">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-18 23:09:44 UTC</createdTime>
+<ownerDesignName>mottu</ownerDesignName>
+<engineerTo>
+<item key="7A9627D4-EF2A-664C-DA51-A4D4A329FDBD" value="true"/>
+<item key="9CD69157-9B18-50CC-E580-B9A975F73DA3" value="true"/>
+</engineerTo>
+<adequatelyNormalized>NO</adequatelyNormalized>
+<expectedVolumes>0</expectedVolumes>
+<fwdEngineeringStrategyName>Single Table</fwdEngineeringStrategyName>
+<growthPercent>0</growthPercent>
+<growthType>Year</growthType>
+<maxVolumes>9999999</maxVolumes>
+<minVolumes>0</minVolumes>
+<normalForm>Third</normalForm>
+<attributes itemClass="oracle.dbtools.crest.model.design.logical.Attribute">
+<Attribute name="id_patio" id="0AF11925-99B2-B79B-F1E9-FD006604C51C">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-18 23:10:17 UTC</createdTime>
+<generatorID>A64FFC96-E295-ACE8-D798-49ECBF0920BF</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<engineerTo>
+<item key="7A9627D4-EF2A-664C-DA51-A4D4A329FDBD" value="true"/>
+<item key="9CD69157-9B18-50CC-E580-B9A975F73DA3" value="true"/>
+</engineerTo>
+<referedAttribute>0343B087-1559-C3A9-4A42-6634C2B41D66</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="status" id="234A3ACA-5A38-0510-AD5C-B81148C0C739">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-18 23:10:17 UTC</createdTime>
+<generatorID>A64FFC96-E295-ACE8-D798-49ECBF0920BF</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<engineerTo>
+<item key="7A9627D4-EF2A-664C-DA51-A4D4A329FDBD" value="true"/>
+<item key="9CD69157-9B18-50CC-E580-B9A975F73DA3" value="true"/>
+</engineerTo>
+<referedAttribute>5181C6BE-7EE2-7A96-81CE-1789CDD882D9</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+</Attribute>
+<Attribute name="id_box" id="8C552FDA-CDB4-D70C-7FBD-507714297A6F">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-18 23:10:36 UTC</createdTime>
+<generatorID>BA826F15-B458-36AC-FF28-7B778C87EE35</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<engineerTo>
+<item key="7A9627D4-EF2A-664C-DA51-A4D4A329FDBD" value="true"/>
+<item key="9CD69157-9B18-50CC-E580-B9A975F73DA3" value="true"/>
+</engineerTo>
+<referedAttribute>EEF4C859-E132-E548-9846-9436A9858E9E</referedAttribute>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+</Attribute>
+</attributes>
+<identifiers itemClass="oracle.dbtools.crest.model.design.logical.CandidateKey">
+<identifier id="54C84C89-B15B-1850-E875-2F1189B8000B" name="TB_PB PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-18 23:10:21 UTC</createdTime>
+<ownerDesignName>mottu</ownerDesignName>
+<engineerTo>
+<item key="7A9627D4-EF2A-664C-DA51-A4D4A329FDBD" value="true"/>
+<item key="9CD69157-9B18-50CC-E580-B9A975F73DA3" value="true"/>
+</engineerTo>
+<pk>true</pk>
+<usedAttributes>
+<attributeRef>0AF11925-99B2-B79B-F1E9-FD006604C51C</attributeRef>
+<attributeRef>234A3ACA-5A38-0510-AD5C-B81148C0C739</attributeRef>
+<attributeRef>8C552FDA-CDB4-D70C-7FBD-507714297A6F</attributeRef>
+</usedAttributes>
+</identifier>
+</identifiers>
+</Entity>

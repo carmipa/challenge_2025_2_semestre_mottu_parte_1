@@ -1,0 +1,175 @@
+# =========================
+# OS / Editores
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# =========================
+# Java / Spring Boot / Gradle / Maven
+# =========================
+/target/
+/build/
+/out/
+/.gradle/
+/**/build/
+/**/.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+.mvn/
+.mvn/wrapper/maven-wrapper.jar
+.settings/
+.classpath
+.project
+
+# Dumps/erros JVM
+**/hs_err_pid*.log
+**/replay_pid*.log
+
+# Classes binárias
+*.class
+bin/
+
+# Spring Boot
+*.pid
+*.pid.lock
+
+# =========================
+# .NET / C#
+# =========================
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+TestResults/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vs/
+.vscode/
+
+# Rider
+.idea/
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET
+App_Data/
+*.dbmdl
+*.bak
+*.ldf
+*.mdf
+
+# =========================
+# Node.js / React / Next.js
+# =========================
+node_modules/
+bower_components/
+dist/
+.npm/
+.pnpm-store/
+.eslintcache
+.cache/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+
+# Logs Node
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# React Native
+# =========================
+# Android
+/android/.gradle/
+/android/app/build/
+/android/build/
+/android/.idea/
+/android/local.properties
+/android/captures/
+/android/.cxx/
+/android/.externalNativeBuild/
+/android/.signing/
+/android/.settings/
+
+# iOS
+/ios/Pods/
+/ios/build/
+/ios/DerivedData/
+/ios/*.xcworkspace
+/ios/*.xcuserstate
+/ios/*.xcuserdata
+/ios/*.xcuserdatad
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+
+# Expo
+.expo/
+.expo-shared/
+
+# Metro bundler cache
+.expo/*
+/.expo-shared/*
+/.expo-packager-cache/
+/.expo-dependency-graph/
+/.expo-settings.json
+
+# Watchman
+.watchmanconfig
+
+# =========================
+# Docker
+# =========================
+.docker/
+tmp/
+.tmp/
+
+# Overrides locais
+docker-compose.override.yml
+docker-compose.*.yml
+*.local.yml
+
+# Variáveis de ambiente (mantenha um .env.example)
+.env
+.env.*
+!.env.example
+
+# Volumes/bind mounts de bancos/serviços
+oracle-data/
+oradata/
+db-data/
+data/
+pgdata/
+mysql-data/
+redis-data/
+uploads/
+volumes/
+
+# =========================
+# Flyway
+# (NÃO ignore migrations do projeto)
+# =========================
+!src/main/resources/db/migration/**

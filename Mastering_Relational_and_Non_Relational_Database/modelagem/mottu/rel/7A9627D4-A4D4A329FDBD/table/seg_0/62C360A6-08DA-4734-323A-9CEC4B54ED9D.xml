@@ -1,0 +1,97 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="62C360A6-08DA-4734-323A-9CEC4B54ED9D" name="TB_PB">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-19 00:14:51 UTC</createdTime>
+<generatorID>C7418B72-2D53-425B-AD36-B8D738BB91DE</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TB_PATIO_id_patio" id="1069039B-4823-4B09-D44B-AEC22DC9B192">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-19 00:14:51 UTC</createdTime>
+<generatorID>0AF11925-99B2-B79B-F1E9-FD006604C51C</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4C9C469C-3B27-0B93-2474-7593AF298F25" referredColumn="90275C79-1DF7-2361-F858-2879A60E82DE"/>
+</associations>
+</Column>
+<Column name="TB_PATIO_status" id="98B6E162-F0C6-02D0-6D66-DF4FBE9ED140">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-19 00:14:51 UTC</createdTime>
+<generatorID>234A3ACA-5A38-0510-AD5C-B81148C0C739</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT025</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4C9C469C-3B27-0B93-2474-7593AF298F25" referredColumn="AC791B17-CCF4-BE0A-C93D-C2F0AEEF51FF"/>
+</associations>
+</Column>
+<Column name="TB_BOX_id_box" id="674CD028-1203-069C-4368-36B41C9BDAC0">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-19 00:14:51 UTC</createdTime>
+<generatorID>8C552FDA-CDB4-D70C-7FBD-507714297A6F</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="433FE2D0-3246-1594-ABF1-6296F91BBE15" referredColumn="135CE307-AA99-E859-7A7F-125F0C8BA9A3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="23A09E1D-2698-CA34-F325-874637A3481D" name="TB_PB_PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-19 00:14:51 UTC</createdTime>
+<generatorID>54C84C89-B15B-1850-E875-2F1189B8000B</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1069039B-4823-4B09-D44B-AEC22DC9B192"/>
+<colUsage columnID="98B6E162-F0C6-02D0-6D66-DF4FBE9ED140"/>
+<colUsage columnID="674CD028-1203-069C-4368-36B41C9BDAC0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="AB120A4B-BFD8-1DE2-6053-9A0F4F4EA395" name="TB_PB_TB_PATIO_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-19 00:14:51 UTC</createdTime>
+<generatorID>A64FFC96-E295-ACE8-D798-49ECBF0920BF</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1069039B-4823-4B09-D44B-AEC22DC9B192"/>
+<colUsage columnID="98B6E162-F0C6-02D0-6D66-DF4FBE9ED140"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="1C525B9E-6A7C-8003-EEBF-049A45F10C87" name="TB_PB_TB_BOX_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-08-19 00:14:51 UTC</createdTime>
+<generatorID>BA826F15-B458-36AC-FF28-7B778C87EE35</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="674CD028-1203-069C-4368-36B41C9BDAC0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,79 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="166F9231-0749-1B1C-C26F-CB481B0CA44F" name="TB_ZB">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>31A9CF92-BDC4-5E67-29DE-B867DB4B7F99</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="TB_ZONA_id_zona" id="AA3492F0-97D1-0D4B-C588-67FC0C316E48">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>7DF8907E-AA75-85C5-B0F4-D68F72B83E49</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="350D19ED-B2CC-39A4-7C5E-8FCD411E6DC5" referredColumn="FA7970D8-B34F-19C0-0692-2C1C63AF32BB"/>
+</associations>
+</Column>
+<Column name="TB_BOX_id_box" id="096E615A-67CB-7285-CCFE-F49B775F6014">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>10989200-41E5-DE45-4FB3-970B46CDA2BB</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<previousColumn>false</previousColumn>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="834AA0B4-236D-0D3C-1754-31BF606FD8A1" referredColumn="135CE307-AA99-E859-7A7F-125F0C8BA9A3"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="85E00232-7035-F419-E1FD-7EAC97A30D5F" name="TB_ZB_PK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>E6C65C86-2919-829B-5912-041F2C05EB2C</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA3492F0-97D1-0D4B-C588-67FC0C316E48"/>
+<colUsage columnID="096E615A-67CB-7285-CCFE-F49B775F6014"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A37F2C75-FFB7-1B28-B3B0-77C42E76C110" name="TB_ZB_TB_ZONA_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>24DF697F-06B7-640D-BAB0-8BC8E0B086B4</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="AA3492F0-97D1-0D4B-C588-67FC0C316E48"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="BC38BE19-FF63-4705-DB91-ED72FF11C5CB" name="TB_ZB_TB_BOX_FK">
+<createdBy>paulo</createdBy>
+<createdTime>2025-05-08 16:53:37 UTC</createdTime>
+<generatorID>5C3E988F-552B-C2B2-FD49-07277B38343D</generatorID>
+<ownerDesignName>mottu</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="096E615A-67CB-7285-CCFE-F49B775F6014"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

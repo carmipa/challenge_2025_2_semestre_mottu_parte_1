@@ -1,175 +1,284 @@
-# =========================
-# OS / Editores
-# =========================
+# ===== Global OS / IDE =====
+# OS
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Icon?
 desktop.ini
-.vscode/
+
+# Editors / IDEs
 .idea/
 *.iml
 *.ipr
 *.iws
-
-# =========================
-# Java / Spring Boot / Gradle / Maven
-# =========================
-/target/
-/build/
-/out/
-/.gradle/
-/**/build/
-/**/.gradle/
-!gradle/wrapper/gradle-wrapper.jar
-
-.mvn/
-.mvn/wrapper/maven-wrapper.jar
-.settings/
-.classpath
-.project
-
-# Dumps/erros JVM
-**/hs_err_pid*.log
-**/replay_pid*.log
-
-# Classes binárias
-*.class
-bin/
-
-# Spring Boot
-*.pid
-*.pid.lock
-
-# =========================
-# .NET / C#
-# =========================
-# Build results
-[Bb]in/
-[Oo]bj/
-[Ll]og/
-[Ll]ogs/
-TestResults/
-*.user
+.vscode/
+.vscode-*
+.vscode-test/
+*.code-workspace
+.vs/
 *.suo
+*.user
 *.userosscache
 *.sln.docstates
-*.vs/
-.vscode/
 
-# Rider
-.idea/
-
-# NuGet
-*.nupkg
-*.snupkg
-packages/
-.nuget/
-project.lock.json
-project.fragment.lock.json
-
-# ASP.NET
-App_Data/
-*.dbmdl
-*.bak
-*.ldf
-*.mdf
-
-# =========================
-# Node.js / React / Next.js
-# =========================
-node_modules/
-bower_components/
-dist/
-.npm/
-.pnpm-store/
-.eslintcache
-.cache/
-.next/
-out/
-coverage/
-*.tsbuildinfo
-
-# Logs Node
+# Logs & dumps
+*.log
+*.log.*
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
+hs_err_pid*
+*.hprof
+*.stackdump
+*.core
+*.dmp
 
-# =========================
-# React Native
-# =========================
-# Android
-/android/.gradle/
-/android/app/build/
-/android/build/
-/android/.idea/
-/android/local.properties
-/android/captures/
-/android/.cxx/
-/android/.externalNativeBuild/
-/android/.signing/
-/android/.settings/
+# ===== Node.js / Next.js =====
+node_modules/
+bower_components/
+jspm_packages/
+.webpack/
+.cache/
+.next/
+.out/
+dist/
+build/
+coverage/
+.nyc_output/
+.turbo/
+.vercel/
+.storybook-out/
+*.tsbuildinfo
 
-# iOS
-/ios/Pods/
-/ios/build/
-/ios/DerivedData/
-/ios/*.xcworkspace
-/ios/*.xcuserstate
-/ios/*.xcuserdata
-/ios/*.xcuserdatad
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
+# Runtime caches
+.pnpm-store/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+.cache-loader/
+.vite/
+vite.config.timestamp-*
 
-# Expo
-.expo/
-.expo-shared/
-
-# Metro bundler cache
-.expo/*
-/.expo-shared/*
-/.expo-packager-cache/
-/.expo-dependency-graph/
-/.expo-settings.json
-
-# Watchman
-.watchmanconfig
-
-# =========================
-# Docker
-# =========================
-.docker/
-tmp/
-.tmp/
-
-# Overrides locais
-docker-compose.override.yml
-docker-compose.*.yml
-*.local.yml
-
-# Variáveis de ambiente (mantenha um .env.example)
+# Env & local configs — prevent committing secrets
 .env
 .env.*
-!.env.example
+.env*.local
+.envrc
+.envrc.*
+*.env
+*.env.local
+*.local.env
+*.secret
+*.secrets
+secrets/
+secret/
+**/secrets.*
+**/*secret*.json
+**/*secrets*.json
 
-# Volumes/bind mounts de bancos/serviços
-oracle-data/
-oradata/
-db-data/
-data/
-pgdata/
-mysql-data/
-redis-data/
-uploads/
-volumes/
+# Lockfiles (keep one, ignore others to avoid drift; adjust to your preference)
+# Uncomment ONE of the next lines if you want to ignore lockfiles globally
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
 
-# =========================
-# Flyway
-# (NÃO ignore migrations do projeto)
-# =========================
-!src/main/resources/db/migration/**
+# ===== Java / Maven / Gradle =====
+# Maven
+target/
+.releaseBackup/
+dependency-reduced-pom.xml
+.mvn/timing.properties
+# keep wrapper; ignore caches
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+.mvn/wrapper/MavenWrapperDownloader.java
+
+# Gradle
+.gradle/
+**/build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+# Common Java
+*.class
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+*.orig
+
+# ===== .NET / C# =====
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+**/Properties/launchSettings.json
+# user-specific & IDE
+*.user
+*.userprefs
+*.psess
+*.vsp
+*.vspx
+*.vsmdi
+TestResult*/
+
+# Certificates / keys / strong names — do not commit
+*.pfx
+*.snk
+*.cer
+*.p12
+*.p7b
+*.pem
+*.der
+
+# App settings — keep just the template
+appsettings.*.json
+!appsettings.json
+!appsettings.example.json
+!appsettings.template.json
+appsettings.*.Development.local.json
+appsettings.*.Local.json
+appsettings.*.private.json
+appsettings.*.secrets.json
+
+# NuGet & packages
+*.nupkg
+packages/
+*.nuget.props
+.nuget/
+
+# ===== Docker / Containers =====
+.docker/
+docker/**/data/
+docker-data/
+**/.dockerignore.local
+docker-compose.override.yml
+# Compose/CLI env & secret files
+.docker.env
+docker.env
+.env.docker*
+.env.compose*
+.env.test*
+.env.production*
+**/*.env.*.local
+
+# Build artifacts
+*.tar
+*.img
+*.iso
+
+# ===== Azure =====
+.azure/
+# Service principal creds / publish profiles
+PublishProfiles/
+*.PublishSettings
+*.azurePubxml
+*.azurePubxml.user
+azureauth.json
+# Bicep/ARM parameter files that may contain secrets
+**/*parameters.secrets.json
+**/*parameters.secret.json
+
+# ===== Mobile / Firebase (just in case React Native is in the monorepo) =====
+google-services.json
+GoogleService-Info.plist
+*.keystore
+*.jks
+
+# ===== Databases / Oracle / SQL tools =====
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+*.mdf
+*.ldf
+*.ndf
+
+# Oracle wallets & client credentials (NEVER commit)
+wallet/
+**/wallet_*/
+**/cwallet.sso
+**/ewallet.p12
+**/tnsnames.ora
+**/sqlnet.ora
+**/ldap.ora
+
+# Dumps / exports
+*.dmp
+*.dump
+*.ctl
+*.dctl
+*.trc
+*.trm
+
+# Migration tool outputs (commit your migration scripts, ignore reports/artifacts)
+liquibase-output/
+liquibase-reports/
+flyway-report*
+flyway-history*
+**/migration-report*/
+
+# ===== Tests / coverage =====
+coverage/
+lcov.info
+test-results/
+tests-output/
+.junit/
+.surefire/
+.failsafe/
+
+# ===== Misc =====
+# Cache & temp
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.swo
+*$~
+~$*
+*.orig
+
+# Binary blobs
+*.exe
+*.dll
+*.so
+*.dylib
+*.obj
+*.lib
+
+# ===== Security: never commit keys/tokens =====
+# SSH keys
+id_rsa
+id_rsa.*
+id_dsa
+id_dsa.*
+id_ecdsa
+id_ecdsa.*
+id_ed25519
+id_ed25519.*
+# Generic private keys & tokens
+*.key
+*.priv
+*.private
+*.token
+*.tok
+*.apiKey
+*.apikey
+*.secret.*
+*.credentials
+credentials.json
+service-account.json
+serviceAccount.json
+*service-account*.json
+*ServiceAccount*.json
+
+# ===== Local notes / docs generated =====
+*.local.md
+*.notes.md
+*.draft.md
+/site/
+public/

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
 
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,5 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long>, JpaSpec
     Optional<Cliente> findById(Long idCliente); // Já disponível, mas explicitando
     List<Cliente> findByNomeContainingIgnoreCase(String nome);
     List<Cliente> findByDataCadastroBetween(LocalDate startDate, LocalDate endDate);
-    // Você também pode combinar:
-    // Optional<Cliente> findByCpfAndNomeContainingIgnoreCase(String cpf, String nome);
+
 }

@@ -1,36 +1,70 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Estrutura de pastas do projeto next atual!
 
-## Getting Started
+---
 
-First, run the development server:
+📁 mottu-web/
+├── 📄 .env.local               # Variáveis de ambiente locais (não vai para o Git)
+├── 📜 .eslintrc.json           # Configurações do ESLint para qualidade de código
+├── 📜 .gitignore               # Arquivos e pastas ignorados pelo Git
+├── 📜 next.config.mjs          # Configurações do Next.js
+├── 📦 package-lock.json        # Lockfile das versões das dependências
+├── 📦 package.json             # Define as dependências e scripts do projeto
+├── 📜 postcss.config.mjs         # Configurações do PostCSS (usado pelo Tailwind)
+├── 📖 README.md                # Documentação do projeto
+├── 📜 tailwind.config.ts       # Configurações do Tailwind CSS
+└── 📜 tsconfig.json             # Configurações do TypeScript
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+├── 📁 public/                   # ➔ Arquivos estáticos acessíveis publicamente
+│   ├── 🖼️ fotos-equipe/
+│   │   ├── 🖼️ arthur.jpg
+│   │   ├── 🖼️ joao.jpg
+│   │   └── 🖼️ paulo.jpg
+│   ├── 🌐 favicon.ico
+│   ├── 🖼️ mottu-logo-dark-bg.png
+│   ├── 🖼️ mottu-logo-light-bg.png
+│   ├── 📜 next.svg
+│   └── 📜 vercel.svg
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+└── 📁 src/                      # ➔ Código-fonte da aplicação
+    ├── 📁 app/                  # ➔ Core do App Router: páginas, rotas e layouts
+    │   ├── 📁 (auth)/           # ➔ Grupo de rotas para autenticação
+    │   │   └── 📁 login/
+    │   │       └── ⚛️ page.tsx
+    │   ├── 📁 api/
+    │   │   └── 📁 auth/
+    │   │       └── 📁 [...nextauth]/
+    │   │           └── 📜 route.ts
+    │   ├── 📁 clientes/
+    │   │   ├── 📁 alterar/
+    │   │   │   └── 📁 [id]/
+    │   │   │       └── ⚛️ page.tsx
+    │   │   ├── 📁 buscar/
+    │   │   │   └── ⚛️ page.tsx
+    │   │   ├── 📁 cadastrar/
+    │   │   │   └── ⚛️ page.tsx
+    │   │   ├── 📁 listar/
+    │   │   │   └── ⚛️ page.tsx
+    │   │   └── ⚛️ layout.tsx
+    │   ├── 📁 contato/
+    │   │   └── ⚛️ page.tsx
+    │   ├── 📁 mapa-do-site/
+    │   │   └── ⚛️ page.tsx
+    │   ├── 📁 relatorios/
+    │   │   ├── 📁 clientes-por-mes/
+    │   │   │   └── ⚛️ page.tsx
+    │   │   └── ⚛️ page.tsx
+    │   ├── 🎨 globals.css       # Estilos globais da aplicação
+    │   └── ⚛️ layout.tsx        # Layout principal (root) da aplicação
+    │   └── ⚛️ page.tsx          # Página inicial (Home)
+    │
+    ├── 📁 components/            # ➔ Componentes React reutilizáveis
+    │   ├── ⚛️ GraficoDeBarras.tsx
+    │   ├── ⚛️ LeafletMap.tsx
+    │   └── ⚛️ nav-bar.tsx
+    │
+    ├── 📁 types/                 # ➔ Definições de tipos TypeScript
+    │   ├── 📜 cliente.d.ts
+    │   └── 📜 next-auth.d.ts
+    │
+    └── 📁 utils/                 # ➔ Utilitários e helpers
+        └── 📜 api.ts             # Configuração do Axios e serviços de API

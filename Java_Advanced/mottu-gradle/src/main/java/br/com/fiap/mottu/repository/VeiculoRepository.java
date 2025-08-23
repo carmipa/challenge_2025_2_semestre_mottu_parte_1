@@ -22,4 +22,5 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long>, JpaSpec
     List<Veiculo> findByAno(Integer ano); // Busca exata por ano
     List<Veiculo> findByAnoBetween(Integer startAno, Integer endAno); // Busca por intervalo de ano
     List<Veiculo> findByCombustivelContainingIgnoreCase(String combustivel);
+
 }

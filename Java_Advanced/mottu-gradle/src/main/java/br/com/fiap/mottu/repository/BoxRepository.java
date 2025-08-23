@@ -1,9 +1,11 @@
 // Caminho do arquivo: br\com\fiap\mottu\repository\BoxRepository.java
 package br.com.fiap.mottu.repository;
 
+
 import br.com.fiap.mottu.model.Box;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
 import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.List;
@@ -17,4 +19,6 @@ public interface BoxRepository extends JpaRepository<Box, Long>, JpaSpecificatio
     boolean existsByNomeIgnoreCase(String nome); // ADICIONADO como alternativa para checagem de duplicidade
     List<Box> findByDataEntradaBetween(LocalDate startDate, LocalDate endDate);
     List<Box> findByDataSaidaBetween(LocalDate startDate, LocalDate endDate);
+
+
 }

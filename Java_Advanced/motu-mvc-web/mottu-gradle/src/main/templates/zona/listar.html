@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/main :: layout('Listar Zonas', ~{::#content}, ~{})}">
+<body>
+<div id="content" class="min-h-screen p-4 md:p-8">
+    <div class="container mx-auto bg-mottu-default p-6 md:p-8 rounded-lg shadow-xl">
+        <div class="flex justify-between items-center mb-8">
+            <h1 class="text-3xl font-bold text-white">Zonas Cadastradas</h1>
+            <a th:href="@{/zonas/cadastrar}" class="px-4 py-2 font-semibold text-mottu-dark bg-white rounded-md shadow hover:bg-gray-100">Nova Zona</a>
+        </div>
+        <div th:replace="~{fragments/common :: success-alert}"></div>
+        <div th:replace="~{fragments/common :: error-alert}"></div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-white">
+                <thead>
+                <tr class="border-b border-slate-700">
+                    <th class="p-3">ID</th>
+                    <th class="p-3">Nome</th>
+                    <th class="p-3">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="zona : ${page.content}" class="border-t border-slate-700 hover:bg-black/20">
+                    <td class="p-3" th:text="${zona.idZona}"></td>
+                    <td class="p-3" th:text="${zona.nome}"></td>
+                    <td class="p-3 flex items-center gap-2">
+                        <a th:href="@{/zonas/detalhes/{id}(id=${zona.idZona})}" class="font-medium text-blue-300 hover:underline">Detalhes</a>
+                        <a th:href="@{/zonas/alterar/{id}(id=${zona.idZona})}" class="font-medium text-yellow-300 hover:underline">Alterar</a>
+                        <a th:href="@{/zonas/deletar/{id}(id=${zona.idZona})}" class="font-medium text-red-400 hover:underline">Deletar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:replace="~{fragments/common :: pagination(page=${page})}"></div>
+    </div>
+</div>
+</body>
+</html>

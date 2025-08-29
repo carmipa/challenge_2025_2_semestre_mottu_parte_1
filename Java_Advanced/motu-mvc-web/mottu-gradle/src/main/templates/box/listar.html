@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{layout/main :: layout('Listar Boxes', ~{::#content}, ~{})}">
+<body>
+<div id="content" class="min-h-screen p-4 md:p-8">
+    <div class="container mx-auto bg-mottu-default p-6 md:p-8 rounded-lg shadow-xl">
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-8">
+            <h1 class="text-2xl md:text-3xl font-bold text-white">Boxes Cadastrados</h1>
+            <a th:href="@{/boxes/cadastrar}" class="mt-4 sm:mt-0 flex items-center gap-2 px-4 py-2.5 font-semibold text-mottu-dark bg-white rounded-md shadow hover:bg-gray-100">
+                <span>Novo Box</span>
+            </a>
+        </div>
+
+        <div th:replace="~{fragments/common :: success-alert}"></div>
+        <div th:replace="~{fragments/common :: error-alert}"></div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-white">
+                <thead>
+                <tr class="border-b border-slate-700">
+                    <th class="p-3">ID</th>
+                    <th class="p-3">Nome</th>
+                    <th class="p-3">Status</th>
+                    <th class="p-3">Ações</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="box : ${page.content}" class="border-t border-slate-700 hover:bg-black/20">
+                    <td class="p-3" th:text="${box.idBox}"></td>
+                    <td class="p-3" th:text="${box.nome}"></td>
+                    <td class="p-3">
+                        <span th:text="${box.status == 'L' ? 'Livre' : 'Ocupado'}"
+                              th:classappend="${box.status == 'L' ? 'text-green-400' : 'text-red-400'}"></span>
+                    </td>
+                    <td class="p-3 flex items-center gap-2">
+                        <a th:href="@{/boxes/detalhes/{id}(id=${box.idBox})}" class="font-medium text-blue-300 hover:underline">Detalhes</a>
+                        <a th:href="@{/boxes/alterar/{id}(id=${box.idBox})}" class="font-medium text-yellow-300 hover:underline">Alterar</a>
+                        <a th:href="@{/boxes/deletar/{id}(id=${box.idBox})}" class="font-medium text-red-400 hover:underline">Deletar</a>
+                    </td>
+                </tr>
+                <tr th:if="${page.empty}">
+                    <td colspan="4" class="text-center p-4">Nenhum box encontrado.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div th:replace="~{fragments/common :: pagination(page=${page})}"></div>
+    </div>
+</div>
+</body>
+</html>

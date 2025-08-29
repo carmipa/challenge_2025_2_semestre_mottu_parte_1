@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/main :: layout('Alterar Pátio', ~{::#content}, ~{})}">
+<body>
+<div id="content" class="min-h-screen p-4 md:p-8 flex items-center justify-center">
+    <div class="container max-w-lg mx-auto bg-mottu-default p-6 md:p-8 rounded-lg shadow-xl">
+        <h1 class="text-2xl font-bold text-white text-center mb-6" th:text="'Alterar Pátio (ID: ' + ${patioId} + ')'"></h1>
+        <div th:replace="~{fragments/common :: error-alert}"></div>
+        <form th:action="@{/patios/alterar/{id}(id=${patioId})}" th:object="${patioDto}" method="post" class="space-y-4">
+            <div>
+                <label for="nomePatio" class="block text-sm font-medium text-slate-100 mb-1">Nome do Pátio</label>
+                <input type="text" id="nomePatio" th:field="*{nomePatio}" required class="w-full p-2 rounded bg-white text-slate-900 h-10"/>
+                <p th:if="${#fields.hasErrors('nomePatio')}" th:errors="*{nomePatio}" class="text-red-300 text-sm mt-1"></p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="dataEntrada" class="block text-sm font-medium text-slate-100 mb-1">Data de Entrada</label>
+                    <input type="date" id="dataEntrada" th:field="*{dataEntrada}" required class="w-full p-2 rounded bg-white text-slate-900 h-10 date-input-fix"/>
+                </div>
+                <div>
+                    <label for="dataSaida" class="block text-sm font-medium text-slate-100 mb-1">Data de Saída</label>
+                    <input type="date" id="dataSaida" th:field="*{dataSaida}" required class="w-full p-2 rounded bg-white text-slate-900 h-10 date-input-fix"/>
+                </div>
+            </div>
+            <div>
+                <label for="observacao" class="block text-sm font-medium text-slate-100 mb-1">Observação</label>
+                <textarea id="observacao" th:field="*{observacao}" rows="3" class="w-full p-2 rounded bg-white text-slate-900"></textarea>
+            </div>
+            <div class="flex justify-center gap-4 pt-4">
+                <a th:href="@{/patios/listar}" class="px-6 py-3 font-semibold text-mottu-dark bg-white rounded-md shadow">Voltar</a>
+                <button type="submit" class="px-6 py-3 font-semibold text-white bg-mottu-dark rounded-md shadow">Salvar Alterações</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

@@ -6,7 +6,7 @@ plugins {
 
 group = 'br.com.fiap.mottu'
 version = '0.0.1-SNAPSHOT'
-description = 'mottu-gradle'
+description = 'mottu-mvc-web' // Nome do novo projeto
 
 java {
     toolchain {
@@ -18,10 +18,6 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
-    }
 }
 
 repositories {
@@ -31,15 +27,17 @@ repositories {
 ext {
     mapstructVersion = '1.5.5.Final'
     lombokVersion    = '1.18.38'
-    springdocVersion = '2.8.8'
 }
 
 dependencies {
+
     // === SPRING CORE ===
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // Essencial para as views
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // LINHA ADICIONADA PARA CORRIGIR O ERRO
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
 
     // === DEV TOOLS ===
@@ -52,19 +50,13 @@ dependencies {
     // === MAPSTRUCT ===
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-
-    // Se usar Lombok + MapStruct juntos, ajuda usar esse processor extra
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 
     // === DATABASE ===
     runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
 
-    // === OPENAPI / SWAGGER ===
-    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
-
     // === TESTES ===
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'io.projectreactor:reactor-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 

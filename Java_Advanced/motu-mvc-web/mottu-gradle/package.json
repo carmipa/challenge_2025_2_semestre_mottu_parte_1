@@ -1,0 +1,13 @@
+{
+  "name": "mottu-mvc-web",
+  "version": "1.0.0",
+  "description": "Frontend assets for Mottu MVC Web",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.1"
+  }
+}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org" th:replace="~{layout/main :: layout('Detalhes do Pátio', ~{::#content}, ~{})}">
+<body>
+<div id="content" class="min-h-screen p-4 md:p-8 flex items-center justify-center">
+    <div class="container max-w-2xl mx-auto bg-mottu-default p-6 md:p-8 rounded-lg shadow-xl">
+        <h1 class="text-3xl font-bold text-white" th:text="${patio.nomePatio}"></h1>
+        <p class="text-slate-300 mb-6" th:text="'Detalhes do Pátio (ID: ' + ${patio.idPatio} + ')'"></p>
+        <div class="bg-black/20 p-4 rounded-lg text-white space-y-2 text-lg">
+            <p><strong>Nome:</strong> <span th:text="${patio.nomePatio}"></span></p>
+            <p><strong>Data de Entrada:</strong> <span th:text="${#temporals.format(patio.dataEntrada, 'dd/MM/yyyy')}"></span></p>
+            <p><strong>Data de Saída:</strong> <span th:text="${#temporals.format(patio.dataSaida, 'dd/MM/yyyy')}"></span></p>
+            <p><strong>Observação:</strong> <span th:text="${patio.observacao} ?: 'Nenhuma'"></span></p>
+        </div>
+        <div class="mt-6 flex justify-center">
+            <a th:href="@{/patios/listar}" class="px-6 py-3 font-semibold text-mottu-dark bg-white rounded-md shadow">Voltar para Lista</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

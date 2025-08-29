@@ -1,13 +1,9 @@
-// Caminho do arquivo: br\com\fiap\mottu\dto\veiculo\VeiculoRequestDto.java
 package br.com.fiap.mottu.dto.veiculo;
 
 import lombok.Value;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 
-/**
- * DTO for {@link br.com.fiap.mottu.model.Veiculo}
- */
 @Value
 public class VeiculoRequestDto implements Serializable {
     @NotBlank(message = "A placa não pode estar em branco.")
@@ -42,4 +38,10 @@ public class VeiculoRequestDto implements Serializable {
     @NotBlank(message = "O combustível não pode estar em branco.")
     @Size(max = 20, message = "O combustível deve ter no máximo 20 caracteres.")
     String combustivel;
+
+    @Size(max = 50, message = "O ID da Tag BLE deve ter no máximo 50 caracteres.")
+    String tagBleId;
+
+    @Pattern(regexp = "^(OPERACIONAL|EM_MANUTENCAO|INATIVO)$", message = "Status inválido. Valores permitidos: OPERACIONAL, EM_MANUTENCAO, INATIVO.")
+    String status;
 }

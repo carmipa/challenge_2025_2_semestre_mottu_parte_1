@@ -10,8 +10,9 @@ public record VeiculoFilter(
         String motor,
         Integer ano,
         String combustivel,
-        String clienteCpf, // Filtro por cliente associado (via junção)
-        String boxNome, // Filtro por box associado (via junção)
-        String patioNome, // Filtro por patio associado (via junção)
-        String zonaNome // Filtro por zona associada (via junção)
+        String clienteCpf,
+        String boxNome,
+        String patioNome,
+        String zonaNome,
+        String tagBleId // NOVO CAMPO
 ) {}

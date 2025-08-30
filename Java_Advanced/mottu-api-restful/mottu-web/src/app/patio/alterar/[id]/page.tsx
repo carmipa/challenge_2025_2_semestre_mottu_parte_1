@@ -1,44 +1,38 @@
 // src/app/patio/alterar/[id]/page.tsx
 "use client";
-
-import { useState, useEffect, FormEvent } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import Link from 'next/link';
 import NavBar from '@/components/nav-bar';
-import { MdEdit, MdSave, MdArrowBack, MdErrorOutline, MdCheckCircle, MdLocationOn } from 'react-icons/md';
-import { Tag, Calendar, Text, Info, Loader2, AlertCircle } from 'lucide-react';
-
-// Interfaces dos DTOs
-import { PatioRequestDto, PatioResponseDto } from '@/types/patio';
 import { PatioService } from '@/utils/api';
+import { PatioRequestDto } from '@/types/patio';
+import { MdEdit, MdSave, MdArrowBack, MdErrorOutline, MdCheckCircle } from 'react-icons/md';
+import { Building, Calendar, Text, Loader2, AlertCircle } from 'lucide-react';
 
 export default function AlterarPatioPage() {
     const router = useRouter();
     const params = useParams();
-    const idParam = params?.id;
-    const id = typeof idParam === 'string' ? parseInt(idParam, 10) : null;
+    const id = typeof params.id === 'string' ? parseInt(params.id, 10) : null;
 
     const [formData, setFormData] = useState<PatioRequestDto>({
-        nomePatio: '', dataEntrada: '', dataSaida: '', observacao: ''
+        nomePatio: '', dataEntrada: '', dataSaida: '', observacao: '',
     });
 
-    const [isLoading, setIsLoading] = useState(false); // Para submissão
-    const [isFetching, setIsFetching] = useState(true); // Para carregar dados iniciais
+    const [isLoading, setIsLoading] = useState(false);
+    const [isFetching, setIsFetching] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
 
-    // Função para buscar os dados do pátio ao carregar a página
     useEffect(() => {
         if (!id) {
-            setError("ID do pátio não fornecido na URL.");
+            setError("ID do pátio inválido.");
             setIsFetching(false);
             return;
         }
-        const fetchPatioData = async () => {
+        const fetchPatio = async () => {
             setIsFetching(true);
-            setError(null);
             try {
-                const data: PatioResponseDto = await PatioService.getById(id);
+                const data = await PatioService.getById(id);
                 setFormData({
                     nomePatio: data.nomePatio,
                     dataEntrada: data.dataEntrada,
@@ -46,181 +40,97 @@ export default function AlterarPatioPage() {
                     observacao: data.observacao || '',
                 });
             } catch (err: any) {
-                setError(err.response?.data?.message || err.message || "Falha ao carregar dados do pátio.");
-                console.error("Erro detalhado no fetch inicial:", err);
+                setError(err.response?.data?.message || "Falha ao carregar dados do pátio.");
             } finally {
                 setIsFetching(false);
             }
         };
-        fetchPatioData();
+        fetchPatio();
     }, [id]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        if (id === null) {
-            setError("ID do pátio inválido para atualização.");
-            return;
-        }
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!id) return;
+
         setIsLoading(true);
         setError(null);
         setSuccess(null);
-
         try {
-            const updatedPatio: PatioResponseDto = await PatioService.update(id, formData);
-            setSuccess(`Pátio "${updatedPatio.nomePatio}" (ID: ${updatedPatio.idPatio}) atualizado com sucesso!`);
-            setTimeout(() => {
-                setSuccess(null);
-                router.push('/patio/listar');
-            }, 2000);
+            await PatioService.update(id, formData);
+            setSuccess(`Pátio "${formData.nomePatio}" atualizado com sucesso!`);
+            setTimeout(() => router.push('/patio/listar'), 2000);
         } catch (err: any) {
-            setError(err.response?.data?.message || err.message || 'Falha ao atualizar pátio.');
-            console.error("Erro detalhado na atualização:", err);
+            setError(err.response?.data?.message || 'Falha ao atualizar pátio.');
         } finally {
             setIsLoading(false);
         }
     };
 
-    if (isFetching) {
-        return (
-            <>
-                <NavBar active="patio-alterar" />
-                <main className="container mx-auto p-8 flex justify-center items-center min-h-screen bg-[#012A46]">
-                    <div className="flex flex-col items-center">
-                        <Loader2 className="h-12 w-12 animate-spin text-sky-400" />
-                        <p className="mt-3 text-sky-300 text-lg">Carregando dados do pátio...</p>
-                    </div>
-                </main>
-            </>
-        );
-    }
+    if (isFetching) return (
+        <>
+            <NavBar active="patio" />
+            <main className="flex justify-center items-center min-h-screen bg-black"><Loader2 className="h-12 w-12 animate-spin text-[var(--color-mottu-light)]" /></main>
+        </>
+    );
 
-    if (error && !isFetching && (!formData.nomePatio || formData.nomePatio === '')) {
-        return (
-            <>
-                <NavBar active="patio-alterar" />
-                <main className="container mx-auto p-8 flex justify-center items-center min-h-screen bg-[#012A46]">
-                    <div className="bg-slate-900 p-8 rounded-lg shadow-xl text-center">
-                        <AlertCircle className="text-5xl text-red-400 mx-auto mb-4" />
-                        <p className="text-red-400 text-lg mb-6">{error}</p>
-                        <Link href="/patio/listar" className="px-6 py-3 bg-sky-600 text-white rounded-md shadow hover:bg-sky-700">Voltar para Lista</Link>
-                    </div>
-                </main>
-            </>
-        );
-    }
+    if (error && !formData.nomePatio) return (
+        <>
+            <NavBar active="patio" />
+            <main className="flex justify-center items-center min-h-screen bg-black p-4">
+                <div className="text-center bg-red-900/50 p-8 rounded-lg">
+                    <AlertCircle className="mx-auto h-12 w-12 text-red-400" />
+                    <p className="mt-4 text-red-400">{error}</p>
+                    <Link href="/patio/listar" className="mt-6 inline-block px-6 py-2 bg-slate-600 text-white rounded-md">Voltar</Link>
+                </div>
+            </main>
+        </>
+    );
 
     return (
         <>
-            <NavBar active="patio-alterar" />
-            <main className="container mx-auto px-4 py-12 bg-[#012A46] min-h-screen text-white">
-                <div className="bg-slate-900 p-6 md:p-8 rounded-lg shadow-xl w-full max-w-lg mx-auto">
-                    <h1 className="flex items-center justify-center gap-2 text-2xl md:text-3xl font-bold mb-8 text-center">
-                        <MdEdit className="text-3xl text-sky-400" /> Alterar Pátio (ID: {id})
+            <NavBar active="patio" />
+            <main className="min-h-screen bg-black text-white p-4 md:p-8 flex items-center justify-center">
+                <div className="container max-w-lg mx-auto bg-[var(--color-mottu-default)] p-6 md:p-8 rounded-lg shadow-xl">
+                    <h1 className="text-2xl md:text-3xl font-bold text-white flex items-center justify-center mb-6">
+                        <MdEdit size={32} className="mr-3" />
+                        Alterar Pátio (ID: {id})
                     </h1>
-
-                    {error && (
-                        <div className="relative text-red-400 bg-red-900/50 p-4 pr-10 rounded border border-red-500 mb-4" role="alert">
-                            <div className="flex items-center gap-2"> <MdErrorOutline className="text-xl" /> <span>{error}</span> </div>
-                            <button type="button" className="absolute top-0 bottom-0 right-0 px-4 py-3 hover:text-red-200" onClick={() => setError(null)} aria-label="Fechar"><span className="text-xl">&times;</span></button>
-                        </div>
-                    )}
-                    {success && (
-                        <div className="flex items-center justify-center gap-2 text-green-400 p-3 rounded bg-green-900/30 border border-green-700 mb-4">
-                            <MdCheckCircle className="text-xl" /> <span>{success}</span>
-                        </div>
-                    )}
-
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    {success && <div className="mb-4 flex items-center gap-2 text-sm text-green-700 p-3 rounded-md bg-green-100"><MdCheckCircle className="text-xl" /> <span>{success}</span></div>}
+                    {error && <div className="mb-4 flex items-center gap-2 text-sm text-red-700 p-3 rounded-md bg-red-100"><MdErrorOutline className="text-xl" /> <span>{error}</span></div>}
+                    <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label htmlFor="nomePatio" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Tag size={16} /> Nome do Pátio:
-                            </label>
-                            <input
-                                type="text"
-                                id="nomePatio"
-                                name="nomePatio"
-                                value={formData.nomePatio}
-                                onChange={handleChange}
-                                required
-                                maxLength={50}
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                            />
+                            <label htmlFor="nomePatio" className="block text-sm font-medium text-slate-100 mb-1 flex items-center gap-1"><Building size={16}/> Nome do Pátio</label>
+                            <input type="text" id="nomePatio" name="nomePatio" value={formData.nomePatio} onChange={handleChange} required className="w-full p-2 rounded bg-white text-slate-900 h-10" />
                         </div>
-
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label htmlFor="dataEntrada" className="block text-sm font-medium text-slate-100 mb-1 flex items-center gap-1"><Calendar size={16}/> Data de Entrada</label>
+                                <input type="date" id="dataEntrada" name="dataEntrada" value={formData.dataEntrada} onChange={handleChange} required className="w-full p-2 rounded bg-white text-slate-900 h-10 date-input-fix" />
+                            </div>
+                            <div>
+                                <label htmlFor="dataSaida" className="block text-sm font-medium text-slate-100 mb-1 flex items-center gap-1"><Calendar size={16}/> Data de Saída</label>
+                                <input type="date" id="dataSaida" name="dataSaida" value={formData.dataSaida} onChange={handleChange} required className="w-full p-2 rounded bg-white text-slate-900 h-10 date-input-fix" />
+                            </div>
+                        </div>
                         <div>
-                            <label htmlFor="dataEntrada" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Calendar size={16} /> Data Entrada:
-                            </label>
-                            <input
-                                type="date"
-                                id="dataEntrada"
-                                name="dataEntrada"
-                                value={formData.dataEntrada}
-                                onChange={handleChange}
-                                required
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 date-input-fix"
-                            />
+                            <label htmlFor="observacao" className="block text-sm font-medium text-slate-100 mb-1 flex items-center gap-1"><Text size={16}/> Observação</label>
+                            <textarea id="observacao" name="observacao" value={formData.observacao || ''} onChange={handleChange} rows={3} className="w-full p-2 rounded bg-white text-slate-900" />
                         </div>
-
-                        <div>
-                            <label htmlFor="dataSaida" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Calendar size={16} /> Data Saída:
-                            </label>
-                            <input
-                                type="date"
-                                id="dataSaida"
-                                name="dataSaida"
-                                value={formData.dataSaida}
-                                onChange={handleChange}
-                                required
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 date-input-fix"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="observacao" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Text size={16} /> Observação:
-                            </label>
-                            <textarea
-                                id="observacao"
-                                name="observacao"
-                                rows={3}
-                                value={formData.observacao}
-                                onChange={handleChange}
-                                maxLength={100}
-                                className="w-full p-2 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                            />
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                            <button
-                                type="submit"
-                                className={`flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-green-600 rounded-md shadow hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-opacity duration-300 ${isLoading || isFetching ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                disabled={isLoading || isFetching}
-                            >
+                        <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                            <button type="submit" disabled={isLoading} className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-[var(--color-mottu-dark)] rounded-md shadow hover:bg-opacity-80 disabled:opacity-50">
                                 <MdSave size={20} /> {isLoading ? 'Salvando...' : 'Salvar Alterações'}
                             </button>
-                            <Link href="/patio/listar" className="flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-slate-600 rounded-md shadow hover:bg-slate-700 text-center focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+                            <Link href="/patio/listar" className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 font-medium text-[var(--color-mottu-dark)] bg-white rounded-md shadow hover:bg-gray-100">
                                 <MdArrowBack size={20} /> Voltar para Lista
                             </Link>
                         </div>
                     </form>
                 </div>
             </main>
-            <style jsx global>{`
-                .date-input-fix::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
-                input[type="date"]:required:invalid::-webkit-datetime-edit { color: transparent; }
-                input[type="date"]:focus::-webkit-datetime-edit { color: white !important; }
-                input[type="date"]::-webkit-datetime-edit { color: white; }
-            `}</style>
         </>
     );
 }

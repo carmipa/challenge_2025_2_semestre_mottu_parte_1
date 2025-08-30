@@ -1,18 +1,12 @@
 // src/types/cliente.d.ts
 
-// Interfaces para Endereco (já existentes no seu projeto, mas confirmando a estrutura)
+// --- DTOs para Endereço ---
 export interface EnderecoRequestDto {
-    idEndereco?: number; // Opcional para criação, presente para atualização
+    idEndereco?: number;
     cep: string;
     numero: number;
     complemento?: string;
     observacao?: string;
-    // Campos abaixo serão preenchidos pelo backend via ViaCEP, não são enviados no request inicial do frontend
-    // logradouro?: string;
-    // bairro?: string;
-    // cidade?: string;
-    // estado?: string;
-    // pais?: string;
 }
 
 export interface EnderecoResponseDto {
@@ -21,22 +15,22 @@ export interface EnderecoResponseDto {
     numero: number;
     logradouro: string;
     bairro: string;
-    cidade: string; // localidade no ViaCEP
-    estado: string; // uf no ViaCEP
+    cidade: string;
+    estado: string;
     pais: string;
     complemento?: string;
     observacao?: string;
 }
 
-// Interfaces para Contato (já existentes no seu projeto, mas confirmando a estrutura)
+// --- DTOs para Contato ---
 export interface ContatoRequestDto {
-    idContato?: number; // Opcional para criação, presente para atualização
+    idContato?: number;
     email: string;
     ddd: number;
     ddi: number;
     telefone1: string;
-    telefone2?: string;
-    telefone3?: string;
+    telefone2?: string; // Campo opcional
+    telefone3?: string; // Campo opcional
     celular: string;
     outro?: string;
     observacao?: string;
@@ -55,24 +49,22 @@ export interface ContatoResponseDto {
     observacao?: string;
 }
 
-// DTO de Requisição para Cliente
+// --- DTOs para Cliente ---
 export interface ClienteRequestDto {
-    sexo: 'M' | 'H'; // Conforme seu Java (M=Masculino, H=Feminino)
+    sexo: 'M' | 'H';
     nome: string;
     sobrenome: string;
-    dataNascimento: string; // Formato "YYYY-MM-DD"
+    dataNascimento: string; // "YYYY-MM-DD"
     cpf: string;
     profissao: string;
-    estadoCivil: 'Solteiro' | 'Casado' | 'Divorciado' | 'Viúvo' | 'Separado' | 'União Estável'; // Conforme seu Java
-
-    enderecoRequestDto: EnderecoRequestDto; // Objeto aninhado
-    contatoRequestDto: ContatoRequestDto;   // Objeto aninhado
+    estadoCivil: 'Solteiro' | 'Casado' | 'Divorciado' | 'Viúvo' | 'Separado' | 'União Estável';
+    enderecoRequestDto: EnderecoRequestDto;
+    contatoRequestDto: ContatoRequestDto;
 }
 
-// DTO de Resposta para Cliente
 export interface ClienteResponseDto {
     idCliente: number;
-    dataCadastro: string; // Formato "YYYY-MM-DD"
+    dataCadastro: string; // "YYYY-MM-DD"
     sexo: 'M' | 'H';
     nome: string;
     sobrenome: string;
@@ -80,15 +72,11 @@ export interface ClienteResponseDto {
     cpf: string;
     profissao: string;
     estadoCivil: string;
-
-    enderecoResponseDto: EnderecoResponseDto; // Objeto aninhado
-    contatoResponseDto: ContatoResponseDto;   // Objeto aninhado
-
-    // Se você precisar exibir veículos associados ao cliente, pode adicionar aqui:
-    // veiculos?: VeiculoResponseDto[]; // Requer importação de VeiculoResponseDto e mapeamento no ClienteMapper no backend
+    enderecoResponseDto: EnderecoResponseDto;
+    contatoResponseDto: ContatoResponseDto;
 }
 
-// Interface para os filtros de Cliente
+// --- Filtro para Busca de Cliente ---
 export interface ClienteFilter {
     nome?: string;
     sobrenome?: string;
@@ -100,7 +88,6 @@ export interface ClienteFilter {
     dataCadastroFim?: string;
     dataNascimentoInicio?: string;
     dataNascimentoFim?: string;
-    // Campos para filtros de relacionamento (usados em ClienteSpecification.java)
     enderecoCidade?: string;
     enderecoEstado?: string;
     contatoEmail?: string;

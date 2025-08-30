@@ -1,34 +1,27 @@
 // src/app/zona/cadastrar/page.tsx
 "use client";
-
 import { useState, FormEvent } from 'react';
 import Link from 'next/link';
 import NavBar from '@/components/nav-bar';
-import {
-    MdAddCircleOutline, MdSave, MdArrowBack, MdErrorOutline, MdCheckCircle
-} from 'react-icons/md';
-import { Tag, Calendar, Text, Info, Stethoscope } from 'lucide-react'; // Ícone de zona
-
-// Interfaces dos DTOs
+import { MdAddCircleOutline, MdSave, MdArrowBack, MdErrorOutline, MdCheckCircle } from 'react-icons/md';
+import { Tag, Calendar, Text } from 'lucide-react';
 import { ZonaRequestDto, ZonaResponseDto } from '@/types/zona';
 import { ZonaService } from '@/utils/api';
 
 export default function CadastrarZonaPage() {
     const today = new Date().toISOString().split('T')[0];
-
     const initialState: ZonaRequestDto = {
         nome: '',
         dataEntrada: today,
         dataSaida: today,
         observacao: '',
     };
-
     const [formData, setFormData] = useState<ZonaRequestDto>(initialState);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -41,7 +34,6 @@ export default function CadastrarZonaPage() {
         setIsLoading(true);
         setError(null);
         setSuccess(null);
-
         try {
             const createdZona: ZonaResponseDto = await ZonaService.create(formData);
             setSuccess(`Zona "${createdZona.nome}" (ID: ${createdZona.idZona}) cadastrada com sucesso!`);
@@ -49,7 +41,6 @@ export default function CadastrarZonaPage() {
             setTimeout(() => setSuccess(null), 5000);
         } catch (err: any) {
             setError(err.response?.data?.message || err.message || 'Falha ao cadastrar zona.');
-            console.error("Erro detalhado:", err);
         } finally {
             setIsLoading(false);
         }
@@ -57,29 +48,29 @@ export default function CadastrarZonaPage() {
 
     return (
         <>
-            <NavBar active="zona-cadastrar" />
-            <main className="container mx-auto px-4 py-12 bg-[#012A46] min-h-screen text-white">
-                <div className="bg-slate-900 p-6 md:p-8 rounded-lg shadow-xl w-full max-w-lg mx-auto">
-                    <h1 className="flex items-center justify-center gap-2 text-2xl md:text-3xl font-bold mb-8 text-center">
-                        <MdAddCircleOutline className="text-3xl text-sky-400" /> Nova Zona
+            <NavBar active="zona" />
+            <main className="container mx-auto px-4 py-12 bg-black min-h-screen text-white">
+                <div className="bg-[var(--color-mottu-default)] p-6 md:p-8 rounded-lg shadow-xl w-full max-w-lg mx-auto">
+                    <h1 className="flex items-center justify-center gap-2 text-2xl md:text-3xl font-bold mb-8 text-center text-white">
+                        <MdAddCircleOutline className="text-3xl" /> Nova Zona
                     </h1>
 
                     {error && (
-                        <div className="relative text-red-400 bg-red-900/50 p-4 pr-10 rounded border border-red-500 mb-4" role="alert">
+                        <div className="relative text-red-200 bg-red-800/80 p-4 pr-10 rounded border border-red-600 mb-4" role="alert">
                             <div className="flex items-center gap-2"> <MdErrorOutline className="text-xl" /> <span>{error}</span> </div>
-                            <button type="button" className="absolute top-0 bottom-0 right-0 px-4 py-3 hover:text-red-200" onClick={() => setError(null)} aria-label="Fechar"><span className="text-xl">&times;</span></button>
+                            <button type="button" className="absolute top-0 bottom-0 right-0 px-4 py-3 hover:text-red-100" onClick={() => setError(null)} aria-label="Fechar"><span className="text-xl">&times;</span></button>
                         </div>
                     )}
                     {success && (
-                        <div className="flex items-center justify-center gap-2 text-green-400 p-3 rounded bg-green-900/30 border border-green-700 mb-4">
+                        <div className="flex items-center justify-center gap-2 text-green-900 p-3 rounded bg-green-200 border border-green-400 mb-4">
                             <MdCheckCircle className="text-xl" /> <span>{success}</span>
                         </div>
                     )}
 
                     <form onSubmit={handleSubmit} className="space-y-5">
-                        <div>
-                            <label htmlFor="nome" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Tag size={16} /> Nome:
+                        <div className="group">
+                            <label htmlFor="nome" className="flex items-center gap-1 block mb-1 text-sm font-medium text-white">
+                                <Tag size={16} /> Nome: <span className="text-red-300">*</span>
                             </label>
                             <input
                                 type="text"
@@ -89,13 +80,14 @@ export default function CadastrarZonaPage() {
                                 onChange={handleChange}
                                 required
                                 maxLength={50}
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                                placeholder="Ex: Zona de Carga"
+                                className="w-full p-2 h-10 rounded bg-white text-slate-900 peer required:invalid:border-red-500"
                             />
+                            <p className="mt-1 text-xs text-slate-300 invisible peer-invalid:visible">Campo obrigatório.</p>
                         </div>
-
-                        <div>
-                            <label htmlFor="dataEntrada" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Calendar size={16} /> Data Entrada:
+                        <div className="group">
+                            <label htmlFor="dataEntrada" className="flex items-center gap-1 block mb-1 text-sm font-medium text-white">
+                                <Calendar size={16} /> Data Entrada: <span className="text-red-300">*</span>
                             </label>
                             <input
                                 type="date"
@@ -104,13 +96,14 @@ export default function CadastrarZonaPage() {
                                 value={formData.dataEntrada}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 date-input-fix"
+                                className="w-full p-2 h-10 rounded bg-white text-slate-900 date-input-fix peer"
                             />
+                            <p className="mt-1 text-xs text-slate-300 invisible peer-invalid:visible">Campo obrigatório.</p>
                         </div>
 
-                        <div>
-                            <label htmlFor="dataSaida" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Calendar size={16} /> Data Saída:
+                        <div className="group">
+                            <label htmlFor="dataSaida" className="flex items-center gap-1 block mb-1 text-sm font-medium text-white">
+                                <Calendar size={16} /> Data Saída: <span className="text-red-300">*</span>
                             </label>
                             <input
                                 type="date"
@@ -119,12 +112,13 @@ export default function CadastrarZonaPage() {
                                 value={formData.dataSaida}
                                 onChange={handleChange}
                                 required
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 date-input-fix"
+                                className="w-full p-2 h-10 rounded bg-white text-slate-900 date-input-fix peer"
                             />
+                            <p className="mt-1 text-xs text-slate-300 invisible peer-invalid:visible">Campo obrigatório.</p>
                         </div>
 
                         <div>
-                            <label htmlFor="observacao" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
+                            <label htmlFor="observacao" className="flex items-center gap-1 block mb-1 text-sm font-medium text-white">
                                 <Text size={16} /> Observação:
                             </label>
                             <textarea
@@ -134,19 +128,20 @@ export default function CadastrarZonaPage() {
                                 value={formData.observacao}
                                 onChange={handleChange}
                                 maxLength={100}
-                                className="w-full p-2 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
+                                placeholder="Alguma observação sobre a zona..."
+                                className="w-full p-2 rounded bg-white text-slate-900"
                             />
                         </div>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                             <button
                                 type="submit"
-                                className={`flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-sky-600 rounded-md shadow hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-opacity duration-300 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                className="flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-[var(--color-mottu-dark)] rounded-md shadow hover:bg-opacity-80 transition-colors duration-200 disabled:opacity-50"
                                 disabled={isLoading}
                             >
                                 <MdSave size={20} /> {isLoading ? 'Salvando...' : 'Salvar Zona'}
                             </button>
-                            <Link href="/zona/listar" className="flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-slate-600 rounded-md shadow hover:bg-slate-700 text-center focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+                            <Link href="/zona/listar" className="flex items-center justify-center gap-2 px-6 py-3 font-semibold text-[var(--color-mottu-dark)] bg-white rounded-md shadow hover:bg-gray-100">
                                 <MdArrowBack size={20} /> Voltar para Lista
                             </Link>
                         </div>
@@ -154,10 +149,10 @@ export default function CadastrarZonaPage() {
                 </div>
             </main>
             <style jsx global>{`
-                .date-input-fix::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
+                .date-input-fix::-webkit-calendar-picker-indicator { cursor: pointer; }
                 input[type="date"]:required:invalid::-webkit-datetime-edit { color: transparent; }
-                input[type="date"]:focus::-webkit-datetime-edit { color: white !important; }
-                input[type="date"]::-webkit-datetime-edit { color: white; }
+                input[type="date"]:focus::-webkit-datetime-edit { color: #1e293b !important; }
+                input[type="date"]::-webkit-datetime-edit { color: #1e293b; }
             `}</style>
         </>
     );

@@ -1,55 +1,39 @@
 // src/app/patio/cadastrar/page.tsx
 "use client";
-
-import { useState, FormEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import Link from 'next/link';
 import NavBar from '@/components/nav-bar';
-import {
-    MdAddCircleOutline, MdSave, MdArrowBack, MdErrorOutline, MdCheckCircle, MdLocationOn // Ícone de pátio
-} from 'react-icons/md';
-import { Tag, Calendar, Text, Info } from 'lucide-react';
-
-// Interfaces dos DTOs
-import { PatioRequestDto, PatioResponseDto } from '@/types/patio';
 import { PatioService } from '@/utils/api';
+import { PatioRequestDto } from '@/types/patio';
+import { MdAdd, MdSave, MdArrowBack, MdErrorOutline, MdCheckCircle } from 'react-icons/md';
+import { Building, Calendar, Text } from 'lucide-react';
 
 export default function CadastrarPatioPage() {
     const today = new Date().toISOString().split('T')[0];
-
     const initialState: PatioRequestDto = {
-        nomePatio: '',
-        dataEntrada: today,
-        dataSaida: today,
-        observacao: '',
+        nomePatio: '', dataEntrada: today, dataSaida: today, observacao: '',
     };
-
     const [formData, setFormData] = useState<PatioRequestDto>(initialState);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         setIsLoading(true);
         setError(null);
         setSuccess(null);
-
         try {
-            const createdPatio: PatioResponseDto = await PatioService.create(formData);
-            setSuccess(`Pátio "${createdPatio.nomePatio}" (ID: ${createdPatio.idPatio}) cadastrado com sucesso!`);
+            const createdPatio = await PatioService.create(formData);
+            setSuccess(`Pátio "${createdPatio.nomePatio}" cadastrado com sucesso!`);
             setFormData(initialState);
             setTimeout(() => setSuccess(null), 5000);
         } catch (err: any) {
-            setError(err.response?.data?.message || err.message || 'Falha ao cadastrar pátio.');
-            console.error("Erro detalhado:", err);
+            setError(err.response?.data?.message || 'Falha ao cadastrar pátio.');
         } finally {
             setIsLoading(false);
         }
@@ -57,108 +41,49 @@ export default function CadastrarPatioPage() {
 
     return (
         <>
-            <NavBar active="patio-cadastrar" />
-            <main className="container mx-auto px-4 py-12 bg-[#012A46] min-h-screen text-white">
-                <div className="bg-slate-900 p-6 md:p-8 rounded-lg shadow-xl w-full max-w-lg mx-auto">
-                    <h1 className="flex items-center justify-center gap-2 text-2xl md:text-3xl font-bold mb-8 text-center">
-                        <MdAddCircleOutline className="text-3xl text-sky-400" /> Novo Pátio
+            <NavBar active="patio" />
+            <main className="min-h-screen bg-black text-white p-4 md:p-8 flex items-center justify-center">
+                <div className="container max-w-lg mx-auto bg-[var(--color-mottu-default)] p-6 md:p-8 rounded-lg shadow-xl">
+                    <h1 className="text-2xl md:text-3xl font-bold text-white flex items-center justify-center mb-6">
+                        <MdAdd size={32} className="mr-3" />
+                        Cadastrar Novo Pátio
                     </h1>
+                    {success && <div className="mb-4 flex items-center gap-2 text-sm text-green-700 p-3 rounded-md bg-green-100 border border-green-300"><MdCheckCircle className="text-xl" /> <span>{success}</span></div>}
+                    {error && <div className="mb-4 flex items-center gap-2 text-sm text-red-700 p-3 rounded-md bg-red-100 border border-red-300"><MdErrorOutline className="text-xl" /> <span>{error}</span></div>}
 
-                    {error && (
-                        <div className="relative text-red-400 bg-red-900/50 p-4 pr-10 rounded border border-red-500 mb-4" role="alert">
-                            <div className="flex items-center gap-2"> <MdErrorOutline className="text-xl" /> <span>{error}</span> </div>
-                            <button type="button" className="absolute top-0 bottom-0 right-0 px-4 py-3 hover:text-red-200" onClick={() => setError(null)} aria-label="Fechar"><span className="text-xl">&times;</span></button>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="group">
+                            <label htmlFor="nomePatio" className="block text-sm font-medium text-slate-100 mb-1 flex items-center gap-1"><Building size={16}/> Nome do Pátio <span className="text-red-300">*</span></label>
+                            <input type="text" id="nomePatio" name="nomePatio" value={formData.nomePatio} onChange={handleChange} required placeholder="Ex: Pátio Principal" className="w-full p-2 rounded bg-white text-slate-900 h-10 peer required:invalid:border-red-500" />
+                            <p className="mt-1 text-xs text-slate-300 invisible peer-invalid:visible">Campo obrigatório.</p>
                         </div>
-                    )}
-                    {success && (
-                        <div className="flex items-center justify-center gap-2 text-green-400 p-3 rounded bg-green-900/30 border border-green-700 mb-4">
-                            <MdCheckCircle className="text-xl" /> <span>{success}</span>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div className="group">
+                                <label htmlFor="dataEntrada" className="block text-sm font-medium text-slate-100 mb-1 flex items-center gap-1"><Calendar size={16}/> Data de Entrada <span className="text-red-300">*</span></label>
+                                <input type="date" id="dataEntrada" name="dataEntrada" value={formData.dataEntrada} onChange={handleChange} required className="w-full p-2 rounded bg-white text-slate-900 h-10 date-input-fix peer" />
+                                <p className="mt-1 text-xs text-slate-300 invisible peer-invalid:visible">Campo obrigatório.</p>
+                            </div>
+                            <div className="group">
+                                <label htmlFor="dataSaida" className="block text-sm font-medium text-slate-100 mb-1 flex items-center gap-1"><Calendar size={16}/> Data de Saída <span className="text-red-300">*</span></label>
+                                <input type="date" id="dataSaida" name="dataSaida" value={formData.dataSaida} onChange={handleChange} required className="w-full p-2 rounded bg-white text-slate-900 h-10 date-input-fix peer" />
+                                <p className="mt-1 text-xs text-slate-300 invisible peer-invalid:visible">Campo obrigatório.</p>
+                            </div>
                         </div>
-                    )}
-
-                    <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
-                            <label htmlFor="nomePatio" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Tag size={16} /> Nome do Pátio:
-                            </label>
-                            <input
-                                type="text"
-                                id="nomePatio"
-                                name="nomePatio"
-                                value={formData.nomePatio}
-                                onChange={handleChange}
-                                required
-                                maxLength={50}
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                            />
+                            <label htmlFor="observacao" className="block text-sm font-medium text-slate-100 mb-1 flex items-center gap-1"><Text size={16}/> Observação</label>
+                            <textarea id="observacao" name="observacao" value={formData.observacao || ''} onChange={handleChange} rows={3} placeholder="Alguma observação sobre o pátio..." className="w-full p-2 rounded bg-white text-slate-900" />
                         </div>
-
-                        <div>
-                            <label htmlFor="dataEntrada" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Calendar size={16} /> Data Entrada:
-                            </label>
-                            <input
-                                type="date"
-                                id="dataEntrada"
-                                name="dataEntrada"
-                                value={formData.dataEntrada}
-                                onChange={handleChange}
-                                required
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 date-input-fix"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="dataSaida" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Calendar size={16} /> Data Saída:
-                            </label>
-                            <input
-                                type="date"
-                                id="dataSaida"
-                                name="dataSaida"
-                                value={formData.dataSaida}
-                                onChange={handleChange}
-                                required
-                                className="w-full p-2 h-10 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500 date-input-fix"
-                            />
-                        </div>
-
-                        <div>
-                            <label htmlFor="observacao" className="flex items-center gap-1 block mb-1 text-sm font-medium text-slate-300">
-                                <Text size={16} /> Observação:
-                            </label>
-                            <textarea
-                                id="observacao"
-                                name="observacao"
-                                rows={3}
-                                value={formData.observacao}
-                                onChange={handleChange}
-                                maxLength={100}
-                                className="w-full p-2 rounded bg-slate-800 border border-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500"
-                            />
-                        </div>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                            <button
-                                type="submit"
-                                className={`flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-sky-600 rounded-md shadow hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2 focus:ring-offset-slate-900 transition-opacity duration-300 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
-                                disabled={isLoading}
-                            >
+                        <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
+                            <button type="submit" disabled={isLoading} className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-[var(--color-mottu-dark)] rounded-md shadow hover:bg-opacity-80 disabled:opacity-50">
                                 <MdSave size={20} /> {isLoading ? 'Salvando...' : 'Salvar Pátio'}
                             </button>
-                            <Link href="/patio/listar" className="flex items-center justify-center gap-2 px-6 py-3 font-semibold text-white bg-slate-600 rounded-md shadow hover:bg-slate-700 text-center focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 focus:ring-offset-slate-900">
+                            <Link href="/patio/listar" className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-3 font-medium text-[var(--color-mottu-dark)] bg-white rounded-md shadow hover:bg-gray-100">
                                 <MdArrowBack size={20} /> Voltar para Lista
                             </Link>
                         </div>
                     </form>
                 </div>
             </main>
-            <style jsx global>{`
-                .date-input-fix::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
-                input[type="date"]:required:invalid::-webkit-datetime-edit { color: transparent; }
-                input[type="date"]:focus::-webkit-datetime-edit { color: white !important; }
-                input[type="date"]::-webkit-datetime-edit { color: white; }
-            `}</style>
         </>
     );
 }

@@ -1,15 +1,13 @@
-// src/types/box.d.ts (ou src/types/box.ts)
+// src/types/box.d.ts
 
-// DTO de Requisição (para criar ou atualizar um Box)
 export interface BoxRequestDto {
     nome: string;
-    status: 'L' | 'O'; // 'L' para Livre, 'O' para Ocupado (conforme seu Java)
-    dataEntrada: string; // Formato "YYYY-MM-DD" (LocalDate em Java)
-    dataSaida: string;   // Formato "YYYY-MM-DD" (LocalDate em Java)
-    observacao?: string; // Opcional
+    status: 'L' | 'O';
+    dataEntrada: string; // "YYYY-MM-DD"
+    dataSaida: string;   // "YYYY-MM-DD"
+    observacao?: string;
 }
 
-// DTO de Resposta (para receber dados de um Box)
 export interface BoxResponseDto {
     idBox: number;
     nome: string;
@@ -19,11 +17,10 @@ export interface BoxResponseDto {
     observacao?: string;
 }
 
-// Interface para os filtros da busca
 export interface BoxFilter {
     nome?: string;
     status?: 'L' | 'O';
-    dataEntradaInicio?: string; // Para filtros de range de data
+    dataEntradaInicio?: string;
     dataEntradaFim?: string;
     dataSaidaInicio?: string;
     dataSaidaFim?: string;

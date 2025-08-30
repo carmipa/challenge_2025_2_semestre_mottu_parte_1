@@ -1,292 +1,122 @@
 // src/app/patio/listar/page.tsx
 "use client";
-
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react';
 import Link from 'next/link';
-import { PatioService } from '@/utils/api';
 import NavBar from '@/components/nav-bar';
-import {
-    MdList, MdAdd, MdSearch, MdErrorOutline, MdEdit, MdDelete,
-    MdFilterList, MdCalendarToday, MdInfo, MdCheckCircle, MdLocationOn // Para o ícone de pátio
-} from 'react-icons/md';
-import { Hash, Wrench, Car, Users, Mail, Box } from 'lucide-react'; // Ícones Lucide
-
-// Interfaces dos DTOs e Filtro
+import { PatioService } from '@/utils/api';
 import { PatioResponseDto, PatioFilter } from '@/types/patio';
+import { SpringPage } from '@/types/common';
+import { MdSearch, MdClear, MdAdd, MdChevronLeft, MdChevronRight, MdEdit, MdDelete, MdVisibility, MdErrorOutline } from 'react-icons/md';
+import { Building } from 'lucide-react';
+
+const initialFilterState: PatioFilter = { nomePatio: "" };
 
 export default function ListarPatiosPage() {
     const [patios, setPatios] = useState<PatioResponseDto[]>([]);
+    const [pageInfo, setPageInfo] = useState<SpringPage<PatioResponseDto> | null>(null);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [filtros, setFiltros] = useState<PatioFilter>(initialFilterState);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-    // Estado para os filtros
-    const [filter, setFilter] = useState<PatioFilter>({
-        nomePatio: '',
-        dataEntradaInicio: '',
-        dataEntradaFim: '',
-        dataSaidaInicio: '',
-        dataSaidaFim: '',
-        observacao: '',
-        veiculoPlaca: '',
-        enderecoCidade: '',
-        contatoEmail: '',
-        zonaNome: '',
-        boxNome: '',
-    });
+    const ITEMS_PER_PAGE = 9;
 
-    // Funções de formatação
-    const formatDate = (dateString: string | null | undefined): string => {
-        if (!dateString) return '-';
-        try {
-            return new Date(dateString + 'T00:00:00Z').toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-        } catch (e) {
-            console.error("Erro ao formatar data:", dateString, e);
-            return 'Inválida';
-        }
-    };
-
-    // Função para buscar os pátios da API com filtros
-    const fetchPatios = async (e?: FormEvent) => {
-        if (e) e.preventDefault();
-
+    const fetchData = async (page = 0, currentFilters = filtros) => {
         setIsLoading(true);
         setError(null);
-        setSuccessMessage(null);
-
         try {
-            const data = await PatioService.getAll(filter);
-            setPatios(data);
+            const data = await PatioService.listarPaginadoFiltrado(currentFilters, page, ITEMS_PER_PAGE);
+            setPatios(data.content);
+            setPageInfo(data);
+            setCurrentPage(data.number);
         } catch (err: any) {
-            setError(err.response?.data?.message || err.message || 'Erro ao carregar pátios. Tente novamente.');
-            console.error("Erro detalhado:", err);
-            setPatios([]);
+            setError(err.response?.data?.message || 'Erro ao buscar pátios.');
         } finally {
             setIsLoading(false);
         }
     };
 
     useEffect(() => {
-        fetchPatios();
+        fetchData();
     }, []);
 
-    const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFilter((prevFilter) => ({
-            ...prevFilter,
-            [name]: value,
-        }));
+    const handleFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setFiltros({ ...filtros, [e.target.name]: e.target.value });
     };
 
-    const handleDelete = async (id: number, nomePatio: string) => {
-        if (window.confirm(`Tem certeza que deseja deletar o Pátio "${nomePatio}" (ID: ${id})?`)) {
-            setIsLoading(true);
-            setError(null);
-            try {
-                await PatioService.delete(id);
-                setSuccessMessage(`Pátio "${nomePatio}" (ID: ${id}) deletado com sucesso!`);
-                fetchPatios(); // Recarrega a lista
-                setTimeout(() => setSuccessMessage(null), 5000);
-            } catch (err: any) {
-                setError(err.response?.data?.message || err.message || 'Erro ao deletar pátio.');
-                console.error("Erro detalhado:", err);
-            } finally {
-                setIsLoading(false);
-            }
-        }
+    const handleFilterSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        fetchData(0, filtros);
+    };
+
+    const handleClearFilters = () => {
+        setFiltros(initialFilterState);
+        fetchData(0, initialFilterState);
+    };
+
+    const handlePageChange = (newPage: number) => {
+        fetchData(newPage, filtros);
     };
 
     return (
         <>
-            <NavBar active="patio-listar" />
-            <main className="container mx-auto px-4 py-8 bg-[#012A46] min-h-screen text-white">
-                <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
-                    <h1 className="flex items-center gap-2 text-2xl md:text-3xl font-bold text-center sm:text-left">
-                        <MdLocationOn className="text-3xl text-sky-400" /> Lista de Pátios
-                    </h1>
-                    <Link href="/patio/cadastrar">
-                        <button className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md shadow whitespace-nowrap">
-                            <MdAdd size={18} /> Novo Pátio
-                        </button>
-                    </Link>
-                </div>
-
-                {/* Formulário de Filtros */}
-                <form onSubmit={fetchPatios} className="mb-6 p-4 bg-slate-800 rounded-lg shadow-md grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-                    <div>
-                        <label htmlFor="nomePatio" className="text-sm text-slate-300 block mb-1">Nome Pátio:</label>
-                        <input
-                            type="text"
-                            id="nomePatio"
-                            name="nomePatio"
-                            value={filter.nomePatio}
-                            onChange={handleFilterChange}
-                            className="p-2 h-10 rounded bg-slate-700 border border-slate-600 text-white"
-                            placeholder="Nome do pátio"
-                        />
+            <NavBar active="patio" />
+            <main className="min-h-screen bg-black text-white p-4 md:p-8">
+                <div className="container mx-auto bg-[var(--color-mottu-default)] p-6 md:p-8 rounded-lg shadow-xl">
+                    <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
+                        <h1 className="text-2xl md:text-3xl font-bold text-white flex items-center">
+                            <Building size={32} className="mr-3" />
+                            Pátios Cadastrados
+                        </h1>
+                        <Link href="/patio/cadastrar" className="mt-4 sm:mt-0 flex items-center gap-2 px-4 py-2.5 font-semibold text-[var(--color-mottu-dark)] bg-white rounded-md shadow hover:bg-gray-100 transition-colors">
+                            <MdAdd size={20} /> Novo Pátio
+                        </Link>
                     </div>
-                    <div>
-                        <label htmlFor="dataEntradaInicio" className="text-sm text-slate-300 block mb-1">Entrada (Início):</label>
-                        <input
-                            type="date"
-                            id="dataEntradaInicio"
-                            name="dataEntradaInicio"
-                            value={filter.dataEntradaInicio}
-                            onChange={handleFilterChange}
-                            className="p-2 h-10 rounded bg-slate-700 border border-slate-600 text-white date-input-fix"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="dataEntradaFim" className="text-sm text-slate-300 block mb-1">Entrada (Fim):</label>
-                        <input
-                            type="date"
-                            id="dataEntradaFim"
-                            name="dataEntradaFim"
-                            value={filter.dataEntradaFim}
-                            onChange={handleFilterChange}
-                            className="p-2 h-10 rounded bg-slate-700 border border-slate-600 text-white date-input-fix"
-                        />
-                    </div>
-                    {/* Filtros por associação */}
-                    <div>
-                        <label htmlFor="veiculoPlaca" className="text-sm text-slate-300 block mb-1">Placa Veículo:</label>
-                        <input
-                            type="text"
-                            id="veiculoPlaca"
-                            name="veiculoPlaca"
-                            value={filter.veiculoPlaca}
-                            onChange={handleFilterChange}
-                            className="p-2 h-10 rounded bg-slate-700 border border-slate-600 text-white"
-                            placeholder="Placa de veículo associado"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="enderecoCidade" className="text-sm text-slate-300 block mb-1">Cidade Endereço:</label>
-                        <input
-                            type="text"
-                            id="enderecoCidade"
-                            name="enderecoCidade"
-                            value={filter.enderecoCidade}
-                            onChange={handleFilterChange}
-                            className="p-2 h-10 rounded bg-slate-700 border border-slate-600 text-white"
-                            placeholder="Cidade de endereço associado"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="contatoEmail" className="text-sm text-slate-300 block mb-1">Email Contato:</label>
-                        <input
-                            type="email"
-                            id="contatoEmail"
-                            name="contatoEmail"
-                            value={filter.contatoEmail}
-                            onChange={handleFilterChange}
-                            className="p-2 h-10 rounded bg-slate-700 border border-slate-600 text-white"
-                            placeholder="Email de contato associado"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="zonaNome" className="text-sm text-slate-300 block mb-1">Nome Zona:</label>
-                        <input
-                            type="text"
-                            id="zonaNome"
-                            name="zonaNome"
-                            value={filter.zonaNome}
-                            onChange={handleFilterChange}
-                            className="p-2 h-10 rounded bg-slate-700 border border-slate-600 text-white"
-                            placeholder="Nome de zona associada"
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="boxNome" className="text-sm text-slate-300 block mb-1">Nome Box:</label>
-                        <input
-                            type="text"
-                            id="boxNome"
-                            name="boxNome"
-                            value={filter.boxNome}
-                            onChange={handleFilterChange}
-                            className="p-2 h-10 rounded bg-slate-700 border border-slate-600 text-white"
-                            placeholder="Nome de box associado"
-                        />
-                    </div>
-                    <div className="md:col-span-3 flex justify-center">
-                        <button type="submit" className="p-2 h-10 bg-sky-600 hover:bg-sky-700 text-white font-semibold rounded-md flex items-center gap-2 px-4">
-                            <MdSearch size={20} /> Aplicar Filtros
-                        </button>
-                    </div>
-                </form>
-
-                {/* Mensagens de Feedback */}
-                {isLoading && <p className="text-center text-sky-300 py-10">Carregando pátios...</p>}
-                {error && (
-                    <div className="relative max-w-3xl mx-auto mb-6 text-red-400 bg-red-900/50 p-4 pr-10 rounded border border-red-500" role="alert">
-                        <MdErrorOutline className="inline mr-2" />{error}
-                        <button type="button" className="absolute top-0 bottom-0 right-0 px-4 py-3 text-red-400 hover:text-red-200" onClick={() => setError(null)} aria-label="Fechar"><span className="text-xl" aria-hidden="true">&times;</span></button>
-                    </div>
-                )}
-                {successMessage && (
-                    <div className="relative max-w-3xl mx-auto mb-6 text-green-400 bg-green-900/50 p-4 pr-10 rounded border border-green-500" role="alert">
-                        <MdCheckCircle className="inline mr-2" />{successMessage}
-                        <button type="button" className="absolute top-0 bottom-0 right-0 px-4 py-3 text-green-400 hover:text-green-200" onClick={() => setSuccessMessage(null)} aria-label="Fechar"><span className="text-xl" aria-hidden="true">&times;</span></button>
-                    </div>
-                )}
-
-                {/* Tabela de Pátios */}
-                {!isLoading && !error && patios.length === 0 && (
-                    <p className="text-center text-slate-400 py-10 bg-slate-900 rounded-lg shadow-xl">Nenhum pátio encontrado para os critérios informados.</p>
-                )}
-                {!isLoading && patios.length > 0 && (
-                    <div className="overflow-x-auto bg-slate-900 rounded-lg shadow">
-                        <table className="min-w-full table-auto">
-                            <thead className="bg-slate-800 border-b border-slate-700">
-                            <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider flex items-center gap-1"><Hash size={14}/> ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Nome Pátio</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Data Entrada</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Data Saída</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium text-slate-300 uppercase tracking-wider">Observação</th>
-                                <th className="px-6 py-3 text-center text-xs font-medium text-slate-300 uppercase tracking-wider">Ações</th>
-                            </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-700">
+                    {error && <div className="mb-4 text-center text-red-700 p-3 rounded-md bg-red-100"><MdErrorOutline className="inline mr-2" />{error}</div>}
+                    <form onSubmit={handleFilterSubmit} className="mb-8 p-4 bg-black/20 rounded-lg">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 items-end">
+                            <input type="text" name="nomePatio" value={filtros.nomePatio || ''} onChange={handleFilterChange} placeholder="Filtrar por nome..." className="w-full p-2 h-10 rounded bg-white text-slate-900"/>
+                            <div className="flex gap-2 md:col-start-3">
+                                <button type="submit" className="flex-1 flex items-center justify-center gap-2 h-10 px-4 font-semibold text-white bg-[var(--color-mottu-dark)] rounded-md hover:bg-opacity-80">
+                                    <MdSearch /> Buscar
+                                </button>
+                                <button type="button" onClick={handleClearFilters} className="flex-1 flex items-center justify-center gap-2 h-10 px-4 font-medium text-slate-700 bg-gray-200 rounded-md hover:bg-gray-300">
+                                    <MdClear /> Limpar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    {isLoading ? <p className="text-center text-slate-100 py-10">Carregando...</p> : patios.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
                             {patios.map((patio) => (
-                                <tr key={patio.idPatio} className="hover:bg-slate-800/50">
-                                    <td className="px-6 py-4 whitespace-nowrap">{patio.idPatio}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{patio.nomePatio}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{formatDate(patio.dataEntrada)}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap">{formatDate(patio.dataSaida)}</td>
-                                    <td className="px-6 py-4 whitespace-normal max-w-xs truncate" title={patio.observacao || ''}>{patio.observacao || '-'}</td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-center space-x-2 flex items-center justify-center">
-                                        <Link href={`/patio/alterar/${patio.idPatio}`}>
-                                            <button className="px-3 py-1 text-sm bg-yellow-500 hover:bg-yellow-600 text-black rounded flex items-center gap-1">
-                                                <MdEdit size={14} /> Editar
-                                            </button>
-                                        </Link>
-                                        <button
-                                            onClick={() => handleDelete(patio.idPatio, patio.nomePatio)}
-                                            className="px-3 py-1 text-sm bg-red-600 hover:bg-red-700 text-white rounded flex items-center gap-1"
-                                        >
-                                            <MdDelete size={14} /> Deletar
-                                        </button>
-                                        {/* Botão para ver associações - pode ser um modal ou outra página */}
-                                        <Link href={`/patio/associacoes/${patio.idPatio}`}>
-                                            <button className="px-3 py-1 text-sm bg-blue-500 hover:bg-blue-600 text-white rounded flex items-center gap-1">
-                                                <MdInfo size={14} /> Associações
-                                            </button>
-                                        </Link>
-                                    </td>
-                                </tr>
+                                <div key={patio.idPatio} className="bg-white text-slate-800 rounded-lg shadow-lg p-5 flex flex-col justify-between transition-all hover:shadow-2xl hover:scale-105">
+                                    <div>
+                                        <div className="flex items-center mb-3">
+                                            <span className="text-xs font-semibold bg-slate-200 text-slate-700 px-2 py-0.5 rounded-full mr-2">ID: {patio.idPatio}</span>
+                                            <h2 className="text-xl font-bold text-[var(--color-mottu-dark)] truncate">{patio.nomePatio}</h2>
+                                        </div>
+                                        <p className="text-sm text-slate-600">Entrada: {new Date(patio.dataEntrada).toLocaleDateString('pt-BR')}</p>
+                                    </div>
+                                    <div className="flex justify-end items-center gap-2 border-t border-slate-200 pt-3 mt-4">
+                                        <Link href={`/patio/detalhes/${patio.idPatio}`} className="p-2 rounded-full text-blue-600 hover:bg-blue-100" title="Ver Detalhes"><MdVisibility size={22}/></Link>
+                                        <Link href={`/patio/alterar/${patio.idPatio}`} className="p-2 rounded-full text-yellow-500 hover:bg-yellow-100" title="Editar Pátio"><MdEdit size={20}/></Link>
+                                        <Link href={`/patio/deletar/${patio.idPatio}`} className="p-2 rounded-full text-red-500 hover:bg-red-100" title="Excluir Pátio"><MdDelete size={20}/></Link>
+                                    </div>
+                                </div>
                             ))}
-                            </tbody>
-                        </table>
-                    </div>
-                )}
+                        </div>
+                    ) : <p className="text-center text-slate-300 py-10">Nenhum pátio encontrado.</p>}
+                    {!isLoading && pageInfo && pageInfo.totalPages > 1 && (
+                        <div className="mt-8 flex justify-between items-center text-sm text-slate-100">
+                            <span>Página {pageInfo.number + 1} de {pageInfo.totalPages}</span>
+                            <div className="flex gap-2">
+                                <button onClick={() => handlePageChange(currentPage - 1)} disabled={pageInfo.first} className="px-3 py-1.5 rounded-md bg-slate-700 hover:bg-slate-600 disabled:opacity-50"><MdChevronLeft/></button>
+                                <button onClick={() => handlePageChange(currentPage + 1)} disabled={pageInfo.last} className="px-3 py-1.5 rounded-md bg-slate-700 hover:bg-slate-600 disabled:opacity-50"><MdChevronRight/></button>
+                            </div>
+                        </div>
+                    )}
+                </div>
             </main>
-            <style jsx global>{`
-                .date-input-fix::-webkit-calendar-picker-indicator { filter: invert(0.8); cursor: pointer; }
-                input[type="date"]:required:invalid::-webkit-datetime-edit { color: transparent; }
-                input[type="date"]:focus::-webkit-datetime-edit { color: white !important; }
-                input[type="date"]::-webkit-datetime-edit { color: white; }
-            `}</style>
         </>
     );
 }

@@ -1,4 +1,5 @@
-// src/utils/api.ts
+// mottu-web/src/utils/api.ts
+
 import axios from "axios";
 import { SpringPage } from "@/types/common";
 import { ClienteRequestDto, ClienteResponseDto, ClienteFilter } from "@/types/cliente";
@@ -7,6 +8,15 @@ import { PatioRequestDto, PatioResponseDto, PatioFilter } from "@/types/patio";
 import { BoxRequestDto, BoxResponseDto, BoxFilter } from "@/types/box";
 import { ZonaRequestDto, ZonaResponseDto, ZonaFilter } from "@/types/zona";
 
+export interface OcrSession {
+    id: string;
+    status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'ERROR';
+    recognizedPlate?: string;
+    errorMessage?: string;
+}
+
+// ****** AQUI ESTÁ A ALTERAÇÃO PRINCIPAL ******
+// Agora ele lê a variável de ambiente, com um fallback para localhost.
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api";
 
 const api = axios.create({
@@ -14,7 +24,6 @@ const api = axios.create({
     headers: { "Content-Type": "application/json" },
 });
 
-// remove chaves vazias ou nulas dos filtros
 const cleanFilterParams = (filter: object): Record<string, any> =>
     Object.entries(filter).reduce((acc, [k, v]) => {
         if (v !== null && v !== undefined && v !== "") acc[k] = v;
@@ -211,4 +220,28 @@ export const EstacionamentoService = {
     liberarVaga: async (placa: string): Promise<void> => {
         await api.post('/estacionamento/liberar', null, { params: { placa } });
     },
+};
+
+// --- RADAR/OCR ---
+export const RadarService = {
+    iniciarSessao: async (): Promise<{ sessionId: string }> => {
+        const { data } = await api.post<{ sessionId: string }>('/radar/iniciar-sessao');
+        return data;
+    },
+    getStatusSessao: async (sessionId: string): Promise<OcrSession> => {
+        const { data } = await api.get<OcrSession>(`/radar/status-sessao/${sessionId}`);
+        return data;
+    },
+    uploadImagem: async (sessionId: string, file: File): Promise<any> => {
+        const formData = new FormData();
+        formData.append('image', file);
+
+        // Usamos uma instância separada do axios para multipart/form-data
+        // que também usa a variável de ambiente correta.
+        const multipartApi = axios.create({ baseURL: API_BASE_URL });
+        const { data } = await multipartApi.post(`/radar/upload-imagem/${sessionId}`, formData, {
+            headers: { 'Content-Type': 'multipart/form-data' },
+        });
+        return data;
+    }
 };

@@ -62,6 +62,9 @@ dependencies {
     // === OPENAPI / SWAGGER ===
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 
+    // pegar camera e mandar via qrcod
+    implementation 'net.sourceforge.tess4j:tess4j:5.11.0'
+
     // === TESTES ===
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'

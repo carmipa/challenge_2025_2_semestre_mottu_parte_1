@@ -52,8 +52,6 @@ dependencies {
     // === MAPSTRUCT ===
     implementation "org.mapstruct:mapstruct:${mapstructVersion}"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
-
-    // Se usar Lombok + MapStruct juntos, ajuda usar esse processor extra
     annotationProcessor "org.projectlombok:lombok-mapstruct-binding:0.2.0"
 
     // === DATABASE ===
@@ -62,8 +60,9 @@ dependencies {
     // === OPENAPI / SWAGGER ===
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 
-    // pegar camera e mandar via qrcod
-    implementation 'net.sourceforge.tess4j:tess4j:5.11.0'
+    // === OCR (Tess4J) ===
+    // Use SOMENTE o Tess4J (sem "-platform"). Sugiro versão mais recente.
+    implementation 'net.sourceforge.tess4j:tess4j:5.16.0'
 
     // === TESTES ===
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

@@ -50,7 +50,7 @@ public class CorsConfig implements WebMvcConfigurer {
                     "http://localhost:3001",
                     "http://127.0.0.1:3000",
                     "http://127.0.0.1:3001",
-                    "http://192.168.0.3:3000" // Permissão para o IP da rede local
+                    "http://192.168.0.3:3000" // <-- ADICIONADO AQUI
             };
 
             System.out.println(">>>>>>>>>> CARREGANDO CONFIGURAÇÃO DE CORS PARA DESENVOLVIMENTO/PADRÃO <<<<<<<<<<");

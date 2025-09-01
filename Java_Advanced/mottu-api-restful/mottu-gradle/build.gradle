@@ -22,6 +22,10 @@ configurations {
     runtimeClasspath {
         extendsFrom developmentOnly
     }
+    // remove conflitos com spring-jcl
+    all {
+        exclude group: 'commons-logging', module: 'commons-logging'
+    }
 }
 
 repositories {
@@ -60,9 +64,9 @@ dependencies {
     // === OPENAPI / SWAGGER ===
     implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${springdocVersion}"
 
-    // === OCR (Tess4J) ===
-    // Use SOMENTE o Tess4J (sem "-platform"). Sugiro versão mais recente.
-    implementation 'net.sourceforge.tess4j:tess4j:5.16.0'
+    // === OCR e Visão Computacional ===
+    implementation 'net.sourceforge.tess4j:tess4j:5.11.0'
+    implementation 'org.openpnp:opencv:4.9.0-0' // inclui nu.pattern.OpenCV para carregar nativos
 
     // === TESTES ===
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

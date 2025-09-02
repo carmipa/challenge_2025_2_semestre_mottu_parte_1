@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BoxService } from "@/utils/api";
 import { BoxResponseDto } from "@/types/box";
 import { Loader2 } from "lucide-react";
+import UsuarioMarkers from "@/components/map/UsuarioMarkers";
 
 /**
  * PatioMottu2D.tsx

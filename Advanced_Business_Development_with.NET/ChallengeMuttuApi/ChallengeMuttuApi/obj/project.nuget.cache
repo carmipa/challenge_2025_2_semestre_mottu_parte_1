@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "H8uNXLxf9SA=",
+  "dgSpecHash": "6grNoNOv3n8=",
   "success": true,
-  "projectFilePath": "D:\\FIAP-2025\\challenge\\challenge_2025_2_semestre_mottu_parte_1\\Advanced_Business_Development_with.NET\\ChallengeMuttuApi\\ChallengeMuttuApi\\ChallengeMuttuApi.csproj",
+  "projectFilePath": "D:\\FIAP-2025\\2-semestre\\challenge\\challenge_2025_2_semestre_mottu_parte_1\\Advanced_Business_Development_with.NET\\ChallengeMuttuApi\\ChallengeMuttuApi\\ChallengeMuttuApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\paulo\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\paulo\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",

@@ -1,0 +1,146 @@
+🗂️ Arquivo: womenfemale_body_base_rigged.glb
+📍 Caminho: D:\FIAP-2025\inciacao_cientifica_FIAP_2025\front\3dmodel\womenfemale_body_base_rigged.glb
+📅 Data: 17/06/2025 12:34:43
+============================================================
+🔖 Versão: 2.0
+🔧 Gerado por: Sketchfab-12.66.0
+
+🧱 NÓS (86):
+  ▸ Sketchfab_model (index 0) → Filhos: [1]
+  ▸ baca419299ae4ecdb4f8ec57d87abb05.fbx (index 1) → Filhos: [2]
+  ▸ RootNode (index 2) → Filhos: [3]
+  ▸ Armature (index 3) → Filhos: [4]
+  ▸ Object_4 (index 4) → Filhos: [5, 85, 84]
+  ▸ _rootJoint (index 5) → Filhos: [6]
+  ▸ mixamorig:Hips_01 (index 6) → Filhos: [7, 72, 78]
+  ▸ mixamorig:Spine_02 (index 7) → Filhos: [8]
+  ▸ mixamorig:Spine1_03 (index 8) → Filhos: [9]
+  ▸ mixamorig:Spine2_04 (index 9) → Filhos: [10, 14, 43]
+  ▸ mixamorig:Neck_05 (index 10) → Filhos: [11]
+  ▸ mixamorig:Head_06 (index 11) → Filhos: [12]
+  ▸ mixamorig:HeadTop_End_07 (index 12) → Filhos: [13]
+  ▸ mixamorig:HeadTop_End_end_065 (index 13) → Filhos: []
+  ▸ mixamorig:LeftShoulder_08 (index 14) → Filhos: [15]
+  ▸ mixamorig:LeftArm_09 (index 15) → Filhos: [16]
+  ▸ mixamorig:LeftForeArm_010 (index 16) → Filhos: [17]
+  ▸ mixamorig:LeftHand_011 (index 17) → Filhos: [18, 23, 28, 33, 38]
+  ▸ mixamorig:LeftHandThumb1_012 (index 18) → Filhos: [19]
+  ▸ mixamorig:LeftHandThumb2_013 (index 19) → Filhos: [20]
+  ▸ mixamorig:LeftHandThumb3_014 (index 20) → Filhos: [21]
+  ▸ mixamorig:LeftHandThumb4_015 (index 21) → Filhos: [22]
+  ▸ mixamorig:LeftHandThumb4_end_066 (index 22) → Filhos: []
+  ▸ mixamorig:LeftHandIndex1_016 (index 23) → Filhos: [24]
+  ▸ mixamorig:LeftHandIndex2_017 (index 24) → Filhos: [25]
+  ▸ mixamorig:LeftHandIndex3_018 (index 25) → Filhos: [26]
+  ▸ mixamorig:LeftHandIndex4_019 (index 26) → Filhos: [27]
+  ▸ mixamorig:LeftHandIndex4_end_067 (index 27) → Filhos: []
+  ▸ mixamorig:LeftHandMiddle1_020 (index 28) → Filhos: [29]
+  ▸ mixamorig:LeftHandMiddle2_021 (index 29) → Filhos: [30]
+  ▸ mixamorig:LeftHandMiddle3_022 (index 30) → Filhos: [31]
+  ▸ mixamorig:LeftHandMiddle4_023 (index 31) → Filhos: [32]
+  ▸ mixamorig:LeftHandMiddle4_end_068 (index 32) → Filhos: []
+  ▸ mixamorig:LeftHandRing1_024 (index 33) → Filhos: [34]
+  ▸ mixamorig:LeftHandRing2_025 (index 34) → Filhos: [35]
+  ▸ mixamorig:LeftHandRing3_026 (index 35) → Filhos: [36]
+  ▸ mixamorig:LeftHandRing4_027 (index 36) → Filhos: [37]
+  ▸ mixamorig:LeftHandRing4_end_069 (index 37) → Filhos: []
+  ▸ mixamorig:LeftHandPinky1_028 (index 38) → Filhos: [39]
+  ▸ mixamorig:LeftHandPinky2_029 (index 39) → Filhos: [40]
+  ▸ mixamorig:LeftHandPinky3_030 (index 40) → Filhos: [41]
+  ▸ mixamorig:LeftHandPinky4_031 (index 41) → Filhos: [42]
+  ▸ mixamorig:LeftHandPinky4_end_070 (index 42) → Filhos: []
+  ▸ mixamorig:RightShoulder_032 (index 43) → Filhos: [44]
+  ▸ mixamorig:RightArm_033 (index 44) → Filhos: [45]
+  ▸ mixamorig:RightForeArm_034 (index 45) → Filhos: [46]
+  ▸ mixamorig:RightHand_035 (index 46) → Filhos: [47, 52, 57, 62, 67]
+  ▸ mixamorig:RightHandThumb1_036 (index 47) → Filhos: [48]
+  ▸ mixamorig:RightHandThumb2_037 (index 48) → Filhos: [49]
+  ▸ mixamorig:RightHandThumb3_038 (index 49) → Filhos: [50]
+  ▸ mixamorig:RightHandThumb4_039 (index 50) → Filhos: [51]
+  ▸ mixamorig:RightHandThumb4_end_071 (index 51) → Filhos: []
+  ▸ mixamorig:RightHandIndex1_040 (index 52) → Filhos: [53]
+  ▸ mixamorig:RightHandIndex2_041 (index 53) → Filhos: [54]
+  ▸ mixamorig:RightHandIndex3_042 (index 54) → Filhos: [55]
+  ▸ mixamorig:RightHandIndex4_043 (index 55) → Filhos: [56]
+  ▸ mixamorig:RightHandIndex4_end_072 (index 56) → Filhos: []
+  ▸ mixamorig:RightHandMiddle1_044 (index 57) → Filhos: [58]
+  ▸ mixamorig:RightHandMiddle2_045 (index 58) → Filhos: [59]
+  ▸ mixamorig:RightHandMiddle3_00 (index 59) → Filhos: [60]
+  ▸ mixamorig:RightHandMiddle4_046 (index 60) → Filhos: [61]
+  ▸ mixamorig:RightHandMiddle4_end_073 (index 61) → Filhos: []
+  ▸ mixamorig:RightHandRing1_047 (index 62) → Filhos: [63]
+  ▸ mixamorig:RightHandRing2_048 (index 63) → Filhos: [64]
+  ▸ mixamorig:RightHandRing3_049 (index 64) → Filhos: [65]
+  ▸ mixamorig:RightHandRing4_050 (index 65) → Filhos: [66]
+  ▸ mixamorig:RightHandRing4_end_074 (index 66) → Filhos: []
+  ▸ mixamorig:RightHandPinky1_051 (index 67) → Filhos: [68]
+  ▸ mixamorig:RightHandPinky2_052 (index 68) → Filhos: [69]
+  ▸ mixamorig:RightHandPinky3_053 (index 69) → Filhos: [70]
+  ▸ mixamorig:RightHandPinky4_054 (index 70) → Filhos: [71]
+  ▸ mixamorig:RightHandPinky4_end_075 (index 71) → Filhos: []
+  ▸ mixamorig:LeftUpLeg_055 (index 72) → Filhos: [73]
+  ▸ mixamorig:LeftLeg_056 (index 73) → Filhos: [74]
+  ▸ mixamorig:LeftFoot_057 (index 74) → Filhos: [75]
+  ▸ mixamorig:LeftToeBase_058 (index 75) → Filhos: [76]
+  ▸ mixamorig:LeftToe_End_059 (index 76) → Filhos: [77]
+  ▸ mixamorig:LeftToe_End_end_076 (index 77) → Filhos: []
+  ▸ mixamorig:RightUpLeg_060 (index 78) → Filhos: [79]
+  ▸ mixamorig:RightLeg_061 (index 79) → Filhos: [80]
+  ▸ mixamorig:RightFoot_062 (index 80) → Filhos: [81]
+  ▸ mixamorig:RightToeBase_063 (index 81) → Filhos: [82]
+  ▸ mixamorig:RightToe_End_064 (index 82) → Filhos: [83]
+  ▸ mixamorig:RightToe_End_end_077 (index 83) → Filhos: []
+  ▸ Object_84 (index 84) → Filhos: []
+  ▸ Object_85 (index 85) → Filhos: []
+
+🎛️ MALHAS (1):
+  ▸ Malha 0: Cuerpo__0
+    - Primitiva 0:
+        ▪ Atributo: POSITION (Accessor 0)
+          • Tipo: VEC3, ComponentType: 5126, Count: 57745
+          • Mín: [-2.586076259613037, -0.014933612197637558, -0.5076878666877747]
+          • Máx: [2.586076259613037, 7.327910900115967, 0.5505554676055908]
+        ▪ Atributo: NORMAL (Accessor 1)
+          • Tipo: VEC3, ComponentType: 5126, Count: 57745
+          • Mín: [-0.9999969005584717, -0.9999868273735046, -0.9999995827674866]
+          • Máx: [0.9999989867210388, 0.9999046921730042, 0.9999997019767761]
+        ▪ Atributo: TEXCOORD_0 (Accessor 2)
+          • Tipo: VEC2, ComponentType: 5126, Count: 57745
+          • Mín: [0.001953125, 0.001953125]
+          • Máx: [0.998046875, 0.9889885187149048]
+        ▪ Atributo: JOINTS_0 (Accessor 5)
+          • Tipo: VEC4, ComponentType: 5123, Count: 57745
+        ▪ Atributo: WEIGHTS_0 (Accessor 6)
+          • Tipo: VEC4, ComponentType: 5126, Count: 57745
+          • Mín: [0.27931445837020874, 0.0, 0.0, 0.0]
+          • Máx: [1.0, 0.4999871850013733, 0.3273486793041229, 0.21330489218235016]
+        ▪ Índices: Accessor 3
+          • Count: 324240, Type: SCALAR, Component: 5125
+
+🎨 MATERIAIS (1):
+  ▸ Material 0: Scene_-_Root
+
+📐 ACCESSORS (7):
+  ▸ Accessor 0: Tipo=VEC3, ComponentType=5126, Count=57745
+    • Min: [-2.586076259613037, -0.014933612197637558, -0.5076878666877747]
+    • Max: [2.586076259613037, 7.327910900115967, 0.5505554676055908]
+  ▸ Accessor 1: Tipo=VEC3, ComponentType=5126, Count=57745
+    • Min: [-0.9999969005584717, -0.9999868273735046, -0.9999995827674866]
+    • Max: [0.9999989867210388, 0.9999046921730042, 0.9999997019767761]
+  ▸ Accessor 2: Tipo=VEC2, ComponentType=5126, Count=57745
+    • Min: [0.001953125, 0.001953125]
+    • Max: [0.998046875, 0.9889885187149048]
+  ▸ Accessor 3: Tipo=SCALAR, ComponentType=5125, Count=324240
+  ▸ Accessor 4: Tipo=MAT4, ComponentType=5126, Count=79
+    • Min: [-0.9961717128753662, -0.9654580950737, -0.8918936848640442, 0.0, -0.5016357898712158, -0.9952244162559509, -0.9598311185836792, 0.0, -0.9999983906745911, -0.14282377064228058, -0.15759246051311493, 0.0, -1.5148072242736816, -6.4897050857543945, -0.44305619597435, 1.0]
+    • Max: [16.1380672454834, 0.9654574990272522, 0.8856047987937927, 0.0, 0.501123309135437, 16.1380672454834, 0.9980759024620056, 0.0, 0.9999780058860779, 0.9918779730796814, 16.1380672454834, 0.0, 1.5354564189910889, 4.294926643371582, 5.912642955780029, 1.0]
+  ▸ Accessor 5: Tipo=VEC4, ComponentType=5123, Count=57745
+  ▸ Accessor 6: Tipo=VEC4, ComponentType=5126, Count=57745
+    • Min: [0.27931445837020874, 0.0, 0.0, 0.0]
+    • Max: [1.0, 0.4999871850013733, 0.3273486793041229, 0.21330489218235016]
+
+
+📁 Estrutura de Diretórios:
+
+├── 3dmodel/
+│   └── womenfemale_body_base_rigged.glb

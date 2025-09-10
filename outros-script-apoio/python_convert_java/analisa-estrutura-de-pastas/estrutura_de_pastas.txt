@@ -1,0 +1,410 @@
+[DIR] dataset/
+    - README.md
+[DIR] men's_hoodies/
+[DIR] men's_hoodies\male_2_1/
+[DIR] men's_hoodies\male_2_1\male_2_1_def/
+    - men's_hoodies\male_2_1\male_2_1_def\1_R12_G45_B89.png
+    - men's_hoodies\male_2_1\male_2_1_def\1_R255_G255_B255.png
+    - men's_hoodies\male_2_1\male_2_1_def\1_R81_G81_B0.png
+    - men's_hoodies\male_2_1\male_2_1_def\Cotton_40s_Chambray_NRM.jpg
+    - men's_hoodies\male_2_1\male_2_1_def\Cotton_40s_Chambray_NRM_10.jpg
+    - men's_hoodies\male_2_1\male_2_1_def\force fleece_58_42_cotton_poly_300gsm(600872)_MOSS HEATHER_(scale_20%)_outside_R78_G78_B3_DESATURATION.png
+    - men's_hoodies\male_2_1\male_2_1_def\force fleece_58_42_cotton_poly_300gsm(600873)_MOSS HEATHER_(scale_20%)_outside_NRM.jpg
+    - men's_hoodies\male_2_1\male_2_1_def\force fleece_58_42_cotton_poly_300gsm(600873)_MOSS HEATHER_(scale_20%)_outside_NRM_10.jpg
+    - men's_hoodies\male_2_1\male_2_1_def\male_2_1_def.mtl
+    - men's_hoodies\male_2_1\male_2_1_def\male_2_1_def.obj
+    - men's_hoodies\male_2_1\male_2_1_def\male_2_1_def_sculped.mtl
+    - men's_hoodies\male_2_1\male_2_1_def\male_2_1_def_sculped.obj
+[DIR] men's_hoodies\male_2_1\male_2_1_patterns/
+    - men's_hoodies\male_2_1\male_2_1_patterns\male_2_1_2D.mtl
+    - men's_hoodies\male_2_1\male_2_1_patterns\male_2_1_2D.obj
+    - men's_hoodies\male_2_1\male_2_1_patterns\male_2_1_2D_diffuse.png
+    - men's_hoodies\male_2_1\male_2_1_patterns\male_2_1_2D_normal.png
+[DIR] men's_hoodies\male_2_1\male_2_1_ref/
+    - men's_hoodies\male_2_1\male_2_1_ref\1_R12_G45_B89.png
+    - men's_hoodies\male_2_1\male_2_1_ref\1_R255_G255_B255.png
+    - men's_hoodies\male_2_1\male_2_1_ref\1_R81_G81_B0.png
+    - men's_hoodies\male_2_1\male_2_1_ref\Cotton_40s_Chambray_NRM.jpg
+    - men's_hoodies\male_2_1\male_2_1_ref\Cotton_40s_Chambray_NRM_10.jpg
+    - men's_hoodies\male_2_1\male_2_1_ref\force fleece_58_42_cotton_poly_300gsm(600872)_MOSS HEATHER_(scale_20%)_outside_R78_G78_B3_DESATURATION.png
+    - men's_hoodies\male_2_1\male_2_1_ref\force fleece_58_42_cotton_poly_300gsm(600873)_MOSS HEATHER_(scale_20%)_outside_NRM.jpg
+    - men's_hoodies\male_2_1\male_2_1_ref\force fleece_58_42_cotton_poly_300gsm(600873)_MOSS HEATHER_(scale_20%)_outside_NRM_10.jpg
+    - men's_hoodies\male_2_1\male_2_1_ref\male_2_1_ref.mtl
+    - men's_hoodies\male_2_1\male_2_1_ref\male_2_1_ref.obj
+    - men's_hoodies\male_2_1\male_2_1_ref\male_2_1_ref_smoothed.mtl
+    - men's_hoodies\male_2_1\male_2_1_ref\male_2_1_ref_smoothed.OBJ
+[DIR] men's_hoodies\male_2_2/
+[DIR] men's_hoodies\male_2_2\male_2_2_patterns/
+    - men's_hoodies\male_2_2\male_2_2_patterns\male_2_2_2D.mtl
+    - men's_hoodies\male_2_2\male_2_2_patterns\male_2_2_2D.obj
+    - men's_hoodies\male_2_2\male_2_2_patterns\male_2_2_2D_diffuse.png
+    - men's_hoodies\male_2_2\male_2_2_patterns\male_2_2_2D_normal.png
+[DIR] men's_hoodies\male_2_2\male_2_2_ref/
+    - men's_hoodies\male_2_2\male_2_2_ref\male_2_2_ref.mtl
+    - men's_hoodies\male_2_2\male_2_2_ref\male_2_2_ref.obj
+    - men's_hoodies\male_2_2\male_2_2_ref\male_2_2_ref_diffuse.png
+    - men's_hoodies\male_2_2\male_2_2_ref\male_2_2_ref_normal.png
+    - men's_hoodies\male_2_2\male_2_2_ref\male_2_2_ref_smoothed.mtl
+    - men's_hoodies\male_2_2\male_2_2_ref\male_2_2_ref_smoothed.obj
+[DIR] men's_hoodies\projects/
+    - men's_hoodies\projects\male_2_1_def.Zprj
+    - men's_hoodies\projects\male_2_1_ref.Zprj
+    - men's_hoodies\projects\male_2_2_ref.zprj
+[DIR] men's_sports_suits/
+[DIR] men's_sports_suits\male_1/
+[DIR] men's_sports_suits\male_1\male_1_bottom/
+[DIR] men's_sports_suits\male_1\male_1_bottom\male_1_bottom_def/
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_def\male_1_bottom_def.mtl
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_def\male_1_bottom_def.obj
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_def\male_1_bottom_def.png
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_def\male_1_bottom_def_sculpted.mtl
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_def\male_1_bottom_def_sculpted.obj
+[DIR] men's_sports_suits\male_1\male_1_bottom\male_1_bottom_patterns/
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_patterns\male_1_bottom_2D.mtl
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_patterns\male_1_bottom_2D.obj
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_patterns\male_1_bottom_2D.png
+[DIR] men's_sports_suits\male_1\male_1_bottom\male_1_bottom_ref/
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_ref\male_1_bottom_ref.mtl
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_ref\male_1_bottom_ref.obj
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_ref\male_1_bottom_ref.png
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_ref\male_1_bottom_ref_smoothed.mtl
+    - men's_sports_suits\male_1\male_1_bottom\male_1_bottom_ref\male_1_bottom_ref_smoothed.obj
+[DIR] men's_sports_suits\male_1\male_1_top/
+[DIR] men's_sports_suits\male_1\male_1_top\male_1_top_def/
+    - men's_sports_suits\male_1\male_1_top\male_1_top_def\male_1_top_def.mtl
+    - men's_sports_suits\male_1\male_1_top\male_1_top_def\male_1_top_def.obj
+    - men's_sports_suits\male_1\male_1_top\male_1_top_def\male_1_top_def.png
+    - men's_sports_suits\male_1\male_1_top\male_1_top_def\male_1_top_def_sculpted.mtl
+    - men's_sports_suits\male_1\male_1_top\male_1_top_def\male_1_top_def_sculpted.obj
+[DIR] men's_sports_suits\male_1\male_1_top\male_1_top_patterns/
+    - men's_sports_suits\male_1\male_1_top\male_1_top_patterns\male_1_top_2D.mtl
+    - men's_sports_suits\male_1\male_1_top\male_1_top_patterns\male_1_top_2D.obj
+    - men's_sports_suits\male_1\male_1_top\male_1_top_patterns\male_1_top_2D.png
+[DIR] men's_sports_suits\male_1\male_1_top\male_1_top_ref/
+    - men's_sports_suits\male_1\male_1_top\male_1_top_ref\male_1_top_ref.mtl
+    - men's_sports_suits\male_1\male_1_top\male_1_top_ref\male_1_top_ref.obj
+    - men's_sports_suits\male_1\male_1_top\male_1_top_ref\male_1_top_ref.png
+    - men's_sports_suits\male_1\male_1_top\male_1_top_ref\male_1_top_up_smoothed.mtl
+    - men's_sports_suits\male_1\male_1_top\male_1_top_ref\male_1_top_up_smoothed.obj
+[DIR] men's_sports_suits\male_2/
+[DIR] men's_sports_suits\male_2\male_2_bottom/
+[DIR] men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns/
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\04b.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\04b_R183_G180_B171.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\05c.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\05c_R68_G68_B68.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\05c_R92_G92_B92.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\Cotton_Oxford_FCL1PSC011_4_test5_NRM.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\Cotton_Oxford_FCL1PSC011_4_test5_SPEC.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\male_2_bottom_2D.mtl
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_patterns\male_2_bottom_2D.obj
+[DIR] men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref/
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\04b.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\04b_R183_G180_B171.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\05c.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\05c_R68_G68_B68.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\05c_R92_G92_B92.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\Cotton_Oxford_FCL1PSC011_4_test5_NRM.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\Cotton_Oxford_FCL1PSC011_4_test5_SPEC.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\male_2_bottom_ref.mtl
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\male_2_bottom_ref.obj
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\male_2_bottom_ref_smoothed.mtl
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_ref\male_2_bottom_ref_smoothed.obj
+[DIR] men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result/
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\04b.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\04b_R183_G180_B171.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\05c.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\05c_R68_G68_B68.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\05c_R92_G92_B92.png
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\Cotton_Oxford_FCL1PSC011_4_test5_NRM.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\Cotton_Oxford_FCL1PSC011_4_test5_SPEC.jpg
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\male_2_bottom_result.mtl
+    - men's_sports_suits\male_2\male_2_bottom\male_2_bottom_result\male_2_bottom_result.obj
+[DIR] men's_sports_suits\male_2\male_2_top/
+[DIR] men's_sports_suits\male_2\male_2_top\male_2_top_patterns/
+    - men's_sports_suits\male_2\male_2_top\male_2_top_patterns\05c.jpg
+    - men's_sports_suits\male_2\male_2_top\male_2_top_patterns\male_2_top_2D.mtl
+    - men's_sports_suits\male_2\male_2_top\male_2_top_patterns\male_2_top_2D.obj
+[DIR] men's_sports_suits\male_2\male_2_top\male_2_top_ref/
+    - men's_sports_suits\male_2\male_2_top\male_2_top_ref\male_2_top_ref.jpg
+    - men's_sports_suits\male_2\male_2_top\male_2_top_ref\male_2_top_ref.mtl
+    - men's_sports_suits\male_2\male_2_top\male_2_top_ref\male_2_top_ref.obj
+    - men's_sports_suits\male_2\male_2_top\male_2_top_ref\male_2_top_ref_smoothed.mtl
+    - men's_sports_suits\male_2\male_2_top\male_2_top_ref\male_2_top_ref_smoothed.obj
+[DIR] men's_sports_suits\male_2\male_2_top\male_2_top_result/
+    - men's_sports_suits\male_2\male_2_top\male_2_top_result\05c.jpg
+    - men's_sports_suits\male_2\male_2_top\male_2_top_result\05c_R172_G172_B172.png
+    - men's_sports_suits\male_2\male_2_top\male_2_top_result\05c_R92_G92_B92.png
+    - men's_sports_suits\male_2\male_2_top\male_2_top_result\male_2_result.mtl
+    - men's_sports_suits\male_2\male_2_top\male_2_top_result\male_2_top_result.obj
+[DIR] men's_sports_suits\projects/
+    - men's_sports_suits\projects\male_1_def.png
+    - men's_sports_suits\projects\male_1_def.Zprj
+    - men's_sports_suits\projects\male_1_ref.png
+    - men's_sports_suits\projects\male_1_ref.Zprj
+    - men's_sports_suits\projects\male_2_ref.Zprj
+[DIR] women's_casual_trousers/
+[DIR] women's_casual_trousers\casual_trousers_1/
+[DIR] women's_casual_trousers\casual_trousers_1\casual_trousers_1_def/
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_def\casual_trousers_1_woman_def.mtl
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_def\casual_trousers_1_woman_def.obj
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_def\casual_trousers_1_woman_def.png
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_def\casual_trousers_1_woman_def_sculpted.mtl
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_def\casual_trousers_1_woman_def_sculpted.obj
+[DIR] women's_casual_trousers\casual_trousers_1\casual_trousers_1_ref/
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_ref\casual_trousers_1_woman_ref.mtl
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_ref\casual_trousers_1_woman_ref.obj
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_ref\casual_trousers_1_woman_ref.png
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_ref\casual_trousers_1_woman_ref_smoothed.mtl
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_1_ref\casual_trousers_1_woman_ref_smoothed.obj
+[DIR] women's_casual_trousers\casual_trousers_1\casual_trousers_patterns/
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_patterns\casual_trousers_1_woman_2D.mtl
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_patterns\casual_trousers_1_woman_2D.obj
+    - women's_casual_trousers\casual_trousers_1\casual_trousers_patterns\casual_trousers_1_woman_2D_7488.png
+[DIR] women's_casual_trousers\casual_trousers_2/
+[DIR] women's_casual_trousers\casual_trousers_2\casual_trousers_2_patterns/
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_patterns\casual_trousers_2_woman_2D.mtl
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_patterns\casual_trousers_2_woman_2D.obj
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_patterns\casual_trousers_2_woman_2D.png
+[DIR] women's_casual_trousers\casual_trousers_2\casual_trousers_2_ref/
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_ref\casual_trousers_2_woman_ref.mtl
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_ref\casual_trousers_2_woman_ref.obj
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_ref\casual_trousers_2_woman_ref.png
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_ref\casual_trousers_2_woman_ref_smoothed.mtl
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_ref\casual_trousers_2_woman_ref_smoothed.obj
+[DIR] women's_casual_trousers\casual_trousers_2\casual_trousers_2_result/
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_result\casual_trousers_2_result.mtl
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_result\casual_trousers_2_result.obj
+    - women's_casual_trousers\casual_trousers_2\casual_trousers_2_result\casual_trousers_2_result.png
+[DIR] women's_casual_trousers\projects/
+    - women's_casual_trousers\projects\casual_trousers_1_woman_def.Zprj
+    - women's_casual_trousers\projects\casual_trousers_1_woman_ref.Zprj
+    - women's_casual_trousers\projects\casual_trousers_2_woman_ref.Zprj
+[DIR] women's_gowns/
+[DIR] women's_gowns\gown_1/
+[DIR] women's_gowns\gown_1\gown_1_def/
+    - women's_gowns\gown_1\gown_1_def\gown_1_def.mtl
+    - women's_gowns\gown_1\gown_1_def\gown_1_def.obj
+    - women's_gowns\gown_1\gown_1_def\gown_1_def.png
+    - women's_gowns\gown_1\gown_1_def\Silk_Duchess_Satin_FCL1PSS003_test1_COL.jpg
+[DIR] women's_gowns\gown_1\gown_1_patterns/
+    - women's_gowns\gown_1\gown_1_patterns\gown_1_2D.mtl
+    - women's_gowns\gown_1\gown_1_patterns\gown_1_2D.obj
+    - women's_gowns\gown_1\gown_1_patterns\Silk_Duchess_Satin_FCL1PSS003_test1_COL.jpg
+[DIR] women's_gowns\gown_1\gown_1_ref/
+    - women's_gowns\gown_1\gown_1_ref\gown_1_ref.mtl
+    - women's_gowns\gown_1\gown_1_ref\gown_1_ref.obj
+    - women's_gowns\gown_1\gown_1_ref\gown_1_ref_smooth.mtl
+    - women's_gowns\gown_1\gown_1_ref\gown_1_ref_smooth.obj
+    - women's_gowns\gown_1\gown_1_ref\Silk_Duchess_Satin_FCL1PSS003_test1_COL.jpg
+[DIR] women's_gowns\gown_2/
+[DIR] women's_gowns\gown_2\gown_2_patterns/
+    - women's_gowns\gown_2\gown_2_patterns\gown_2_2D.mtl
+    - women's_gowns\gown_2\gown_2_patterns\gown_2_2D.obj
+    - women's_gowns\gown_2\gown_2_patterns\Silk_Duchess_Satin_FCL1PSS003_test1_COL.jpg
+[DIR] women's_gowns\gown_2\gown_2_ref/
+    - women's_gowns\gown_2\gown_2_ref\gown_2_ref.mtl
+    - women's_gowns\gown_2\gown_2_ref\gown_2_ref.obj
+    - women's_gowns\gown_2\gown_2_ref\gown_2_ref_smooth.mtl
+    - women's_gowns\gown_2\gown_2_ref\gown_2_ref_smooth.obj
+    - women's_gowns\gown_2\gown_2_ref\Silk_Duchess_Satin_FCL1PSS003_test1_COL.jpg
+[DIR] women's_gowns\gown_2\gown_2_result/
+    - women's_gowns\gown_2\gown_2_result\gown_2_result.obj
+[DIR] women's_gowns\projects/
+    - women's_gowns\projects\gown_1_def.Zprj
+    - women's_gowns\projects\gown_1_ref.Zprj
+    - women's_gowns\projects\gown_2_ref.Zprj
+[DIR] women's_lantern_sleeve_dresses/
+[DIR] women's_lantern_sleeve_dresses\lantern_sleeve_dress_1/
+[DIR] women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_def/
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_def\FCL1-PSK002-00_DIFFUSE.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_def\FCL1-PSK002-00_DIFFUSE_R33_G2_B57.png
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_def\FCL1-PSK002-00_NORMAL.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_def\FCL1-PSK002-00_SPECULAR.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_def\lantern_sleeve_dress_1_def.mtl
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_def\lantern_sleeve_dress_1_def.obj
+[DIR] women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_patterns/
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_patterns\female_2_1_2D_10069.png
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_patterns\lantern_sleeve_dress_1_2D.mtl
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_patterns\lantern_sleeve_dress_1_2D.obj
+[DIR] women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref/
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref\FCL1-PSK002-00_DIFFUSE.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref\FCL1-PSK002-00_DIFFUSE_R33_G2_B57.png
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref\FCL1-PSK002-00_NORMAL.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref\FCL1-PSK002-00_SPECULAR.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref\lantern_sleeve_dress_1_ref.mtl
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref\lantern_sleeve_dress_1_ref.obj
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref\lantern_sleeve_dress_1_ref_smoothed.mtl
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_1\lantern_sleeve_dress_1_ref\lantern_sleeve_dress_1_ref_smoothed.obj
+[DIR] women's_lantern_sleeve_dresses\lantern_sleeve_dress_2/
+[DIR] women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_patterns/
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_patterns\female_2_2_2D_13591.png
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_patterns\lantern_sleeve_dress_2_2D.mtl
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_patterns\lantern_sleeve_dress_2_2D.obj
+[DIR] women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref/
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\lantern_sleeve_dress_2_ref.mtl
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\lantern_sleeve_dress_2_ref.obj
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\lantern_sleeve_dress_2_ref_smoothed.mtl
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\lantern_sleeve_dress_2_ref_smoothed.obj
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\Silk_Double_Georgette_FCL1PSS006_test4_NRM.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\Silk_Knit_Jersey_FCL1PSS008_2_teat1_COL_SPEC.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\Silk_Knit_Jersey_normal.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\vine.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\vine_plain.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\vine_R206_G226_B250.png
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_ref\vine_R219_G235_B250.png
+[DIR] women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result/
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\lantern_sleeve_dress_2_result.mtl
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\lantern_sleeve_dress_2_result.obj
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\Silk_Double_Georgette_FCL1PSS006_test4_NRM.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\Silk_Knit_Jersey_FCL1PSS008_2_teat1_COL_SPEC.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\Silk_Knit_Jersey_normal.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\vine.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\vine_plain.jpg
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\vine_R206_G226_B250.png
+    - women's_lantern_sleeve_dresses\lantern_sleeve_dress_2\lantern_sleeve_dress_2_result\vine_R219_G235_B250.png
+[DIR] women's_lantern_sleeve_dresses\projects/
+    - women's_lantern_sleeve_dresses\projects\women_lantern_sleeve_dress_1_def.Zprj
+    - women's_lantern_sleeve_dresses\projects\women_lantern_sleeve_dress_1_ref.Zprj
+    - women's_lantern_sleeve_dresses\projects\women_lantern_sleeve_dress_2_ref.Zprj
+[DIR] women's_qipao_polo_dress/
+[DIR] women's_qipao_polo_dress\polo_dress/
+[DIR] women's_qipao_polo_dress\polo_dress\polo_dress_patterns/
+    - women's_qipao_polo_dress\polo_dress\polo_dress_patterns\polo_dress_2D.mtl
+    - women's_qipao_polo_dress\polo_dress\polo_dress_patterns\polo_dress_2D.obj
+    - women's_qipao_polo_dress\polo_dress\polo_dress_patterns\polo_dress_2D_10857.png
+[DIR] women's_qipao_polo_dress\polo_dress\polo_dress_ref/
+    - women's_qipao_polo_dress\polo_dress\polo_dress_ref\polo_dress_ref.mtl
+    - women's_qipao_polo_dress\polo_dress\polo_dress_ref\polo_dress_ref.obj
+    - women's_qipao_polo_dress\polo_dress\polo_dress_ref\polo_dress_ref.png
+    - women's_qipao_polo_dress\polo_dress\polo_dress_ref\polo_dress_ref_smoothed.obj
+[DIR] women's_qipao_polo_dress\polo_dress\polo_dress_result/
+    - women's_qipao_polo_dress\polo_dress\polo_dress_result\polo_dress_result.mtl
+    - women's_qipao_polo_dress\polo_dress\polo_dress_result\polo_dress_result.obj
+    - women's_qipao_polo_dress\polo_dress\polo_dress_result\polo_dress_result.png
+[DIR] women's_qipao_polo_dress\projects/
+    - women's_qipao_polo_dress\projects\polo_dress_ref.Zprj
+    - women's_qipao_polo_dress\projects\qipao_ref.Zprj
+    - women's_qipao_polo_dress\projects\test7.bmp
+[DIR] women's_qipao_polo_dress\qipao/
+[DIR] women's_qipao_polo_dress\qipao\qipao_def/
+    - women's_qipao_polo_dress\qipao\qipao_def\40s_Chambray_FCL1PSC004_3_test4_NRM_33992.jpg
+    - women's_qipao_polo_dress\qipao\qipao_def\Cotton_Sateen_FCL1PSC010_test2_NRM.jpg
+    - women's_qipao_polo_dress\qipao\qipao_def\linen.jpg
+    - women's_qipao_polo_dress\qipao\qipao_def\linen_R41_G7_B7.png
+    - women's_qipao_polo_dress\qipao\qipao_def\qipao.mtl
+    - women's_qipao_polo_dress\qipao\qipao_def\qipao_def.obj
+    - women's_qipao_polo_dress\qipao\qipao_def\Tartan.png
+    - women's_qipao_polo_dress\qipao\qipao_def\Tartan_R255_G255_B255.png
+[DIR] women's_qipao_polo_dress\qipao\qipao_patterns/
+    - women's_qipao_polo_dress\qipao\qipao_patterns\qipao_2D.mtl
+    - women's_qipao_polo_dress\qipao\qipao_patterns\qipao_2D.obj
+    - women's_qipao_polo_dress\qipao\qipao_patterns\qipao_2D_7557.png
+[DIR] women's_qipao_polo_dress\qipao\qipao_ref/
+    - women's_qipao_polo_dress\qipao\qipao_ref\40s_Chambray_FCL1PSC004_3_test4_NRM_33992.jpg
+    - women's_qipao_polo_dress\qipao\qipao_ref\Cotton_Sateen_FCL1PSC010_test2_NRM.jpg
+    - women's_qipao_polo_dress\qipao\qipao_ref\linen.jpg
+    - women's_qipao_polo_dress\qipao\qipao_ref\linen_R41_G7_B7.png
+    - women's_qipao_polo_dress\qipao\qipao_ref\qipao.mtl
+    - women's_qipao_polo_dress\qipao\qipao_ref\qipao_def.obj
+    - women's_qipao_polo_dress\qipao\qipao_ref\qipao_ref.obj
+    - women's_qipao_polo_dress\qipao\qipao_ref\qipao_ref_smoothed.obj
+    - women's_qipao_polo_dress\qipao\qipao_ref\Tartan.png
+    - women's_qipao_polo_dress\qipao\qipao_ref\Tartan_R255_G255_B255.png
+[DIR] women's_shirts/
+[DIR] women's_shirts\projects/
+    - women's_shirts\projects\blue-white-stripe.jpg
+    - women's_shirts\projects\dot.jpeg
+    - women's_shirts\projects\woman_shirt_1_def.Zprj
+    - women's_shirts\projects\woman_shirt_1_ref.Zprj
+    - women's_shirts\projects\woman_shirt_2_ref.Zprj
+    - women's_shirts\projects\woman_shirt_2_ref_notched_sleeves.Zprj
+[DIR] women's_shirts\shirt_1/
+[DIR] women's_shirts\shirt_1\shirt_1_def/
+    - women's_shirts\shirt_1\shirt_1_def\40s_Chambray_FCL1PSC004_3_test4_NRM.jpg
+    - women's_shirts\shirt_1\shirt_1_def\dot.jpeg
+    - women's_shirts\shirt_1\shirt_1_def\shirt_1_def.mtl
+    - women's_shirts\shirt_1\shirt_1_def\shirt_1_def.obj
+[DIR] women's_shirts\shirt_1\shirt_1_patterns/
+    - women's_shirts\shirt_1\shirt_1_patterns\40s_Chambray_FCL1PSC004_3_test4_NRM.jpg
+    - women's_shirts\shirt_1\shirt_1_patterns\dot.jpeg
+    - women's_shirts\shirt_1\shirt_1_patterns\shirt_1_2D.mtl
+    - women's_shirts\shirt_1\shirt_1_patterns\shirt_1_2D.obj
+[DIR] women's_shirts\shirt_1\shirt_1_ref/
+    - women's_shirts\shirt_1\shirt_1_ref\40s_Chambray_FCL1PSC004_3_test4_NRM.jpg
+    - women's_shirts\shirt_1\shirt_1_ref\dot.jpeg
+    - women's_shirts\shirt_1\shirt_1_ref\shirt_1_ref.mtl
+    - women's_shirts\shirt_1\shirt_1_ref\shirt_1_ref.obj
+    - women's_shirts\shirt_1\shirt_1_ref\shirt_1_ref_smoothed.mtl
+    - women's_shirts\shirt_1\shirt_1_ref\shirt_1_ref_smoothed.obj
+[DIR] women's_shirts\shirt_2/
+[DIR] women's_shirts\shirt_2\shirt_2_patterns/
+    - women's_shirts\shirt_2\shirt_2_patterns\blue-white-stripe.jpg
+    - women's_shirts\shirt_2\shirt_2_patterns\Cotton_Canvas_FCL1PSC008_test2_NRM.jpg
+    - women's_shirts\shirt_2\shirt_2_patterns\shirt-2-2D.mtl
+    - women's_shirts\shirt_2\shirt_2_patterns\shirt-2-2D.obj
+[DIR] women's_shirts\shirt_2\shirt_2_ref/
+    - women's_shirts\shirt_2\shirt_2_ref\blue-white-stripe.jpg
+    - women's_shirts\shirt_2\shirt_2_ref\Cotton_Canvas_FCL1PSC008_test2_NRM.jpg
+    - women's_shirts\shirt_2\shirt_2_ref\shirt_2_ref.mtl
+    - women's_shirts\shirt_2\shirt_2_ref\shirt_2_ref.obj
+    - women's_shirts\shirt_2\shirt_2_ref\shirt_2_ref_smoothed.mtl
+    - women's_shirts\shirt_2\shirt_2_ref\shirt_2_ref_smoothed.obj
+[DIR] women's_shirts\shirt_2\shirt_2_result/
+    - women's_shirts\shirt_2\shirt_2_result\blue-white-stripe.jpg
+    - women's_shirts\shirt_2\shirt_2_result\Cotton_Canvas_FCL1PSC008_test2_NRM.jpg
+    - women's_shirts\shirt_2\shirt_2_result\shirt_2_result.mtl
+    - women's_shirts\shirt_2\shirt_2_result\shirt_2_result.obj
+[DIR] women's_shirts\shirt_2_notched_sleeves/
+[DIR] women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_patterns/
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_patterns\shirt_2_notched_sleeves_2D.mtl
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_patterns\shirt_2_notched_sleeves_2D.obj
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_patterns\shirt_2_notched_sleeves_2D_diffuse.png
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_patterns\shirt_2_notched_sleeves_2D_normal.png
+[DIR] women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_ref/
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_ref\shirt_2_notched_sleeves_ref.mtl
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_ref\shirt_2_notched_sleeves_ref.obj
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_ref\shirt_2_notched_sleeves_ref_diffuse.png
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_ref\shirt_2_notched_sleeves_ref_normal.png
+[DIR] women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_result/
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_result\shirt_2_notched_sleeves_result.mtl
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_result\shirt_2_notched_sleeves_result.obj
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_result\shirt_2_notched_sleeves_result_diffuse.png
+    - women's_shirts\shirt_2_notched_sleeves\shirt_2_notched_sleeves_result\shirt_2_notched_sleeves_result_normal.png
+[DIR] women's_T_shirts/
+[DIR] women's_T_shirts\projects/
+    - women's_T_shirts\projects\round-neck-T-shirt-def.png
+    - women's_T_shirts\projects\round-neck-T-shirt-ref.png
+    - women's_T_shirts\projects\round_neck_T_shirt_def.Zprj
+    - women's_T_shirts\projects\round_neck_T_shirt_ref.Zprj
+    - women's_T_shirts\projects\V-neck-T-shirt.png
+    - women's_T_shirts\projects\V_neck_T_shirt.Zprj
+[DIR] women's_T_shirts\round_neck_T_shirt/
+[DIR] women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_def/
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_def\round_neck_T_shirt_def.mtl
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_def\round_neck_T_shirt_def.obj
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_def\round_neck_T_shirt_def_diffuse.png
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_def\round_neck_T_shirt_def_normal.png
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_def\round_neck_T_shirt_def_sculpted.obj
+[DIR] women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_patterns/
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_patterns\round_neck_T_shirt_2D.mtl
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_patterns\round_neck_T_shirt_2D.obj
+[DIR] women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_ref/
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_ref\round_neck_T_shirt_ref.mtl
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_ref\round_neck_T_shirt_ref.obj
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_ref\round_neck_T_shirt_ref_smoothed.mtl
+    - women's_T_shirts\round_neck_T_shirt\round_neck_T_shirt_ref\round_neck_T_shirt_ref_smoothed.obj
+[DIR] women's_T_shirts\V_neck_T_shirt/
+[DIR] women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_2D/
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_2D\V_neck_T_shirt_2D.mtl
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_2D\V_neck_T_shirt_2D.obj
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_2D\V_neck_T_shirt_2D_diffuse.png
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_2D\V_neck_T_shirt_2D_normal.png
+[DIR] women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_ref/
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_ref\V_neck_T_shirt_ref.mtl
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_ref\V_neck_T_shirt_ref.obj
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_ref\V_neck_T_shirt_ref_diffuse.png
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_ref\V_neck_T_shirt_ref_normal.png
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_ref\V_neck_T_shirt_ref_smoothed.mtl
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_ref\V_neck_T_shirt_ref_smoothed.OBJ
+    - women's_T_shirts\V_neck_T_shirt\V_neck_T_shirt_ref\V_neck_T_shirt_ref_smoothed_diffuse.bmp

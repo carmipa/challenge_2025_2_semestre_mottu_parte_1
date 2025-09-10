@@ -1,8 +1,10 @@
 package br.com.fiap.mottu.controller;
 
+import br.com.fiap.mottu.exception.InvalidInputException;
 import br.com.fiap.mottu.service.ocr.OcrSession;
+import br.com.fiap.mottu.service.ocr.OcrSession.Status;
 import br.com.fiap.mottu.service.ocr.OcrSessionManager;
-import br.com.fiap.mottu.service.ocr.PlateRecognizer;
+import br.com.fiap.mottu.service.ocr.TesseractService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
@@ -24,17 +26,17 @@ public class RadarController {
     private static final Logger log = LoggerFactory.getLogger(RadarController.class);
 
     private final OcrSessionManager sessionManager;
-    private final PlateRecognizer plateRecognizer;
+    private final TesseractService tesseractService;
 
-    public RadarController(OcrSessionManager sessionManager, PlateRecognizer plateRecognizer) {
+    public RadarController(OcrSessionManager sessionManager, TesseractService tesseractService) {
         this.sessionManager = sessionManager;
-        this.plateRecognizer = plateRecognizer;
+        this.tesseractService = tesseractService;
     }
 
     @Operation(summary = "Iniciar Sessão de OCR")
     @PostMapping("/iniciar-sessao")
     public ResponseEntity<Map<String, String>> iniciarSessao() {
-        OcrSession session = sessionManager.createSession(); // id gerado e status PENDING  :contentReference[oaicite:12]{index=12}
+        OcrSession session = sessionManager.createSession();
         log.info("Nova sessão de OCR criada: {}", session.getId());
         return ResponseEntity.ok(Map.of("sessionId", session.getId()));
     }
@@ -64,6 +66,7 @@ public class RadarController {
         if (optSession.isEmpty()) {
             return ResponseEntity.status(404).body(Map.of("error", "Sessão inválida ou expirada."));
         }
+        OcrSession session = optSession.get();
 
         MultipartFile mainPart = (image != null && !image.isEmpty()) ? image : file;
 
@@ -78,17 +81,17 @@ public class RadarController {
             byte[] imageBytes = mainPart.getBytes();
             log.info("Sessão {}: Imagem lida com {} bytes.", sessionId, imageBytes.length);
 
-            // Dispara processamento assíncrono no motor configurado (OpenALPR @Primary por padrão).
-            plateRecognizer.extractPlate(sessionId, imageBytes); // compatível com o fluxo anterior  :contentReference[oaicite:13]{index=13}
+            // Dispara o processamento assíncrono. O serviço agora é void e atualiza a sessão.
+            tesseractService.extractPlate(sessionId, imageBytes);
 
             return ResponseEntity.accepted().body(Map.of("status", "Processamento da imagem iniciado."));
 
         } catch (IOException e) {
-            log.error("Sessão {}: Falha ao ler os bytes da imagem.", sessionId, e);
+            log.error("Sessão {}: Falha crítica ao ler os bytes da imagem.", sessionId, e);
             sessionManager.updateSessionError(sessionId, "Erro ao ler o arquivo de imagem.");
             return ResponseEntity.status(500).body(Map.of("error", "Erro interno ao ler o arquivo enviado."));
 
-        } catch (Throwable ex) { // captura erros inesperados (ex.: JNI nativo, etc.)
+        } catch (Throwable ex) { // Captura Exception e Error (como Invalid memory access)
             log.error("Erro inesperado no controller (sessão {}): {}", sessionId, ex.toString(), ex);
             sessionManager.updateSessionError(sessionId, "Erro interno ao processar a imagem.");
             return ResponseEntity.status(500).body(Map.of("error", "Erro interno ao processar a imagem."));

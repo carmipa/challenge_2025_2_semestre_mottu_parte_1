@@ -2,35 +2,68 @@
 
 import axios from "axios";
 import { SpringPage } from "@/types/common";
-import { ClienteRequestDto, ClienteResponseDto, ClienteFilter } from "@/types/cliente";
-import { VeiculoRequestDto, VeiculoResponseDto, VeiculoFilter, VeiculoLocalizacaoResponseDto } from "@/types/veiculo";
-import { PatioRequestDto, PatioResponseDto, PatioFilter } from "@/types/patio";
-import { BoxRequestDto, BoxResponseDto, BoxFilter } from "@/types/box";
-import { ZonaRequestDto, ZonaResponseDto, ZonaFilter } from "@/types/zona";
+import {
+    ClienteRequestDto,
+    ClienteResponseDto,
+    ClienteFilter,
+} from "@/types/cliente";
+import {
+    VeiculoRequestDto,
+    VeiculoResponseDto,
+    VeiculoFilter,
+    VeiculoLocalizacaoResponseDto,
+} from "@/types/veiculo";
+import {
+    PatioRequestDto,
+    PatioResponseDto,
+    PatioFilter,
+} from "@/types/patio";
+import {
+    BoxRequestDto,
+    BoxResponseDto,
+    BoxFilter,
+} from "@/types/box";
+import {
+    ZonaRequestDto,
+    ZonaResponseDto,
+    ZonaFilter,
+} from "@/types/zona";
 
+// ---- OCR / Radar types ----
 export interface OcrSession {
     id: string;
-    status: 'PENDING' | 'PROCESSING' | 'COMPLETED' | 'ERROR';
+    status: "PENDING" | "PROCESSING" | "COMPLETED" | "ERROR";
     recognizedPlate?: string;
     errorMessage?: string;
 }
 
-// ****** AQUI ESTÁ A ALTERAÇÃO PRINCIPAL ******
-// Agora ele lê a variável de ambiente, com um fallback para localhost.
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080/api";
+/**
+ * Base da API:
+ * - Padrão: '/api' (funciona com rewrites do Next e com Caddy HTTPS — mesma origem).
+ * - Override opcional: NEXT_PUBLIC_API_BASE_URL (ex.: 'https://app.local:3443/api' ou 'http://localhost:8080/api').
+ */
+export const API_BASE_URL =
+    process.env.NEXT_PUBLIC_API_BASE_URL || "/api";
 
+/**
+ * Client único, sem headers forçados.
+ * - Para JSON, o Axios seta automaticamente "application/json".
+ * - Para FormData, o Axios seta automaticamente "multipart/form-data; boundary=...".
+ */
 const api = axios.create({
     baseURL: API_BASE_URL,
-    headers: { "Content-Type": "application/json" },
+    withCredentials: true,
+    timeout: 30000,
 });
 
+// util p/ limpar filtros
 const cleanFilterParams = (filter: object): Record<string, any> =>
     Object.entries(filter).reduce((acc, [k, v]) => {
         if (v !== null && v !== undefined && v !== "") acc[k] = v;
         return acc;
     }, {} as Record<string, any>);
 
-// --- CLIENTES ---
+// ---------------- CLIENTES ----------------
 export const ClienteService = {
     listarPaginadoFiltrado: async (
         filter: ClienteFilter = {},
@@ -45,27 +78,36 @@ export const ClienteService = {
         );
         return data;
     },
+
     getById: async (id: number): Promise<ClienteResponseDto> => {
         const { data } = await api.get<ClienteResponseDto>(`/clientes/${id}`);
         return data;
     },
-    create: async (payload: ClienteRequestDto): Promise<ClienteResponseDto> => {
+
+    create: async (
+        payload: ClienteRequestDto
+    ): Promise<ClienteResponseDto> => {
         const { data } = await api.post<ClienteResponseDto>("/clientes", payload);
         return data;
     },
+
     update: async (
         id: number,
         payload: ClienteRequestDto
     ): Promise<ClienteResponseDto> => {
-        const { data } = await api.put<ClienteResponseDto>(`/clientes/${id}`, payload);
+        const { data } = await api.put<ClienteResponseDto>(
+            `/clientes/${id}`,
+            payload
+        );
         return data;
     },
+
     delete: async (id: number): Promise<void> => {
         await api.delete(`/clientes/${id}`);
     },
 };
 
-// --- VEÍCULOS ---
+// ---------------- VEÍCULOS ----------------
 export const VeiculoService = {
     listarPaginadoFiltrado: async (
         filter: VeiculoFilter = {},
@@ -80,25 +122,37 @@ export const VeiculoService = {
         );
         return data;
     },
+
     getById: async (id: number): Promise<VeiculoResponseDto> => {
         const { data } = await api.get<VeiculoResponseDto>(`/veiculos/${id}`);
         return data;
     },
-    create: async (payload: VeiculoRequestDto): Promise<VeiculoResponseDto> => {
+
+    create: async (
+        payload: VeiculoRequestDto
+    ): Promise<VeiculoResponseDto> => {
         const { data } = await api.post<VeiculoResponseDto>("/veiculos", payload);
         return data;
     },
+
     update: async (
         id: number,
         payload: VeiculoRequestDto
     ): Promise<VeiculoResponseDto> => {
-        const { data } = await api.put<VeiculoResponseDto>(`/veiculos/${id}`, payload);
+        const { data } = await api.put<VeiculoResponseDto>(
+            `/veiculos/${id}`,
+            payload
+        );
         return data;
     },
+
     delete: async (id: number): Promise<void> => {
         await api.delete(`/veiculos/${id}`);
     },
-    getLocalizacao: async (id: number): Promise<VeiculoLocalizacaoResponseDto> => {
+
+    getLocalizacao: async (
+        id: number
+    ): Promise<VeiculoLocalizacaoResponseDto> => {
         const { data } = await api.get<VeiculoLocalizacaoResponseDto>(
             `/veiculos/${id}/localizacao`
         );
@@ -106,7 +160,7 @@ export const VeiculoService = {
     },
 };
 
-// --- PÁTIOS ---
+// ---------------- PÁTIOS ----------------
 export const PatioService = {
     listarPaginadoFiltrado: async (
         filter: PatioFilter = {},
@@ -121,27 +175,36 @@ export const PatioService = {
         );
         return data;
     },
+
     getById: async (id: number): Promise<PatioResponseDto> => {
         const { data } = await api.get<PatioResponseDto>(`/patios/${id}`);
         return data;
     },
-    create: async (payload: PatioRequestDto): Promise<PatioResponseDto> => {
+
+    create: async (
+        payload: PatioRequestDto
+    ): Promise<PatioResponseDto> => {
         const { data } = await api.post<PatioResponseDto>("/patios", payload);
         return data;
     },
+
     update: async (
         id: number,
         payload: PatioRequestDto
     ): Promise<PatioResponseDto> => {
-        const { data } = await api.put<PatioResponseDto>(`/patios/${id}`, payload);
+        const { data } = await api.put<PatioResponseDto>(
+            `/patios/${id}`,
+            payload
+        );
         return data;
     },
+
     delete: async (id: number): Promise<void> => {
         await api.delete(`/patios/${id}`);
     },
 };
 
-// --- BOXES ---
+// ---------------- BOXES ----------------
 export const BoxService = {
     listarPaginadoFiltrado: async (
         filter: BoxFilter = {},
@@ -156,27 +219,36 @@ export const BoxService = {
         );
         return data;
     },
+
     getById: async (id: number): Promise<BoxResponseDto> => {
         const { data } = await api.get<BoxResponseDto>(`/boxes/${id}`);
         return data;
     },
-    create: async (payload: BoxRequestDto): Promise<BoxResponseDto> => {
+
+    create: async (
+        payload: BoxRequestDto
+    ): Promise<BoxResponseDto> => {
         const { data } = await api.post<BoxResponseDto>("/boxes", payload);
         return data;
     },
+
     update: async (
         id: number,
         payload: BoxRequestDto
     ): Promise<BoxResponseDto> => {
-        const { data } = await api.put<BoxResponseDto>(`/boxes/${id}`, payload);
+        const { data } = await api.put<BoxResponseDto>(
+            `/boxes/${id}`,
+            payload
+        );
         return data;
     },
+
     delete: async (id: number): Promise<void> => {
         await api.delete(`/boxes/${id}`);
     },
 };
 
-// --- ZONAS ---
+// ---------------- ZONAS ----------------
 export const ZonaService = {
     listarPaginadoFiltrado: async (
         filter: ZonaFilter = {},
@@ -191,60 +263,87 @@ export const ZonaService = {
         );
         return data;
     },
+
     getById: async (id: number): Promise<ZonaResponseDto> => {
         const { data } = await api.get<ZonaResponseDto>(`/zonas/${id}`);
         return data;
     },
-    create: async (payload: ZonaRequestDto): Promise<ZonaResponseDto> => {
+
+    create: async (
+        payload: ZonaRequestDto
+    ): Promise<ZonaResponseDto> => {
         const { data } = await api.post<ZonaResponseDto>("/zonas", payload);
         return data;
     },
+
     update: async (
         id: number,
         payload: ZonaRequestDto
     ): Promise<ZonaResponseDto> => {
-        const { data } = await api.put<ZonaResponseDto>(`/zonas/${id}`, payload);
+        const { data } = await api.put<ZonaResponseDto>(
+            `/zonas/${id}`,
+            payload
+        );
         return data;
     },
+
     delete: async (id: number): Promise<void> => {
         await api.delete(`/zonas/${id}`);
     },
 };
 
-// --- ESTACIONAMENTO ---
+// ---------------- ESTACIONAMENTO ----------------
 export const EstacionamentoService = {
     estacionar: async (placa: string): Promise<BoxResponseDto> => {
-        const { data } = await api.post<BoxResponseDto>('/estacionamento/estacionar', null, { params: { placa } });
+        const { data } = await api.post<BoxResponseDto>(
+            "/estacionamento/estacionar",
+            null,
+            { params: { placa } }
+        );
         return data;
     },
+
     liberarVaga: async (placa: string): Promise<void> => {
-        await api.post('/estacionamento/liberar', null, { params: { placa } });
+        await api.post("/estacionamento/liberar", null, { params: { placa } });
     },
 };
 
-// --- RADAR/OCR ---
+// ---------------- RADAR / OCR ----------------
 export const RadarService = {
     iniciarSessao: async (): Promise<{ sessionId: string }> => {
-        const { data } = await api.post<{ sessionId: string }>('/radar/iniciar-sessao');
+        const { data } = await api.post<{ sessionId: string }>(
+            "/radar/iniciar-sessao"
+        );
         return data;
     },
+
     getStatusSessao: async (sessionId: string): Promise<OcrSession> => {
-        const { data } = await api.get<OcrSession>(`/radar/status-sessao/${sessionId}`);
+        const { data } = await api.get<OcrSession>(
+            `/radar/status-sessao/${encodeURIComponent(sessionId)}`
+        );
         return data;
     },
-    uploadImagem: async (sessionId: string, file: File): Promise<any> => {
-        const formData = new FormData();
-        formData.append('image', file);
 
-        // Usamos uma instância separada do axios para multipart/form-data
-        // que também usa a variável de ambiente correta.
-        const multipartApi = axios.create({ baseURL: API_BASE_URL });
-        const { data } = await multipartApi.post(`/radar/upload-imagem/${sessionId}`, formData, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-        });
+    /**
+     * Envia a imagem da placa para o backend.
+     * Aceita tanto File quanto FormData. NÃO define headers manualmente.
+     */
+    uploadImagem: async (sessionId: string, fileOrForm: File | FormData): Promise<any> => {
+        const formData =
+            fileOrForm instanceof FormData
+                ? fileOrForm
+                : (() => {
+                    const fd = new FormData();
+                    fd.append("image", fileOrForm); // nome do campo que o backend espera
+                    return fd;
+                })();
+
+        const { data } = await api.post(
+            `/radar/upload-imagem/${encodeURIComponent(sessionId)}`,
+            formData
+        );
         return data;
-    }
-
-
+    },
 };
 
+export default api;

@@ -21,29 +21,46 @@ export default function MobileUploadPage() {
     const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null);
     const [imageFile, setImageFile] = useState<File | null>(null);
 
-    // Função para descarregar a imagem automaticamente
-    const saveImageLocally = (url: string, filename: string) => {
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+    // Converte qualquer imagem para JPEG usando canvas
+    const toJpegFile = async (file: File): Promise<File> => {
+        try {
+            // cria bitmap (rápido) quando disponível
+            const bitmap = await createImageBitmap(file);
+            const canvas = document.createElement('canvas');
+            canvas.width = bitmap.width;
+            canvas.height = bitmap.height;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) throw new Error('Canvas 2D não disponível');
+            ctx.drawImage(bitmap, 0, 0);
+
+            const blob: Blob = await new Promise((resolve, reject) => {
+                canvas.toBlob(
+                    (b) => (b ? resolve(b) : reject(new Error('Falha ao gerar JPEG'))),
+                    'image/jpeg',
+                    0.92
+                );
+            });
+
+            return new File([blob], (file.name || 'captura').replace(/\.\w+$/, '') + '.jpg', {
+                type: 'image/jpeg',
+                lastModified: Date.now(),
+            });
+        } catch {
+            // fallback simples: se não conseguir, retorna o próprio arquivo original
+            return file;
+        }
     };
 
-    // Lida com a seleção/captura do ficheiro
-    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (!file) return;
 
-        setImageFile(file);
-        const previewUrl = URL.createObjectURL(file);
-        setImagePreviewUrl(previewUrl);
+        // Converte para JPEG (evita HEIC/WEBP no backend)
+        const jpeg = await toJpegFile(file);
+        setImageFile(jpeg);
 
-        // AQUI ESTÁ A MUDANÇA: guarda automaticamente a foto tirada
-        if (event.target.capture) { // A propriedade 'capture' indica que a imagem veio da câmara
-            saveImageLocally(previewUrl, `mottu_captura_${new Date().toISOString()}.jpg`);
-        }
+        const previewUrl = URL.createObjectURL(jpeg);
+        setImagePreviewUrl(previewUrl);
 
         setStatus('preview');
         setMessage('');
@@ -56,23 +73,23 @@ export default function MobileUploadPage() {
         setMessage('A enviar imagem...');
 
         try {
-            await RadarService.uploadImagem(sessionId, imageFile);
+            const form = new FormData();
+            form.append('image', imageFile, imageFile.name);
+
+            await RadarService.uploadImagem(sessionId, form); // envia multipart
             setStatus('success');
             setMessage('Foto enviada com sucesso! Pode fechar esta janela.');
         } catch (error: any) {
             console.error("Erro no upload:", error);
             setStatus('error');
-            setMessage(error.response?.data?.error || 'Ocorreu um erro ao enviar a imagem.');
+            setMessage(error?.response?.data?.error || 'Ocorreu um erro ao enviar a imagem.');
         }
     };
 
-    // Função para voltar ao estado inicial
     const resetSelection = () => {
         setStatus('idle');
         setImageFile(null);
-        if (imagePreviewUrl) {
-            URL.revokeObjectURL(imagePreviewUrl);
-        }
+        if (imagePreviewUrl) URL.revokeObjectURL(imagePreviewUrl);
         setImagePreviewUrl(null);
         setMessage('');
     };
@@ -80,13 +97,12 @@ export default function MobileUploadPage() {
     return (
         <main className="min-h-screen bg-black text-white p-4 flex flex-col items-center justify-center text-center">
             <div className="w-full max-w-sm">
-
-                {/* Inputs de Ficheiro Escondidos */}
+                {/* Inputs ocultos */}
                 <input
                     ref={cameraInputRef}
                     type="file"
                     accept="image/*"
-                    capture="user"
+                    capture="environment" // câmera traseira
                     onChange={handleFileChange}
                     className="hidden"
                 />
@@ -98,7 +114,7 @@ export default function MobileUploadPage() {
                     className="hidden"
                 />
 
-                {/* ESTADO INICIAL: ESCOLHA DA AÇÃO */}
+                {/* ESTADO INICIAL */}
                 {status === 'idle' && (
                     <>
                         <h1 className="text-3xl font-bold text-[var(--color-mottu-light)] mb-2">Capturar Placa</h1>
@@ -122,12 +138,12 @@ export default function MobileUploadPage() {
                     </>
                 )}
 
-                {/* ESTADO DE PRÉ-VISUALIZAÇÃO */}
+                {/* PRÉ-VISUALIZAÇÃO */}
                 {status === 'preview' && imagePreviewUrl && (
                     <>
                         <h2 className="text-2xl font-bold text-white mb-4">Pré-visualização</h2>
                         <div className="relative w-full h-64 mb-6 rounded-lg overflow-hidden border-2 border-slate-600">
-                            <Image src={imagePreviewUrl} alt="Pré-visualização da placa" layout="fill" objectFit="contain" />
+                            <Image src={imagePreviewUrl} alt="Pré-visualização da placa" fill className="object-contain" />
                         </div>
                         <div className="space-y-3">
                             <button
@@ -140,13 +156,13 @@ export default function MobileUploadPage() {
                                 onClick={resetSelection}
                                 className="w-full flex items-center justify-center gap-2 px-6 py-2 text-sm text-slate-300 hover:underline"
                             >
-                                <RefreshCw size={14}/> Tirar Outra Foto / Escolher Outra
+                                <RefreshCw size={14} /> Tirar Outra Foto / Escolher Outra
                             </button>
                         </div>
                     </>
                 )}
 
-                {/* Indicadores de Status (Uploading, Success, Error) */}
+                {/* STATUS */}
                 <div className="mt-6 min-h-[80px]">
                     {status === 'uploading' && (
                         <div className="flex flex-col items-center gap-2 text-sky-300">
@@ -163,11 +179,12 @@ export default function MobileUploadPage() {
                     {status === 'error' && (
                         <div className="flex flex-col items-center gap-2 text-red-400">
                             <AlertTriangle size={32} />
-                            <p className='font-bold'>Falha no Envio</p>
+                            <p className="font-bold">Falha no Envio</p>
                             <p className="text-sm">{message}</p>
                             <button
                                 onClick={resetSelection}
-                                className="mt-4 px-4 py-2 bg-slate-600 rounded-md text-white">
+                                className="mt-4 px-4 py-2 bg-slate-600 rounded-md text-white"
+                            >
                                 Tentar Novamente
                             </button>
                         </div>
@@ -177,4 +194,3 @@ export default function MobileUploadPage() {
         </main>
     );
 }
-

@@ -24,19 +24,16 @@ public class CorsConfig implements WebMvcConfigurer {
         boolean isProdProfileActive = Arrays.asList(environment.getActiveProfiles()).contains("prod");
 
         if (isProdProfileActive) {
-            // --- CONFIGURAÇÃO PARA PRODUÇÃO ---
-            System.out.println(">>>>>>>>>> CARREGANDO CONFIGURAÇÃO DE CORS PARA PRODUÇÃO <<<<<<<<<<");
+            // PRODUÇÃO
             if (productionAllowedOrigins != null && productionAllowedOrigins.length > 0 &&
                     productionAllowedOrigins[0] != null && !productionAllowedOrigins[0].isEmpty() &&
                     !productionAllowedOrigins[0].equalsIgnoreCase("https://seu-dominio-de-producao.com")) {
-                System.out.println("Allowed Origins (prod): " + String.join(", ", productionAllowedOrigins));
                 registry.addMapping("/**")
                         .allowedOrigins(productionAllowedOrigins)
                         .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS", "HEAD")
                         .allowedHeaders("*")
                         .allowCredentials(true);
             } else {
-                System.out.println("WARN: Nenhuma origem de produção VÁLIDA configurada para CORS (cors.production.allowed.origins). CORS estará altamente restrito ou desabilitado para produção.");
                 registry.addMapping("/**")
                         .allowedOrigins("https://fallback-seguro-obrigatorio.com")
                         .allowedMethods("GET", "POST", "PUT", "DELETE")
@@ -44,17 +41,15 @@ public class CorsConfig implements WebMvcConfigurer {
                         .allowCredentials(true);
             }
         } else {
-            // --- CONFIGURAÇÃO PARA DESENVOLVIMENTO OU PADRÃO (NÃO-PRODUÇÃO) ---
-            String[] developmentAllowedOrigins = {
+            // DESENVOLVIMENTO
+            String[] developmentAllowedOrigins = new String[] {
                     "http://localhost:3000",
-                    "http://localhost:3001",
                     "http://127.0.0.1:3000",
-                    "http://127.0.0.1:3001",
-                    "http://192.168.0.3:3000" // <-- ADICIONADO AQUI
+                    "http://192.168.0.3:3000",
+                    "http://10.199.82.137:3000", // <- seu IP na LAN/tethering
+                    "https://app.local:3443"    // <- se usar Caddy HTTPS com hostname
             };
 
-            System.out.println(">>>>>>>>>> CARREGANDO CONFIGURAÇÃO DE CORS PARA DESENVOLVIMENTO/PADRÃO <<<<<<<<<<");
-            System.out.println("Allowed Origins (dev/default): " + String.join(", ", developmentAllowedOrigins));
             registry.addMapping("/**")
                     .allowedOrigins(developmentAllowedOrigins)
                     .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS", "HEAD")

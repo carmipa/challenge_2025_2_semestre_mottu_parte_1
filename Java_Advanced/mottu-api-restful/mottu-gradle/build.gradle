@@ -72,8 +72,20 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'io.projectreactor:reactor-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Plugins ImageIO para formatos não suportados nativamente
+    implementation 'com.twelvemonkeys.imageio:imageio-jpeg:3.12.0'
+    implementation 'com.twelvemonkeys.imageio:imageio-tiff:3.12.0'
+    implementation 'com.twelvemonkeys.imageio:imageio-webp:3.12.0'
+    implementation 'com.twelvemonkeys.imageio:imageio-bmp:3.12.0'
+    implementation 'com.twelvemonkeys.imageio:imageio-pnm:3.12.0'
+
+    // (Opcional) JAI ImageIO Core — melhora suporte a alguns TIFF/JP2K
+    implementation 'com.github.jai-imageio:jai-imageio-core:1.4.0'
 }
 
+
 tasks.named('test') {
+
     useJUnitPlatform()
 }

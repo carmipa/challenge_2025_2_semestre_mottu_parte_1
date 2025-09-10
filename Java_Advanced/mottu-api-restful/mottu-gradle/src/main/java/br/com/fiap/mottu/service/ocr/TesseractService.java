@@ -1,266 +1,251 @@
 package br.com.fiap.mottu.service.ocr;
 
-import net.sourceforge.tess4j.ITessAPI;
+import br.com.fiap.mottu.exception.InvalidInputException;
+import jakarta.annotation.PostConstruct;
+import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 import org.opencv.core.Mat;
-import org.opencv.core.MatOfRect;
-import org.opencv.core.Rect;
-import org.opencv.objdetect.CascadeClassifier;
+import org.opencv.core.Size;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.nio.file.Files;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static br.com.fiap.mottu.service.ocr.ImageCVUtils.bufferedToMat;
+import java.nio.file.Path;
+import java.time.Instant;
+import java.util.*;
+import java.util.List;
 
 @Service
 public class TesseractService {
 
     private static final Logger log = LoggerFactory.getLogger(TesseractService.class);
 
-    // ======= CONSTANTES DE OCR =======
-    private static final String TEMP_DIR_NAME = "mottu_tesseract";         // SEM subpasta "tessdata"
-    private static final String[] LANG_FILES = {"por.traineddata", "eng.traineddata"};
-    private static final String LANGS = "por+eng";                          // use apenas "por" se quiser
+    // --- DECLARAÇÃO DAS VARIÁVEIS DE CLASSE (ESTA PARTE ESTAVA FALTANDO) ---
+    @Value("${mottu.ocr.lang:por+eng}")
+    private String configuredLang;
 
-    // regex para placas BR
-    private static final Pattern PLACA_MERCOSUL = Pattern.compile("[A-Z]{3}\\d[A-Z]\\d{2}");
-    private static final Pattern PLACA_ANTIGA   = Pattern.compile("[A-Z]{3}\\d{4}");
+    @Value("${mottu.ocr.tessdata-path:}")
+    private String configuredTessdataPath;
 
-    /**
-     * Ponto de entrada: recebe imagem, detecta placa, pré-processa, roda OCR e normaliza.
-     */
-    public String recognizePlate(MultipartFile imageFile) throws TesseractException, IOException {
-        Tesseract tess = buildTesseractInstance();
+    private File tessdataDirResolved;
+    private final OcrSessionManager sessionManager;
+    private final Path runtimeRootDir; // <-- A VARIÁVEL QUE FALTAVA
+    private final Path runtimeTessdataDir;
+    // --- FIM DAS DECLARAÇÕES ---
 
-        BufferedImage original = ImageIO.read(imageFile.getInputStream());
-        if (original == null) {
-            throw new IOException("Não foi possível ler a imagem enviada.");
+    public TesseractService(OcrSessionManager sessionManager) {
+        this.sessionManager = sessionManager;
+        ImageIO.setUseCache(false);
+
+        try {
+            // Inicialização das variáveis
+            this.runtimeRootDir = Files.createTempDirectory("mottu-ocr-" + Instant.now().toEpochMilli());
+            this.runtimeTessdataDir = Files.createDirectories(this.runtimeRootDir.resolve("tessdata"));
+            copyTessdataFromClasspath();
+            log.info("TesseractService inicializado. Diretório de trabalho: {}", runtimeRootDir);
+        } catch (IOException e) {
+            throw new UncheckedIOException("Falha crítica ao preparar diretório de trabalho do OCR", e);
         }
-
-        // 1) tentar detectar a região da placa (se OpenCV estiver ok)
-        BufferedImage plateRoi = tryDetectPlate(original);
-
-        // 2) pré-processar ROI
-        BufferedImage pre = preprocessForOcr(plateRoi);
-
-        // 3) OCR com PSMs adequados
-        tess.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_LINE);
-        String raw = safeDoOcr(tess, pre);
-        if (isInvalid(raw)) {
-            log.warn("Primeira passada PSM_SINGLE_LINE retornou vazio. Tentando PSM_SINGLE_BLOCK...");
-            tess.setPageSegMode(ITessAPI.TessPageSegMode.PSM_SINGLE_BLOCK);
-            raw = safeDoOcr(tess, pre);
-        }
-
-        log.info("Resultado bruto do OCR: '{}'", raw);
-
-        // 4) Normalização/validação para placa BR
-        String placa = pickBrazilPlate(raw);
-        if (placa.isEmpty()) {
-            throw new TesseractException("Não foi possível reconhecer uma placa válida.");
-        }
-
-        return placa;
     }
 
-    // ======= PREPARO DO TESSERACT =======
-
-    /**
-     * Cria instância do Tesseract apontando para a PASTA TEMP que contém .traineddata (sem subpasta).
-     * Também seta TESSDATA_PREFIX para evitar inconsistências de caminho.
-     */
-    private Tesseract buildTesseractInstance() throws IOException {
-        File langDir = ensureLangFilesInTemp();
-
-        Tesseract t = new Tesseract();
-        String dp = langDir.getAbsolutePath();
-
-        // datapath e TESSDATA_PREFIX apontando para a pasta que CONTÉM os .traineddata
-        t.setDatapath(dp);
-        t.setVariable("TESSDATA_PREFIX", dp + File.separator);
-
-        t.setLanguage(LANGS);
-        t.setOcrEngineMode(ITessAPI.TessOcrEngineMode.OEM_LSTM_ONLY);
-        t.setVariable("user_defined_dpi", "300");
-        t.setVariable("tessedit_char_whitelist", "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789");
-        return t;
+    @PostConstruct
+    public void init() {
+        resolveTessdataPath();
+        log.info("Idiomas de OCR configurados='{}'", configuredLang);
     }
 
-    /**
-     * Garante que os arquivos de idioma dentro de src/main/resources/tessdata
-     * sejam extraídos para %TEMP%/mottu_tesseract (sem subpasta).
-     */
-    private File ensureLangFilesInTemp() throws IOException {
-        File base = new File(System.getProperty("java.io.tmpdir"), TEMP_DIR_NAME);
-        if (!base.exists() && !base.mkdirs()) {
-            throw new IOException("Não foi possível criar diretório temporário: " + base.getAbsolutePath());
+    private void resolveTessdataPath() {
+        List<String> triedPaths = new ArrayList<>();
+        if (configuredTessdataPath != null && !configuredTessdataPath.isBlank()) {
+            File f = new File(configuredTessdataPath);
+            triedPaths.add("propriedade 'mottu.ocr.tessdata-path': " + f.getAbsolutePath());
+            if (f.isDirectory()) {
+                tessdataDirResolved = f;
+            }
         }
-
-        for (String file : LANG_FILES) {
-            File out = new File(base, file);
-            if (!out.exists()) {
-                String resourcePath = "/tessdata/" + file;
-                try (InputStream in = getClass().getResourceAsStream(resourcePath)) {
-                    if (in == null) {
-                        throw new IOException("Recurso não encontrado: " + resourcePath +
-                                " (coloque seus .traineddata em src/main/resources/tessdata/)");
-                    }
-                    try (OutputStream os = Files.newOutputStream(out.toPath())) {
-                        FileCopyUtils.copy(in, os);
-                    }
+        if (tessdataDirResolved == null) {
+            String envPath = System.getenv("TESSDATA_PREFIX");
+            if (envPath != null && !envPath.isBlank()) {
+                File f = new File(envPath);
+                triedPaths.add("variável de ambiente 'TESSDATA_PREFIX': " + f.getAbsolutePath());
+                if (f.isDirectory()) {
+                    tessdataDirResolved = f;
                 }
-                log.info("Idioma '{}' copiado para {}", file, out.getAbsolutePath());
             }
         }
+        if (tessdataDirResolved == null) {
+            tessdataDirResolved = this.runtimeTessdataDir.toFile();
+            triedPaths.add("extração do classpath para: " + tessdataDirResolved.getAbsolutePath());
+        }
 
-        return base;
+        if (tessdataDirResolved != null && tessdataDirResolved.listFiles((dir, name) -> name.endsWith(".traineddata")).length > 0) {
+            log.info("✅ Tesseract 'tessdata' localizado com sucesso em: {}", tessdataDirResolved.getAbsolutePath());
+        } else {
+            log.error("❌ FALHA CRÍTICA: Não foi possível resolver a pasta 'tessdata'. Tentativas: {}", triedPaths);
+        }
     }
 
-    // ======= DETECÇÃO DE PLACA (OPENCV) =======
+    private void copyTessdataFromClasspath() throws IOException {
+        String[] entries = {"eng.traineddata", "por.traineddata", "osd.traineddata"};
+        for (String entry : entries) {
+            String resourcePath = "/tessdata/" + entry;
+            try (InputStream in = getClass().getResourceAsStream(resourcePath)) {
+                if (in == null) {
+                    log.warn("Recurso de OCR não encontrado no classpath: {}", resourcePath);
+                    continue;
+                }
+                Files.copy(in, this.runtimeTessdataDir.resolve(entry));
+                log.info("Recurso de OCR copiado: {}", entry);
+            }
+        }
+    }
 
-    /**
-     * Tenta detectar a placa usando o cascade dos resources.
-     * Se algo falhar, retorna a imagem original (fail-safe).
-     */
-    private BufferedImage tryDetectPlate(BufferedImage source) {
+    public void extractPlate(String sessionId, byte[] imageBytes) {
+        sessionManager.setSessionProcessing(sessionId);
         try {
-            // carrega o cascade de resources para arquivo temporário
-            String resource = "/classifiers/haarcascade_russian_plate_number.xml";
-            InputStream in = getClass().getResourceAsStream(resource);
-            if (in == null) {
-                log.warn("Cascade XML não encontrado em {}. Seguindo sem recorte de placa.", resource);
-                return source;
+            if (imageBytes == null || imageBytes.length == 0) {
+                throw new InvalidInputException("Arquivo de imagem está vazio ou corrompido.");
             }
-            File tmp = File.createTempFile("cascade", ".xml");
-            try (in; OutputStream os = new FileOutputStream(tmp)) {
-                in.transferTo(os);
+            BufferedImage sourceImage = readImageStrict(imageBytes);
+            BufferedImage processedImage = preprocessImageForOcr(sourceImage);
+            Path pngTempFile = writePngTemp(processedImage);
+            String ocrResult = runTesseractOcr(pngTempFile);
+            String normalizedPlate = PlateUtils.normalizeMercosul(ocrResult);
+
+            if (normalizedPlate == null || normalizedPlate.length() < 7) {
+                throw new InvalidInputException("Não foi possível reconhecer uma placa válida na imagem.");
             }
-
-            CascadeClassifier cc = new CascadeClassifier(tmp.getAbsolutePath());
-            if (cc.empty()) {
-                log.warn("CascadeClassifier vazio. Seguindo sem recorte.");
-                return source;
-            }
-
-            Mat mat = bufferedToMat(source);
-            MatOfRect rects = new MatOfRect();
-            cc.detectMultiScale(mat, rects);
-
-            Rect[] arr = rects.toArray();
-            if (arr.length == 0) {
-                log.info("Nenhuma placa detectada. Usando imagem completa.");
-                return source;
-            }
-
-            // usa a primeira região detectada
-            Rect r = arr[0];
-            int x = Math.max(0, r.x);
-            int y = Math.max(0, r.y);
-            int w = Math.min(r.width, source.getWidth() - x);
-            int h = Math.min(r.height, source.getHeight() - y);
-
-            BufferedImage roi = source.getSubimage(x, y, w, h);
-            log.info("Placa detectada em x={}, y={}, w={}, h={}", x, y, w, h);
-            return roi;
-        } catch (Throwable t) {
-            log.debug("Detecção de placa ignorada ({})", t.toString());
-            return source;
+            log.info("Sessão {}: Placa reconhecida e normalizada: {}", sessionId, normalizedPlate);
+            sessionManager.updateSessionSuccess(sessionId, normalizedPlate);
+        } catch (Throwable ex) {
+            log.error("Sessão {}: Falha no processo de OCR: {}", sessionId, ex.getMessage(), ex);
+            String errorMessage = (ex instanceof InvalidInputException) ? ex.getMessage() : "Erro interno ao processar a imagem.";
+            sessionManager.updateSessionError(sessionId, errorMessage);
         }
     }
 
-    // ======= PRÉ-PROCESSAMENTO =======
-
-    private BufferedImage preprocessForOcr(BufferedImage src) {
-        // escala de cinza
-        BufferedImage gray = new BufferedImage(src.getWidth(), src.getHeight(), BufferedImage.TYPE_BYTE_GRAY);
-        Graphics2D g = gray.createGraphics();
-        g.drawImage(src, 0, 0, null);
-        g.dispose();
-
-        // upscale se muito pequena
-        final int MIN_W = 300;
-        BufferedImage scaled = gray;
-        if (gray.getWidth() < MIN_W) {
-            double scale = (double) MIN_W / gray.getWidth();
-            int nw = (int) (gray.getWidth() * scale);
-            int nh = (int) (gray.getHeight() * scale);
-            scaled = resize(gray, nw, nh);
+    private String runTesseractOcr(Path imageFile) throws TesseractException {
+        if (tessdataDirResolved == null || !tessdataDirResolved.isDirectory()) {
+            throw new TesseractException("Diretório 'tessdata' não foi inicializado.");
         }
-
-        // binarização "rápida" (desenho simples em imagem TYPE_BYTE_BINARY)
-        BufferedImage binary = new BufferedImage(scaled.getWidth(), scaled.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
-        Graphics2D g2 = binary.createGraphics();
-        g2.drawImage(scaled, 0, 0, null);
-        g2.dispose();
-
-        return binary;
+        ITesseract tesseract = new Tesseract();
+        tesseract.setDatapath(tessdataDirResolved.getParentFile().getAbsolutePath());
+        String langToUse = chooseLanguage(configuredLang);
+        tesseract.setLanguage(langToUse);
+        tesseract.setTessVariable("user_defined_dpi", "300");
+        long startTime = System.currentTimeMillis();
+        String result = tesseract.doOCR(imageFile.toFile());
+        long duration = System.currentTimeMillis() - startTime;
+        log.info("Tess4J executado em {} ms com o idioma '{}'", duration, langToUse);
+        return result != null ? result.trim() : "";
     }
 
-    private BufferedImage resize(BufferedImage img, int w, int h) {
-        BufferedImage out = new BufferedImage(w, h, img.getType());
-        Graphics2D g2 = out.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(img, 0, 0, w, h, null);
-        g2.dispose();
-        return out;
-    }
-
-    // ======= OCR SAFE =======
-
-    private String safeDoOcr(Tesseract t, BufferedImage img) {
-        try {
-            return t.doOCR(img);
-        } catch (TesseractException e) {
-            log.warn("Uma passada de OCR falhou: {}", e.getMessage());
-            return "";
+    private String chooseLanguage(String requested) {
+        Set<String> availableLangs = listAvailableLanguages();
+        if (availableLangs.isEmpty()) {
+            log.error("Nenhum arquivo .traineddata encontrado em {}", tessdataDirResolved);
+            return "eng";
         }
-    }
-
-    private boolean isInvalid(String s) {
-        return s == null || s.trim().isEmpty();
-    }
-
-    // ======= NORMALIZAÇÃO PARA PLACA BR =======
-
-    private String pickBrazilPlate(String raw) {
-        if (raw == null) return "";
-
-        String cleaned = raw.replaceAll("[^A-Za-z0-9]", "").toUpperCase();
-
-        // correções comuns O/0, I/L/1, S/5, B/8, Q/0
-        cleaned = cleaned
-                .replace('Ø', '0')
-                .replace('O', '0')
-                .replace('Q', '0')
-                .replace('I', '1')
-                .replace('L', '1')
-                .replace('S', '5')
-                .replace('B', '8');
-
-        Matcher m1 = PLACA_MERCOSUL.matcher(cleaned);
-        if (m1.find()) return m1.group();
-
-        Matcher m2 = PLACA_ANTIGA.matcher(cleaned);
-        if (m2.find()) return m2.group();
-
-        // última tentativa: procurar janela deslizante de 7 caracteres alfanuméricos
-        for (int i = 0; i + 7 <= cleaned.length(); i++) {
-            String w = cleaned.substring(i, i + 7);
-            if (PLACA_MERCOSUL.matcher(w).matches() || PLACA_ANTIGA.matcher(w).matches()) {
-                return w;
+        List<String> langsToUse = new ArrayList<>();
+        for (String lang : requested.split("\\+")) {
+            if (availableLangs.contains(lang.trim())) {
+                langsToUse.add(lang.trim());
             }
         }
-        return "";
+        if (langsToUse.isEmpty()) {
+            if (availableLangs.contains("eng")) {
+                log.warn("Idiomas requisitados '{}' não encontrados. Usando fallback 'eng'.", requested);
+                return "eng";
+            } else {
+                String fallback = availableLangs.iterator().next();
+                log.warn("Idiomas requisitados '{}' e 'eng' não encontrados. Usando fallback: '{}'", requested, fallback);
+                return fallback;
+            }
+        }
+        return String.join("+", langsToUse);
+    }
+
+    private Set<String> listAvailableLanguages() {
+        Set<String> languages = new HashSet<>();
+        if (tessdataDirResolved == null || !tessdataDirResolved.isDirectory()) return languages;
+        File[] files = tessdataDirResolved.listFiles((dir, name) -> name.toLowerCase().endsWith(".traineddata"));
+        if (files != null) {
+            for (File f : files) {
+                languages.add(f.getName().replace(".traineddata", ""));
+            }
+        }
+        return languages;
+    }
+
+    private BufferedImage readImageStrict(byte[] bytes) throws IOException {
+        try (ImageInputStream iis = ImageIO.createImageInputStream(new ByteArrayInputStream(bytes))) {
+            if (iis == null) throw new IOException("Não foi possível criar ImageInputStream.");
+            Iterator<ImageReader> readers = ImageIO.getImageReaders(iis);
+            if (!readers.hasNext()) throw new IOException("Formato de imagem não suportado.");
+            ImageReader reader = readers.next();
+            try {
+                reader.setInput(iis, true, true);
+                BufferedImage img = reader.read(0);
+                if (img == null) throw new IOException("Falha ao decodificar a imagem.");
+                return ensureBufferedRgb(img);
+            } finally {
+                reader.dispose();
+            }
+        }
+    }
+
+    private BufferedImage ensureBufferedRgb(BufferedImage img) {
+        if (img.getType() == BufferedImage.TYPE_INT_RGB) return img;
+        BufferedImage copy = new BufferedImage(img.getWidth(), img.getHeight(), BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = copy.createGraphics();
+        try { g.drawImage(img, 0, 0, null); } finally { g.dispose(); }
+        return copy;
+    }
+
+    private Path writePngTemp(BufferedImage img) throws IOException {
+        Path tmp = Files.createTempFile(this.runtimeRootDir, "ocr-processed-", ".png");
+        ImageIO.write(img, "png", tmp.toFile());
+        return tmp;
+    }
+
+    private BufferedImage preprocessImageForOcr(BufferedImage image) throws IOException {
+        Mat mat = bufferedImageToMat(image);
+        Mat grayMat = new Mat();
+        Imgproc.cvtColor(mat, grayMat, Imgproc.COLOR_BGR2GRAY);
+        Mat blurredMat = new Mat();
+        Imgproc.GaussianBlur(grayMat, blurredMat, new Size(3, 3), 0);
+        Mat threshMat = new Mat();
+        Imgproc.adaptiveThreshold(blurredMat, threshMat, 255, Imgproc.ADAPTIVE_THRESH_GAUSSIAN_C, Imgproc.THRESH_BINARY, 11, 2);
+        log.info("Pré-processamento da imagem concluído.");
+        return matToBufferedImage(threshMat);
+    }
+
+    private Mat bufferedImageToMat(BufferedImage bi) {
+        BufferedImage bgrImage = new BufferedImage(bi.getWidth(), bi.getHeight(), BufferedImage.TYPE_3BYTE_BGR);
+        bgrImage.getGraphics().drawImage(bi, 0, 0, null);
+        byte[] data = ((java.awt.image.DataBufferByte) bgrImage.getRaster().getDataBuffer()).getData();
+        Mat mat = new Mat(bi.getHeight(), bi.getWidth(), org.opencv.core.CvType.CV_8UC3);
+        mat.put(0, 0, data);
+        return mat;
+    }
+
+    private BufferedImage matToBufferedImage(Mat mat) throws IOException {
+        Path tmp = Files.createTempFile(this.runtimeRootDir, "mat-to-img-", ".png");
+        Imgcodecs.imwrite(tmp.toString(), mat);
+        BufferedImage image = ImageIO.read(tmp.toFile());
+        Files.delete(tmp);
+        return image;
     }
 }
